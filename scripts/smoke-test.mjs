@@ -217,7 +217,11 @@ for (const f of ['/app.js', '/i18n.js', '/voice.js', '/style.css', '/vendor/leaf
   check('search: AAI\'s latest LEZ status found, with the question it answers and no fake link', Boolean(lp && lp.published_online === false && !lp.url && /^4:/.test(lp.answer_to_question || '')));
   const chp = JSON.parse((await raw(`/api/search?q=${encodeURIComponent('Когда ТЭЦ-2 переведут на газ и как изменятся её выбросы?|ТЭЦ-2 перевод на газ выбросы')}&k=8`)).body);
   check('search: ТЭЦ-2 emission figures (37,1 → 2,7) come with the gas conversion passage', (chp.results || []).some(r => /37,1/.test(r.text)));
-  check('search API: nothing for off-topic, 400 for empty', JSON.parse((await raw('/api/search?q=pizza%20recipe')).body).found === 0 && (await raw('/api/search?q=')).status === 400);
+  const empty = await raw('/api/search?q=');
+  check('search API: nothing for off-topic; an empty call says what to send', JSON.parse((await raw('/api/search?q=pizza%20recipe')).body).found === 0 && empty.status === 200 && /again with the question in q/.test(JSON.parse(empty.body).error));
+  const kebab = JSON.parse((await raw(`/api/search?q=${encodeURIComponent('kebab houses air quality|шаурма кебаб воздух')}&lang=en`)).body);
+  check('search API: an AAI project page brings the special project it links to (The Steppe, with figures)', kebab.results.some(r => r.linked_from && /the-steppe\.com/.test(r.url) && r.text.length > 200));
+  check('search API: the question also works as query=',JSON.parse((await raw(`/api/search?query=${encodeURIComponent('kebab houses air|шашлычные воздух')}`)).body).found > 0);
   const vr = await raw('/video/taza-indrive.mp4', { headers: { Range: 'bytes=0-1' } });
   check('concept video: byte ranges for phones', vr.status === 206 && /^bytes 0-1\//.test(vr.headers['content-range'] || '') && /video\/mp4/.test(vr.headers['content-type'] || ''));
   check('concept video: poster', (await raw('/video/taza-indrive.jpg')).status === 200);

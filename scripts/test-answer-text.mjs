@@ -55,6 +55,58 @@ const CASES = [
     must: [/22\.1/, /2\.1-fold/],
   },
   {
+    name: 'a quote that opens by repeating the sentence before it loses the repeat, keeps the new figures',
+    content: [T("AAI's sensor archive counts 138 days at or below the WHO 24-hour guideline of 15 µg/m³ in 2024 "),
+      T('(138 days at or below the WHO 24-hour guideline of 15 µg/m³, 127 days between 15 and 35 µg/m³, and 101 days above the limit',
+        cite("Days in 2024 by daily PM2.5: 138 days at or below the WHO 24-hour guideline of 15 µg/m³, 127 days between 15 and 35 µg/m³, and 101 days above Kazakhstan's daily limit")),
+      T('). The report gives 164.')],
+    must: [/127 days/, /101 days/, /\[1\]/], count: [/138 days/, 1],
+  },
+  {
+    name: 'a quote that only repeats the sentence before it leaves no empty brackets',
+    content: [T("AAI's sensor archive counts 138 days at or below the WHO 24-hour guideline of 15 µg/m³ in 2024 "),
+      T('(138 days at or below the WHO 24-hour guideline of 15 µg/m³', cite('138 days at or below the WHO 24-hour guideline of 15 µg/m³')), T('). The report gives 164.')],
+    must: [/in 2024\[1\]\. The report/], count: [/138 days/, 1],
+  },
+  {
+    name: 'a sentence that ends on a comma before a new sentence gets its full stop (",[1] That")',
+    content: [T('Almaty is at 67.7 µg/m³, ahead of Bishkek at 41.7 µg/m³,', cite('Almaty 67.7; Bishkek 41.7')), T(' That comparison covers five cities.')],
+    must: [/41\.7 µg\/m³\.\[1\] That/],
+  },
+  {
+    name: 'a pasted sentence with the same words as the one before it goes, even without figures',
+    content: [T('Нет, такой цифры нет. По словам AAI, универсальной доли «во всём загрязнении» не существует, потому что вклад источников зависит от конкретного вещества. '),
+      T('Вклад источников зависит от конкретного вещества: универсальной доли «во всем загрязнении» не существует.', cite('Вклад источников зависит от конкретного вещества: универсальной доли «во всем загрязнении» не существует.', 1)),
+      T(' Единственная доля для PM2.5 — 34%.')],
+    count: [/универсальной доли/, 1], must: [/\[1\]/, /34%/],
+  },
+  {
+    name: 'a cited sentence on a new point that shares a few words stays',
+    content: [T('Road dust is the largest PM2.5 source in Almaty at one site. '), T('Coal burning plays a decisive role in winter PM2.5 concentrations from private homes.', cite('coal burning plays a decisive role in winter PM2.5', 1))],
+    must: [/decisive role/],
+  },
+  {
+    name: 'a repeat after an unfinished sentence ("…adds that") is kept, so the sentence is not left broken',
+    content: [T('The most polluted time is between 19:00 and 21:00 in winter, above 80 µg/m³', cite('peak 19:00–21:00, above 80 µg/m³')), T('. The 2025 review adds that '),
+      T('the most polluted time is between 19:00 and 21:00 in winter, above 80 µg/m³', cite('In winter, peak levels occur between 19:00 and 21:00 (above 80 µg/m³)', 0, 1)), T(', which AAI links to inversions.')],
+    not: [/adds that\s*\[/],
+  },
+  {
+    name: 'a closing sentence with no source that only repeats figures goes',
+    content: [T('The archive counts 138 days', cite('138 days')), T(' and the report 164 days', cite('164 days', 1)), T('. The two counts differ: 138 days in the archive and 164 days in the report.')],
+    count: [/138/, 1], must: [/164 days\[2\]/],
+  },
+  {
+    name: 'a sentence with no source but a new figure stays',
+    content: [T('The archive counts 138 days', cite('138 days')), T('. That is 26 fewer than the 164 days in the report.')],
+    must: [/26 fewer/],
+  },
+  {
+    name: 'a quote that repeats the start of the last sentence is kept whole when the rest would start in lower case',
+    content: [T('A child at a school in Turksib district is counted. '), T('A child at a school in Turksib district accumulates a dose of 423 cigarettes over one heating season', cite('A child attending a school or kindergarten in Turksib district accumulates, over one heating season, a dose equivalent to 423 cigarettes')), T('.')],
+    not: [/counted\.\s+accumulates/], must: [/423/],
+  },
+  {
     name: 'a "not covered" answer with no figures keeps its text',
     content: [T("AAI's research does not cover radon in apartments. A related topic is indoor PM2.5 measured in homes during the heating season", cite('measurements of PM2.5 inside Almaty apartments during the heating season', 1)), T('.')],
     must: [/does not cover radon/, /\[1\]/],

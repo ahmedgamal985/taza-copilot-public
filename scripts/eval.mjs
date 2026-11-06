@@ -42,7 +42,8 @@ const TESTS = [
   ['What share of Almaty residents took no environmental action in the past year?', '46%', /46([.,]\d)?\s?%/],
   ['What share of Almaty residents use no measures to protect themselves from polluted air?', '17%', /17\s?%/],
   ['What share of 25–34-year-olds in Almaty use air purifiers?', '36% (2025) or 35.5% (2026 wave)', /36\s?%|35[.,]5\s?%/],
-  ['What share of Almaty residents report allergic reactions from smog?', '43%', /43\s?%/],
+  // the same survey gives 43% (allergic reactions noticed as a sign of smog) and 39% (reported as a symptom): both are right
+  ['What share of Almaty residents report allergic reactions from smog?', '43% (or 39% as a symptom)', /43\s?%|39\s?%/],
   ['By how much did Kazhydromet\'s count of PM10 exceedances fall in 2025?', '29% (1,091 → 772)', /29\s?%|1[ ,.]?091[^.]{0,40}772/],
   ['When did the Almaty delegation visit Sofia to study its low emission zone?', 'July 2026', /July\s*2026|6[–-]10 July/i],
   // Real questions journalists (Tengrinews, Kursiv, Informburo...) and AAI colleagues sent to AAI in November 2026,

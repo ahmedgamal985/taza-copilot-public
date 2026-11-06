@@ -666,8 +666,12 @@ data: ${JSON.stringify(data)}
     // once, separated by "|" (the same question in English, Russian and Kazakh finds reports in every language).
     if (url.pathname === '/api/search') {
       if (!allowed(ip, 'search', 60)) return send(req, res, 429, { error: 'Too many requests, wait a minute.' });
-      const q = String(url.searchParams.get('q') || '').slice(0, 400).trim();
-      if (q.length < 2) return send(req, res, 400, { error: 'Send a question in q.' });
+      // q, or the names an assistant may use instead (a voice agent once called it with the question elsewhere)
+      const p = url.searchParams;
+      const q = String(p.get('q') || p.get('query') || p.get('question') || p.get('text') || '').slice(0, 400).trim();
+      // An empty call is answered with what to do (an agent reads this text), not with an error the agent turns
+      // into "AAI's research does not cover it"
+      if (q.length < 2) return send(req, res, 200, { found: 0, results: [], error: 'No search words were sent. Call taza_search_research again with the question in q, as keywords in English, Russian and Kazakh separated by |, for example: kebab houses air | шашлычные воздух | кәуапхана ауа.' });
       const lang = ['en', 'ru', 'kk'].includes(url.searchParams.get('lang')) ? url.searchParams.get('lang') : null;
       const k = Math.min(8, Math.max(1, Number.parseInt(url.searchParams.get('k'), 10) || 5));
       const queries = q.split('|').map(s => s.trim()).filter(s => s.length > 1).slice(0, 4);
@@ -691,6 +695,24 @@ data: ${JSON.stringify(data)}
       const results = found.slice(0, k).map((r, i) => ({ n: i + 1, title: r.title, page: r.page ?? null, url: r.url || null,
         answer_to_question: r.section ? `${r.section.n}: ${r.section.q}` : undefined, published_online: r.url ? undefined : false, lang: r.lang, date: r.date || null,
         text: pick(r.blocks) }));
+      // A passage that points to another publication Taza has (an AAI project page → its special project with The
+      // Steppe, which holds the figures) brings that publication's best-matching passage too, so an assistant whose
+      // search words missed it still gets the detailed answer (at most two added)
+      const byUrl = new Map(index.docs.filter(d => d.url).map(d => [d.url.split('#')[0], d]));
+      let added = 0;
+      for (const r of [...results]) {
+        for (const link of r.text.match(/https?:\/\/[^\s)»"<]+/g) || []) {
+          let d = byUrl.get(link);
+          try { d ||= byUrl.get(encodeURI(decodeURI(link))); } catch {}
+          if (!d || added >= 2 || results.some(x => x.url && x.url.split('#')[0] === d.url)) continue;
+          // the best paragraph of the whole publication (with the ones after it), not just its best section
+          const all = index.items.filter(it => it.chunk.doc === d.id).flatMap(it => it.chunk.blocks);
+          if (!all.length) continue;
+          results.push({ n: results.length + 1, title: d.title, page: null, url: d.url, lang: d.lang, date: d.date || null,
+            linked_from: r.n, text: pick(all) });
+          added++;
+        }
+      }
       return send(req, res, 200, { query: queries, results, found: results.length,
         note: results.length ? 'Quote these passages exactly and give the title, page and link. If they do not answer the question, say AAI research does not cover it.' : 'Nothing in AAI research matches. Say so; do not guess.' });
     }

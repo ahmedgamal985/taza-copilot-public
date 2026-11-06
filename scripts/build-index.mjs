@@ -76,21 +76,35 @@ for (const p of index.pdfs.filter(p => p.file && p.text)) {
 const seenBodies = new Set();
 let dupes = 0;
 // press: AAI's written answers to media questions (quoted with title and date; the files are not published)
-for (const type of ['research', 'external_research', 'actual_legislation', 'press']) {
+// project: AAI's project pages (news of its studies, such as the kebab-house measurements); many repeat a research
+// article word for word, and those are skipped. special: AAI's special projects published by media outlets (The Steppe,
+// Vlast, Tengrinews), linked from its project pages; they carry the detailed figures.
+const bodiesByLang = {};
+const sentencesOf = t => t.replace(/\s+/g, ' ').split(/(?<=[.!?])\s+/).map(x => x.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, '')).filter(x => x.length >= 60);
+const repeatsKnown = (body, lang) => {
+  const mine = sentencesOf(body), known = bodiesByLang[lang] || [];
+  if (!mine.length) return false;
+  return known.some(k => mine.filter(x => k.includes(x)).length / mine.length >= 0.4);
+};
+for (const type of ['research', 'external_research', 'actual_legislation', 'press', 'project', 'special']) {
   const dir = join(corpus, 'web', type);
   if (!existsSync(dir)) continue;
   for (const name of readdirSync(dir).filter(f => f.endsWith('.md')).sort()) {
     const raw = readFileSync(join(dir, name), 'utf8');
     // the header lines only: the first of each (an article can quote its own "Source: …" further down)
     const head = {};
-    for (const m of raw.matchAll(/^(Source|Date|Language|Type): (.*)$/gm)) head[m[1]] ??= m[2].trim();
-    const title = raw.match(/^# (.*)$/m)?.[1]?.trim() || name;
+    for (const m of raw.matchAll(/^(Source|Date|Language|Type|Outlet): (.*)$/gm)) head[m[1]] ??= m[2].trim();
+    let title = raw.match(/^# (.*)$/m)?.[1]?.trim() || name;
     // Body starts after the header block; drop the repeated title line and the date line
-    const body = raw.split(/\nType: .*\n/)[1]?.replace(title, '').replace(/^\s*\d{1,2} \S+ \d{4}\s*$/m, '').trim() || '';
+    const body = raw.split(/\nType: .*\n(?:Outlet: .*\n)?/)[1]?.replace(title, '').replace(/^\s*\d{1,2} \S+ \d{4}\s*$/m, '').trim() || '';
     if (body.length < 400) continue;
     const key = body.replace(/\s+/g, ' ').slice(0, 3000);
     if (seenBodies.has(key)) { dupes++; continue; }
+    if (type === 'project' && repeatsKnown(body, head.Language)) { dupes++; continue; }
     seenBodies.add(key);
+    (bodiesByLang[head.Language] ||= []).push(body.replace(/\s+/g, ' ').toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ''));
+    // the outlet's own suffix goes (" — The Steppe", " - Аналитический интернет-журнал Власть"); the title says whose project it is
+    if (type === 'special') title = `AAI special project with ${head.Outlet}: ${title.replace(/\s*(&mdash;|—|-|\|)\s*(The Steppe|Аналитический интернет-журнал Власть|Tengrinews).*$/i, '').trim()}`;
     const blocks = toBlocks(body);
     if (!blocks.length) continue;
     const docId = `web${docs.length}`;
