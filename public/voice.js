@@ -193,7 +193,8 @@ $('#voiceBtn').addEventListener('click', async () => {
       onDisconnect: () => { window.tazaHistory?.addVoice(transcript.splice(0)); convo = null; fab.classList.remove('live'); setState('v_tap', ''); ghost.classList.remove('on');
         setTimeout(() => { if (!convo) fab.querySelector('.voice-panel').hidden = true; }, 2500); },
       onModeChange: ({ mode }) => setState(mode === 'speaking' ? 'v_speaking' : 'v_listening', mode),
-      onMessage: ({ message, source }) => { if (message) transcript.push({ role: source === 'user' ? 'user' : 'agent', text: message }); $('#voiceLine').textContent = `${source === 'user' ? I18N.t('v_you') : 'Taza'}: ${message}`; },
+      // each new sentence replaces the last one and is shown from its start (the line grows with it, then scrolls)
+      onMessage: ({ message, source }) => { if (message) transcript.push({ role: source === 'user' ? 'user' : 'agent', text: message }); const line = $('#voiceLine'); line.textContent = `${source === 'user' ? I18N.t('v_you') : 'Taza'}: ${message}`; line.scrollTop = 0; },
       onError: err => { console.error(err); setState('v_err', ''); },
     });
   } catch (err) {

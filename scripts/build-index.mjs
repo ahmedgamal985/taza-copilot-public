@@ -79,6 +79,16 @@ let dupes = 0;
 // project: AAI's project pages (news of its studies, such as the kebab-house measurements); many repeat a research
 // article word for word, and those are skipped. special: AAI's special projects published by media outlets (The Steppe,
 // Vlast, Tengrinews), linked from its project pages; they carry the detailed figures.
+// Passages AAI has told us are wrong, left out of the index.
+// - 5 November 2026 media answer: "1 November … 77.5 µg/m³" and the ratio drawn from it ("more than five times the WHO
+//   guideline"). Saina (AAI) confirmed on 6 November 2026 that the daily average was 72 µg/m³, as in the Tengrinews answer.
+const CORRECTIONS = [
+  { file: /2026-11-05 AAI answers on smog/, remove: [
+    // (lazy matches, not [^.]*: the sentences hold "PM2.5" and "ПДК с.с.")
+    /По данным нашей сети мониторинга, 1 ноября.{0,200}?77,5 мкг\/м³\. Это более чем вдвое.{0,200}?рекомендации ВОЗ\.\s*/s,
+    /Біздің мониторинг желіміздің жедел деректері бойынша, 1 қарашада.{0,200}?77,5 мкг\/м³-ке жетті\. Бұл Қазақстанда.{0,250}?бес есе көп\.\s*/s,
+  ] },
+];
 const bodiesByLang = {};
 const sentencesOf = t => t.replace(/\s+/g, ' ').split(/(?<=[.!?])\s+/).map(x => x.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, '')).filter(x => x.length >= 60);
 const repeatsKnown = (body, lang) => {
@@ -90,7 +100,9 @@ for (const type of ['research', 'external_research', 'actual_legislation', 'pres
   const dir = join(corpus, 'web', type);
   if (!existsSync(dir)) continue;
   for (const name of readdirSync(dir).filter(f => f.endsWith('.md')).sort()) {
-    const raw = readFileSync(join(dir, name), 'utf8');
+    let raw = readFileSync(join(dir, name), 'utf8');
+    // Corrections AAI confirmed: the passage goes from the index (the source file stays as AAI wrote it)
+    for (const c of CORRECTIONS) if (c.file.test(name)) for (const re of c.remove) raw = raw.replace(re, '');
     // the header lines only: the first of each (an article can quote its own "Source: …" further down)
     const head = {};
     for (const m of raw.matchAll(/^(Source|Date|Language|Type|Outlet): (.*)$/gm)) head[m[1]] ??= m[2].trim();

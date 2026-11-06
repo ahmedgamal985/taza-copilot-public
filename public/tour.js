@@ -254,14 +254,42 @@
     });
   }
 
-  async function start() {
+  // ---------- The tour's language: asked first, in all three languages ----------
+  // The site switches to the chosen language too, so the buttons the pointer shows read the same as the narration.
+  const LANGS = [['en', 'English'], ['ru', 'Русский'], ['kk', 'Қазақша']];
+  function choose() {
+    if (running || $('#tourLang')) return;
+    try { localStorage.setItem('taza-tour-seen', '1'); } catch {}
+    $('#tourInvite')?.remove();
+    const now = LANGS.some(([l]) => l === I18N.lang) ? I18N.lang : 'en';
+    const box = document.createElement('div');
+    box.id = 'tourLang'; box.className = 'tour-lang';
+    box.innerHTML = `<div class="tour-lang-card" role="dialog" aria-modal="true" aria-labelledby="tourLangT">
+        <button type="button" class="tour-x" aria-label="Close">✕</button>
+        <p id="tourLangT" class="tour-lang-t">Choose the tour language<br>Выберите язык тура<br>Тур тілін таңдаңыз</p>
+        <div class="tour-lang-b">${[...LANGS].sort(([a], [b]) => (b === now) - (a === now))
+          .map(([l, name]) => `<button type="button" class="tour-go" data-l="${l}" lang="${l}">${name}</button>`).join('')}</div>
+      </div>`;
+    const close = () => { box.remove(); document.removeEventListener('keydown', onKey); };
+    const onKey = e => { if (e.key === 'Escape') close(); };
+    box.addEventListener('click', e => {
+      const l = e.target.closest('[data-l]')?.dataset.l;
+      if (l) { close(); if (l !== I18N.lang) I18N.set(l); start(l); }
+      else if (e.target === box || e.target.closest('.tour-x')) close();
+    });
+    document.addEventListener('keydown', onKey);
+    document.body.appendChild(box);
+    box.querySelector('[data-l]').focus();
+  }
+
+  async function start(chosen) {
     if (running) return;
     try { localStorage.setItem('taza-tour-seen', '1'); } catch {}
     $('#tourInvite')?.remove();
     // Always the latest script (a new feature means a new step), checked with the server each time
     if (!script) script = await fetch('tour/script.json', { cache: 'no-cache' }).then(r => r.json()).catch(() => null);
     if (!script) return;
-    const lang = ['en', 'ru', 'kk'].includes(I18N.lang) ? I18N.lang : 'en';
+    const lang = ['en', 'ru', 'kk'].includes(chosen) ? chosen : ['en', 'ru', 'kk'].includes(I18N.lang) ? I18N.lang : 'en';
     running = true; paused = false;
     document.body.classList.add('touring');
     bar.classList.remove('at-top', 'moving');
@@ -286,8 +314,8 @@
 
   // ---------- Entry points: the home button, the menu, and one invitation for first-time visitors ----------
   const btn = $('#tourBtn'), menuBtn = $('#tourMenu');
-  btn?.addEventListener('click', start);
-  menuBtn?.addEventListener('click', () => { $('#menu').hidden = true; start(); });
+  btn?.addEventListener('click', choose);
+  menuBtn?.addEventListener('click', () => { $('#menu').hidden = true; choose(); });
   let seen = true;
   try { seen = Boolean(localStorage.getItem('taza-tour-seen')); } catch {}
   if (!seen && !params.get('a') && !params.get('q') && !fast) {
@@ -296,11 +324,12 @@
       const inv = document.createElement('div');
       inv.id = 'tourInvite'; inv.className = 'tour-invite'; inv.setAttribute('role', 'status');
       inv.innerHTML = `<button type="button" class="tour-go">${esc(t('tour_invite'))}</button><button type="button" class="tour-x" aria-label="Close">✕</button>`;
-      inv.querySelector('.tour-go').onclick = start;
+      inv.querySelector('.tour-go').onclick = choose;
       inv.querySelector('.tour-x').onclick = () => { inv.remove(); try { localStorage.setItem('taza-tour-seen', '1'); } catch {} };
       document.body.appendChild(inv);
     }, 2500);
   }
   document.addEventListener('taza:lang', () => { labels(); const inv = $('#tourInvite .tour-go'); if (inv) inv.textContent = t('tour_invite'); });
-  window.tazaTour = { start, stop: () => stop(false), get running() { return running; }, get step() { return stepIdx; } };
+  // start(lang) runs at once (the video capture uses it); choose() asks for the language first (the buttons)
+  window.tazaTour = { start, choose, stop: () => stop(false), get running() { return running; }, get step() { return stepIdx; } };
 })();

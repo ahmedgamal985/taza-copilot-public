@@ -192,7 +192,8 @@ main { padding-bottom: 120px; }
 .voice[data-mode="listening"] .pulse { background: var(--accent); animation: beat 1.2s ease-in-out infinite; }
 .voice[data-mode="speaking"] .pulse { background: var(--moderate); animation: beat .6s ease-in-out infinite; }
 @keyframes beat { 50% { transform: scale(1.6); opacity: .5; } }
-.voice-line { margin: 6px 0 0; font-size: 14px; color: var(--muted); max-height: 4.5em; overflow: hidden; }
+/* The whole sentence the agent is saying: the panel grows with it (up to about half the screen), then scrolls */
+.voice-line { margin: 6px 0 0; font-size: 14px; color: var(--muted); max-height: min(45vh, 22em); overflow-y: auto; overscroll-behavior: contain; white-space: pre-wrap; }
 #ghost { position: fixed; left: 0; top: 0; z-index: 2000; pointer-events: none; opacity: 0; transform: translate(50vw, 80vh);
   transition: transform .6s cubic-bezier(.3,.7,.2,1), opacity .3s; filter: drop-shadow(0 3px 4px rgba(0,0,0,.3)); }
 #ghost.on { opacity: 1; }
@@ -490,6 +491,14 @@ html.tw-html, .tw-page { background: transparent !important; margin: 0; overflow
 .tour-invite { position: fixed; left: 16px; bottom: 16px; z-index: 1003; display: flex; align-items: center; gap: 6px; background: var(--card); border: 1px solid var(--accent);
   border-radius: 999px; padding: 4px 6px 4px 4px; box-shadow: 0 6px 20px rgba(0,0,0,.15); }
 .tour-go { background: var(--accent); color: #fff; border: 0; border-radius: 999px; padding: 8px 14px; font: 600 14px var(--font); cursor: pointer; }
+/* The tour's language, asked before it starts (all three languages, so anyone can read it) */
+.tour-lang { position: fixed; inset: 0; z-index: 2100; display: grid; place-items: center; padding: 16px; background: rgba(10, 20, 17, .45); }
+.tour-lang-card { position: relative; width: min(360px, 100%); background: var(--card); color: var(--text); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 22px 18px 18px; box-shadow: 0 20px 50px rgba(0,0,0,.25); text-align: center; }
+.tour-lang-t { margin: 0 0 14px; font-weight: 600; line-height: 1.5; }
+.tour-lang-b { display: flex; flex-direction: column; gap: 10px; }
+.tour-lang-b .tour-go { padding: 12px 14px; font-size: 16px; }
+.tour-lang-card .tour-x { position: absolute; top: 6px; right: 6px; background: none; border: 0; color: inherit; font-size: 16px; cursor: pointer; padding: 4px 8px; }
 .tour-invite .tour-x, .tour-bar .tour-x { background: none; border: 0; color: inherit; font-size: 16px; cursor: pointer; padding: 4px 8px; }
 @media (max-width: 560px) { .tour-caption { font-size: 15px; } .tour-invite { right: 90px; } }
 
