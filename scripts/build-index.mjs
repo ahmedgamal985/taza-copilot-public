@@ -93,13 +93,25 @@ for (const type of ['research', 'external_research', 'actual_legislation', 'pres
     if (!blocks.length) continue;
     const docId = `web${docs.length}`;
     const kind = type === 'actual_legislation' ? 'legislation' : type === 'press' ? 'press' : 'article';
-    docs.push({ id: docId, title, lang: head.Language, date: head.Date, url: encodeURI(head.Source), kind });
+    docs.push({ id: docId, title, lang: head.Language, date: head.Date, url: kind === 'press' ? null : encodeURI(head.Source), kind });
     // Long articles: chunks of about 8 blocks. Media answers are dense question-and-answer text: smaller chunks
     // (about one answer each) so a specific figure is not diluted by the rest of a long reply
     const per = kind === 'press' ? 3 : 8;
+    // Media answers have no public file or page numbers: each passage is located by the question it answers
+    // ("answer to question 2: …"), and it has no link (the file is not published)
+    // the questions are the numbered lines of the file that end with "?"; a block that contains the start of one
+    // begins that answer (the block splitter may cut "4." away from its question, so the text is matched)
+    // (a question line ends with "?", or is one sentence with no full stop; a numbered reference is neither)
+    const questions = [...body.matchAll(/^\s*(\d{1,2})\.\s*([^\n]{8,220})$/gm)]
+      .map(m => ({ n: m[1], q: m[2].trim() })).filter(x => /\?$/.test(x.q) ? !/[.!]\s/.test(x.q.replace(/\?[^?]*$/, '').slice(0, -1)) || x.q.length < 200 : !/\./.test(x.q))
+      .map(x => { const q = x.q.replace(/\?.*$/, '?'); return { n: x.n, q, key: x.q.slice(0, 40) }; });
+    let current = null;
+    const qAt = blocks.map(b => { for (const q of questions) if (b.includes(q.key)) current = q; return current; });
     for (let i = 0; i < blocks.length; i += per) {
+      const sec = kind === 'press' ? qAt[i] || qAt.slice(i, i + per).find(Boolean) : null;
       chunks.push({ id: `${docId}-${i / per + 1}`, doc: docId, title, lang: head.Language, date: head.Date, kind,
-        page: null, url: encodeURI(head.Source), blocks: blocks.slice(i, i + per) });
+        page: null, url: kind === 'press' ? null : encodeURI(head.Source), blocks: blocks.slice(i, i + per),
+        ...(sec ? { section: { n: sec.n, q: sec.q.length > 110 ? sec.q.slice(0, 107) + '…' : sec.q } } : {}) });
     }
   }
 }

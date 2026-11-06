@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Taza Copilot: the race</title>
+<!-- Every scene of the race video except the inDrive part (../stage.html). Rendered frame by frame by
+     video/race/build.mjs; scene times come from the voice-over lengths and from the real race recording. -->
+<style>
+@font-face { font-family: P; font-weight: 400; src: url(../fonts/poppins-latin-400-normal.woff2); }
+@font-face { font-family: P; font-weight: 500; src: url(../fonts/poppins-latin-500-normal.woff2); }
+@font-face { font-family: P; font-weight: 600; src: url(../fonts/poppins-latin-600-normal.woff2); }
+@font-face { font-family: P; font-weight: 700; src: url(../fonts/poppins-latin-700-normal.woff2); }
+:root { --lime: #C1F11D; --ink: #141414; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1920px; height: 1080px; overflow: hidden; background: #000; font-family: P, sans-serif; color: #F4F4F4; }
+#stage { position: absolute; inset: 0; overflow: hidden; background: #0D0F0C; }
+#glow { position: absolute; inset: -200px; background: radial-gradient(900px 700px at 30% 55%, rgba(193,241,29,.12), transparent 70%), radial-gradient(800px 600px at 85% 20%, rgba(91,108,240,.10), transparent 70%); }
+.layer { position: absolute; inset: 0; opacity: 0; }
+.idm { position: relative; flex: none; background: var(--lime); }
+.lime { color: var(--lime); }
+
+/* hook: the journalist's questions */
+#hook .mail { position: absolute; left: 110px; top: 120px; width: 1000px; border-radius: 22px; background: #F4F4EF; color: #141414; padding: 26px 34px; box-shadow: 0 30px 80px rgba(0,0,0,.5); }
+#hook .mail .h { font-size: 19px; color: #555; border-bottom: 1px solid #ddd; padding-bottom: 12px; margin-bottom: 6px; }
+#hook .mail .h b { color: #141414; }
+#hook li { list-style: none; padding: 11px 0; border-bottom: 1px dashed #ddd; opacity: 0; }
+#hook li:last-child { border: 0; }
+#hook li .ru { font-size: 21px; line-height: 1.35; }
+#hook li .en { font-size: 16px; color: #6b6b6b; margin-top: 3px; }
+#hook .cost { position: absolute; left: 1210px; top: 170px; }
+#hook .cost div { font-size: 38px; font-weight: 600; margin-bottom: 30px; opacity: 0; }
+#hook .cost div b { font-size: 100px; color: var(--lime); font-weight: 700; display: block; line-height: 1; letter-spacing: -2px; }
+#hook .src { position: absolute; left: 110px; top: 900px; font-size: 18px; color: #8a8a8a; }
+
+/* "now" */
+#now { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+#now .lock { display: flex; align-items: center; gap: 28px; font-size: 80px; font-weight: 700; letter-spacing: -2px; }
+#now h2 { margin-top: 30px; font-size: 54px; font-weight: 700; letter-spacing: -1px; }
+#now .tags { margin-top: 30px; display: flex; gap: 14px; }
+#now .tags span { font-size: 24px; padding: 10px 24px; border-radius: 40px; border: 1.5px solid #3c4236; opacity: 0; }
+
+/* race */
+#race .win { position: absolute; left: 60px; top: 120px; width: 1180px; height: 781px; border-radius: 20px; overflow: hidden; background: #1a1c19; box-shadow: 0 40px 100px rgba(0,0,0,.6), 0 0 0 1px #2c3029; }
+#race .win .bar { height: 44px; background: #20231f; display: flex; align-items: center; gap: 9px; padding: 0 18px; }
+#race .win .bar i { width: 13px; height: 13px; border-radius: 50%; background: #3b3f38; }
+#race .win .bar span { margin-left: 16px; font-size: 15px; color: #9aa094; background: #151714; padding: 5px 16px; border-radius: 8px; }
+#race .win img { position: absolute; left: 0; top: 44px; width: 1180px; height: 737px; }
+#race .side { position: absolute; left: 1290px; top: 120px; width: 580px; }
+#race .live { display: inline-flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 600; letter-spacing: .06em; color: #141414; background: var(--lime); padding: 7px 16px; border-radius: 30px; }
+#race .live i { width: 10px; height: 10px; border-radius: 50%; background: #e02d3c; }
+#race .note { font-size: 17px; color: #9aa094; margin-top: 12px; line-height: 1.45; }
+#race .clock { margin-top: 18px; font-size: 118px; font-weight: 700; letter-spacing: -3px; line-height: 1; font-variant-numeric: tabular-nums; }
+#race .clock small { font-size: 46px; color: #9aa094; margin-left: 6px; letter-spacing: 0; }
+#race .qs { margin-top: 22px; display: flex; flex-direction: column; gap: 10px; }
+#race .q { display: flex; gap: 14px; align-items: flex-start; padding: 12px 16px; border-radius: 14px; border: 1.5px solid #2c3029; background: rgba(255,255,255,.02); }
+#race .q .n { flex: none; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 17px; background: #2c3029; color: #9aa094; }
+#race .q .t { font-size: 18px; line-height: 1.3; color: #8d938a; }
+#race .q .r { margin-top: 4px; font-size: 16px; color: var(--lime); font-weight: 600; min-height: 1px; }
+#race .q.on { border-color: var(--lime); }
+#race .q.on .n { background: var(--lime); color: #141414; }
+#race .q.on .t, #race .q.ok .t { color: #F4F4F4; }
+#race .q.ok .n { background: #2E9E5B; color: #fff; }
+
+/* punch: by hand vs Taza, and the matching facts */
+#punch .vs { position: absolute; left: 110px; top: 110px; width: 1700px; display: flex; gap: 40px; }
+#punch .card { flex: 1; border-radius: 24px; padding: 34px 40px; border: 1.5px solid #2c3029; background: rgba(255,255,255,.03); opacity: 0; }
+#punch .card .k { font-size: 22px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: #9aa094; }
+#punch .card .big { font-size: 120px; font-weight: 700; letter-spacing: -3px; line-height: 1.05; margin-top: 8px; }
+#punch .card .s { font-size: 24px; color: #bdbdbd; margin-top: 6px; }
+#punch .card.taza { border-color: var(--lime); }
+#punch .card.taza .big { color: var(--lime); }
+#punch .match { position: absolute; left: 110px; top: 480px; width: 1700px; opacity: 0; }
+#punch .match h3 { font-size: 30px; font-weight: 600; margin-bottom: 16px; }
+#punch .match h3 b { color: var(--lime); }
+#punch .quotes { display: flex; gap: 40px; }
+#punch .quote { flex: 1; border-left: 6px solid #3c4236; padding: 6px 0 6px 22px; opacity: 0; }
+#punch .quote .w { font-size: 18px; color: #9aa094; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
+#punch .quote p { font-size: 24px; line-height: 1.45; margin-top: 8px; color: #e6e6e6; }
+#punch .quote p b { color: var(--lime); }
+#punch .quote.t { border-color: var(--lime); }
+#punch .same { margin-top: 26px; font-size: 34px; font-weight: 700; color: #141414; background: var(--lime); display: inline-block; padding: 10px 26px; border-radius: 40px; opacity: 0; }
+
+/* metric */
+#metric .grid { position: absolute; left: 110px; top: 260px; width: 1700px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+#metric .grid div { border-radius: 22px; border: 1.5px solid #2c3029; padding: 30px; background: rgba(255,255,255,.03); opacity: 0; }
+#metric .grid b { display: block; font-size: 92px; font-weight: 700; color: var(--lime); letter-spacing: -2px; line-height: 1.05; font-variant-numeric: tabular-nums; }
+#metric .grid span { font-size: 24px; color: #cfcfcf; line-height: 1.35; display: block; margin-top: 8px; }
+#metric h2, #aai h2 { position: absolute; left: 110px; top: 130px; font-size: 56px; font-weight: 700; letter-spacing: -1.5px; }
+#metric .src { position: absolute; left: 110px; top: 640px; font-size: 19px; color: #8a8a8a; }
+
+/* feature scenes: a browser window with real screenshots, copy and chips on the right */
+#win { position: absolute; left: 80px; top: 130px; width: 1100px; height: 732px; border-radius: 22px; overflow: hidden; background: #1a1c19;
+  box-shadow: 0 40px 100px rgba(0,0,0,.6), 0 0 0 1px #2c3029; opacity: 0; }
+#win .bar { height: 44px; background: #20231f; display: flex; align-items: center; gap: 9px; padding: 0 18px; }
+#win .bar i { width: 13px; height: 13px; border-radius: 50%; background: #3b3f38; }
+#win .bar span { margin-left: 16px; font-size: 16px; color: #9aa094; background: #151714; padding: 5px 16px; border-radius: 8px; }
+#view { position: absolute; left: 0; right: 0; top: 44px; bottom: 0; overflow: hidden; }
+#view img { position: absolute; left: 0; top: 0; width: 100%; opacity: 0; display: none; transform-origin: 50% 30%; }
+#copy { position: absolute; left: 1240px; top: 170px; width: 620px; opacity: 0; }
+#kick { font-size: 22px; font-weight: 600; color: var(--lime); letter-spacing: .04em; text-transform: uppercase; }
+#title { font-size: 52px; font-weight: 700; line-height: 1.1; letter-spacing: -1.5px; margin-top: 14px; }
+#chips { margin-top: 28px; display: flex; flex-direction: column; gap: 12px; }
+#chips span { align-self: flex-start; font-size: 22px; padding: 10px 20px; border-radius: 40px; border: 1.5px solid #3c4236; background: rgba(255,255,255,.03); opacity: 0; }
+#chips span b { color: var(--lime); font-weight: 600; }
+
+/* everywhere: tiles */
+#tiles { position: absolute; left: 80px; top: 120px; width: 1100px; height: 780px; opacity: 0; }
+.tile { position: absolute; border-radius: 22px; overflow: hidden; background: #1b1d1a; box-shadow: 0 24px 60px rgba(0,0,0,.5); opacity: 0; }
+.tile .cap { position: absolute; left: 14px; top: 12px; font-size: 16px; font-weight: 600; background: rgba(0,0,0,.65); padding: 5px 12px; border-radius: 20px; z-index: 2; }
+.chat { position: absolute; inset: 0; display: flex; flex-direction: column; }
+.chat .hd { height: 64px; display: flex; align-items: center; gap: 12px; padding: 0 18px; color: #fff; font-weight: 600; font-size: 19px; }
+.chat .hd small { display: block; font-weight: 400; font-size: 13px; opacity: .8; }
+.chat .bd { flex: 1; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+.bub { max-width: 82%; padding: 10px 14px; border-radius: 14px; font-size: 15.5px; line-height: 1.38; opacity: 0; }
+.bub.me { align-self: flex-end; }
+.tg .hd { background: #2B5278; } .tg .bd { background: #0E1621; } .tg .bub { background: #182533; color: #e6ecf2; } .tg .bub.me { background: #2B5278; }
+.wa .hd { background: #1F2C34; } .wa .bd { background: #0B141A; } .wa .bub { background: #202C33; color: #e9edef; } .wa .bub.me { background: #005C4B; }
+.call { align-self: center; margin-top: 4px; background: #25D366; color: #06261a; font-weight: 600; padding: 9px 18px; border-radius: 30px; font-size: 15px; opacity: 0; }
+.tile img { width: 100%; display: block; }
+.phone { position: absolute; border-radius: 40px; background: #050505; padding: 10px; box-shadow: 0 24px 60px rgba(0,0,0,.5); opacity: 0; }
+.phone img { width: 100%; border-radius: 32px; display: block; }
+
+/* what AAI needs */
+#aai .cards { position: absolute; left: 110px; top: 270px; width: 1700px; display: flex; gap: 30px; }
+#aai .cards div { flex: 1; border-radius: 22px; border: 1.5px solid #2c3029; padding: 30px 34px; background: rgba(255,255,255,.03); opacity: 0; }
+#aai .cards b { display: block; font-size: 64px; font-weight: 700; color: var(--lime); letter-spacing: -1.5px; line-height: 1.1; }
+#aai .cards span { display: block; font-size: 24px; color: #cfcfcf; margin-top: 12px; line-height: 1.4; }
+#aai .risks { position: absolute; left: 110px; top: 600px; width: 1700px; font-size: 22px; color: #bdbdbd; opacity: 0; }
+#aai .risks b { color: var(--lime); }
+
+/* outro */
+#outro .lock { position: absolute; left: 140px; top: 200px; display: flex; align-items: center; gap: 26px; font-size: 84px; font-weight: 700; letter-spacing: -2px; }
+#outro h2 { position: absolute; left: 140px; top: 360px; font-size: 54px; font-weight: 700; letter-spacing: -1px; width: 1000px; line-height: 1.15; }
+#outro .url { position: absolute; left: 140px; top: 520px; font-size: 40px; color: var(--lime); font-weight: 600; }
+#outro .gh { position: absolute; left: 140px; top: 586px; font-size: 22px; color: #9aa094; }
+#outro .team { position: absolute; left: 140px; top: 660px; font-size: 22px; color: #bdbdbd; line-height: 1.6; }
+#outro .qr { position: absolute; left: 1330px; top: 200px; width: 440px; padding: 22px; background: #fff; border-radius: 26px; }
+#outro .qr img { width: 100%; display: block; }
+#outro .qrc { position: absolute; left: 1330px; top: 680px; width: 440px; text-align: center; font-size: 22px; color: #cfcfcf; }
+
+/* short-version montage */
+#mont .grid { position: absolute; left: 80px; top: 120px; width: 1760px; height: 760px; }
+#mont .m { position: absolute; border-radius: 18px; overflow: hidden; background: #1a1c19; box-shadow: 0 24px 60px rgba(0,0,0,.5); opacity: 0; }
+#mont .m img { width: 100%; display: block; }
+#mont .m span { position: absolute; left: 14px; bottom: 14px; font-size: 22px; font-weight: 600; background: rgba(0,0,0,.72); padding: 6px 16px; border-radius: 30px; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="glow"></div>
+
+  <div id="hook" class="layer">
+    <div class="mail">
+      <div class="h"><b>To:</b> Almaty Air Initiative &nbsp;·&nbsp; <b>From:</b> a Tengrinews journalist &nbsp;·&nbsp; 2 November 2026 &nbsp;·&nbsp; 5 questions</div>
+      <ul id="hookList"></ul>
+    </div>
+    <div class="cost"><div><b>3</b>pages of answers</div><div><b>23</b>sources checked</div><div><b>hours</b>of expert work</div></div>
+    <div class="src">The questions as the journalist sent them. AAI answered in writing on 2 November 2026.</div>
+  </div>
+
+  <div id="now" class="layer">
+    <div class="lock"><div class="idm" id="idm1"></div>Taza Copilot</div>
+    <h2>The same five questions. Asked live.</h2>
+    <div class="tags"><span>⏱ Real time, not sped up</span><span>📚 Only AAI's published research + live sensors</span></div>
+  </div>
+
+  <div id="race" class="layer">
+    <div class="win"><div class="bar"><i></i><i></i><i></i><span>Taza Copilot · open-source build · index: 100 AAI reports and articles, no media answers</span></div><img id="rimg" alt=""></div>
+    <div class="side">
+      <span class="live"><i></i><span id="rlab">LIVE · REAL TIME · NOT SPED UP</span></span>
+      <div class="note" id="rnote">Recorded on 6 November 2026. The stopwatch runs from the first question to the fifth answer.</div>
+      <div class="clock" id="clock">0.0<small>s</small></div>
+      <div class="qs" id="qs"></div>
+    </div>
+  </div>
+
+  <div id="punch" class="layer">
+    <div class="vs">
+      <div class="card" id="pc1"><div class="k">By hand</div><div class="big">Hours</div><div class="s">3 pages · 23 sources · AAI's experts</div></div>
+      <div class="card taza" id="pc2"><div class="k">Taza Copilot</div><div class="big" id="pbig">41.4 s</div><div class="s">5 answers · each with the exact quote, page and link</div></div>
+    </div>
+    <div class="match" id="match">
+      <h3>Same facts as AAI's own answer <b>✓</b></h3>
+      <div class="quotes">
+        <div class="quote" id="qa"><div class="w">AAI's written answer to Tengrinews, 2 Nov 2026</div>
+          <p>«Среднегодовой уровень PM2.5 в 2025 году составил <b>31,2 мкг/м³</b> … почти <b>на 30% выше</b> показателя 2024 года, равного <b>24,1 мкг/м³</b>.»</p></div>
+        <div class="quote t" id="qt"><div class="w">Taza Copilot, quoting AAI's 2025 annual report</div>
+          <p>«…среднегодовой уровень 2025 года — <b>31,2 µg/m³</b> против <b>24,1 µg/m³</b> в 2024 году, то есть воздух стал <b>на 30% грязнее</b>.»</p></div>
+      </div>
+      <div class="same" id="same">2025: 31.2 µg/m³ · 2024: 24.1 · about 30% worse</div>
+    </div>
+  </div>
+
+  <div id="metric" class="layer">
+    <h2>Measured, not promised</h2>
+    <div class="grid">
+      <div><b id="m1">3.3 s</b><span>median time to a full, sourced answer</span></div>
+      <div><b id="m2">44/44</b><span>test questions answered right, each with a source</span></div>
+      <div><b id="m3">15</b><span>of them are real questions journalists and colleagues sent AAI</span></div>
+      <div><b id="m4">~$0.002</b><span>of AI per answer</span></div>
+    </div>
+    <div class="src">Automatic accuracy test: 44 questions with known answers, checked for the right figure and a cited source.</div>
+  </div>
+
+  <div id="win"><div class="bar"><i></i><i></i><i></i><span>taza-copilot.online</span></div><div id="view"></div></div>
+  <div id="copy"><div id="kick"></div><div id="title"></div><div id="chips"></div></div>
+
+  <div id="tiles">
+    <div class="tile" id="tTg" style="left:0;top:0;width:430px;height:470px"><div class="chat tg"><div class="hd">✈️ <div>Taza Copilot<small>@SmogHuntersBot · Telegram</small></div></div>
+      <div class="bd"><div class="bub">🟠 <b>Air alert for Almaty</b> · 07:30<br>PM2.5 is 58.2 µg/m³: unhealthy for sensitive groups.</div>
+        <div class="bub me">↪ Forwarded: “Almaty's air got 50% cleaner in 2025”</div>
+        <div class="bub">❌ <b>Contradicted by AAI's research</b><br>The 2025 average was 31.2 µg/m³, about 30% worse than 2024, with the quote and page.</div>
+        <div class="bub">⭐ My places · 🏫 Parent groups · 🔍 Inline</div></div></div></div>
+    <div class="tile" id="tWa" style="left:0;top:490px;width:430px;height:290px"><div class="chat wa"><div class="hd">🟢 <div>Taza Copilot<small>WhatsApp · chat and calls</small></div></div>
+      <div class="bd"><div class="bub me">Какой сейчас воздух в Алматы?</div><div class="bub">Сейчас 42,2 мкг/м³. Самый грязный район сейчас Жетысуский.</div><div class="call">📞 Call Taza: the voice agent answers</div></div></div></div>
+    <div class="tile" id="tWg" style="left:450px;top:0;width:650px;height:430px"><span class="cap">🧩 Widget for any website</span><img id="imgWidget" alt=""></div>
+    <div class="tile" id="tVo" style="left:450px;top:450px;width:650px;height:330px"><span class="cap">🎙 Voice agent drives the page</span><img id="imgVoice" alt=""></div>
+  </div>
+
+  <div id="aai" class="layer">
+    <h2>What AAI needs to take it</h2>
+    <div class="cards">
+      <div><b>~$7 / month</b><span>Runs 24/7 on Cloudflare. About $0.002 of AI per answer, with a daily budget cap.</span></div>
+      <div><b>No developers</b><span>One person uploads new reports on the admin page: citable seconds later.</span></div>
+      <div><b>Open code</b><span>Public repository, tests, README. AAI's keys stay on the server.</span></div>
+    </div>
+    <div class="risks"><b>Risks covered:</b> the research stays AAI's and every quote links back · no personal data stored · 134 automated checks on every change</div>
+  </div>
+
+  <div id="mont" class="layer"><div class="grid">
+    <div class="m" style="left:0;top:0;width:860px"><img id="mo1" alt=""><span>✅ Check a claim</span></div>
+    <div class="m" style="left:900px;top:0;width:860px"><img id="mo2" alt=""><span>🗺 Live map, 150+ sensors</span></div>
+    <div class="m" style="left:0;top:400px;width:860px"><img id="mo3" alt=""><span>🎙 Voice agent</span></div>
+    <div class="m" style="left:900px;top:400px;width:860px"><img id="mo4" alt=""><span>🧩 Widget · Telegram · WhatsApp</span></div>
+  </div></div>
+
+  <div id="outro" class="layer">
+    <div class="lock"><div class="idm" id="idm2"></div>Taza Copilot</div>
+    <h2>Ask AAI's research anything. Sourced answers in seconds.</h2>
+    <div class="url">taza-copilot.online</div>
+    <div class="gh">Code: github.com/ahmedgamal985/taza-copilot-public</div>
+    <div class="team">Team Smog Hunters · inDrive Hackathon 2026 · AAI-03 AQI Data Copilot<br>Ahmed Gamal · Khaled Shaban · Mohamed Zaki · Aimira Abdrahman · Usman Sabir</div>
+    <div class="qr"><img src="qr_site.png" alt=""></div>
+    <div class="qrc">Scan to try it now</div>
+  </div>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const seg = (t, a, b) => clamp((t - a) / (b - a));
+const eo = x => 1 - Math.pow(1 - x, 3);
+const inout = (t, a, b, d = .45) => Math.min(eo(seg(t, a, a + d)), 1 - seg(t, b - d, b));
+const show = (el, o, y = 0, s = 1) => { el.style.opacity = o; el.style.transform = `translateY(${y}px) scale(${s})`; };
+function idMark(el, size) {
+  el.style.width = el.style.height = size + 'px'; el.style.borderRadius = size * .3 + 'px';
+  el.innerHTML = `<svg width="${size}" height="${size}" viewBox="0 0 100 100" style="position:absolute;left:0;top:0"><rect x="24" y="22" width="14" height="14" rx="3" fill="#141414"/><rect x="24" y="42" width="14" height="36" rx="3" fill="#141414"/><path d="M44 25a3 3 0 0 1 3-3h9a28 28 0 0 1 0 56h-9a3 3 0 0 1-3-3v-8a3 3 0 0 1 3-3h9a14 14 0 0 0 0-28h-9a3 3 0 0 1-3-3z" fill="#141414"/></svg>`;
+}
+
+// The five questions, as sent (Russian), with an English gloss
+const QS = [
+  ['Как вы оцениваете текущую ситуацию с качеством воздуха в Алматы? Наблюдается ли ухудшение по сравнению с предыдущими годами?', 'How serious is Almaty\'s air pollution now? Is it worse than in previous years?'],
+  ['Какие основные источники загрязнения воздуха в городе? Какую долю вносят автомобили, ТЭЦ и частный сектор?', 'What are the main sources? How much comes from cars, power plants and private houses?'],
+  ['Почему с наступлением холодов в Алматы усиливается смог? Насколько это связано с началом отопительного сезона?', 'Why does smog get worse when it gets cold? Is it the heating season?'],
+  ['Насколько эффективны меры, которые сейчас принимаются для улучшения качества воздуха, например LEZ? Что необходимо сделать в первую очередь?', 'Is the low emission zone working? What should come first?'],
+  ['Какие рекомендации вы бы дали жителям Алматы в дни сильного смога, чтобы снизить риски для здоровья?', 'What should residents do on days of heavy smog?'],
+];
+const FEAT = {
+  trust: { kick: 'Honest by design', title: 'Proof with every answer', shots: ['check', 'differ', 'answer'],
+    chips: ['🔎 <b>Check a claim</b> from the news', '⚖ <b>Both figures</b> when sources disagree', '📊 Numbers become <b>charts</b>', '🙅 Says <b>"not covered"</b> instead of guessing'] },
+  live: { kick: 'Live AAI data', title: 'The air right now, from 150+ sensors', shots: ['map', 'station', 'outdoor', 'compare', 'schools'],
+    chips: ['🗺 <b>Live map</b>, every sensor coloured', '🕐 <b>Best time to go out</b> today', '🆚 <b>Compare</b> with Kathmandu, Lahore, Bishkek', '🏫 <b>Schools</b> ranked by the air now'] },
+  everywhere: { kick: 'Where people already are', title: 'Voice, Telegram, WhatsApp, any website', tiles: true,
+    chips: ['🎙 <b>Voice agent</b> in English, Russian, Kazakh', '✈️ <b>Telegram</b>: voice notes, alerts, fact-checks', '🟢 <b>WhatsApp</b>: chat, and <b>call</b> Taza', '🧩 <b>Widget</b>: one line on any website'] },
+  decisions: { kick: 'For decision makers', title: 'A policy brief in one click', shots: ['brief'],
+    chips: ['📄 Findings with <b>citations</b>', '📈 <b>Live numbers</b> and two charts', '🖨 Print or <b>save as PDF</b>'] },
+};
+let TL = null, R = null, imgs = {}, NFR = 0, SHOTS = '../full/shots_v/';
+
+function init(timeline, race) {
+  TL = timeline; R = race; NFR = race.frames;
+  idMark($('#idm1'), 110); idMark($('#idm2'), 100);
+  $('#hookList').innerHTML = QS.map(([ru, en], k) => `<li><div class="ru">${k + 1}. ${ru}</div><div class="en">${en}</div></li>`).join('');
+  $('#qs').innerHTML = QS.map(([, en], k) => `<div class="q" id="q${k}"><div class="n">${k + 1}</div><div><div class="t">${en}</div><div class="r"></div></div></div>`).join('');
+  const names = new Set(Object.values(FEAT).flatMap(f => f.shots || []));
+  for (const n of names) { const im = document.createElement('img'); im.src = `${SHOTS}${n}.png`; $('#view').appendChild(im); imgs[n] = im; }
+  $('#imgWidget').src = SHOTS + 'widget_open.png'; $('#imgVoice').src = SHOTS + 'voice.png';
+  $('#mo1').src = SHOTS + 'check.png'; $('#mo2').src = SHOTS + 'map.png'; $('#mo3').src = SHOTS + 'voice.png'; $('#mo4').src = SHOTS + 'widget_open.png';
+  if (timeline.short) { $('#rlab').textContent = `PLAYED ${timeline.raceSpeed}× FASTER · THE STOPWATCH SHOWS REAL TIME`; $('#rnote').textContent = 'Recorded live on 6 November 2026, in real time. The stopwatch runs from the first question to the fifth answer.'; }
+}
+const S = id => TL.scenes.find(s => s.id === id);
+const on = (t, id, d = .45) => { const s = S(id); return s ? inout(t, s.start, s.end, d) : 0; };
+let lastFeat = '', lastRaceFrame = -1;
+
+async function renderFrame(i) {
+  const t = i / 30;
+  // hook
+  const hk = S('hook');
+  $('#hook').style.opacity = on(t, 'hook', .5);
+  if (hk) {
+    document.querySelectorAll('#hook li').forEach((li, k) => { const a = hk.start + .4 + k * .5; show(li, seg(t, a, a + .35), 12 * (1 - eo(seg(t, a, a + .35)))); });
+    document.querySelectorAll('#hook .cost div').forEach((d, k) => { const a = hk.costAt + k * .9; show(d, seg(t, a, a + .4), 0, .9 + .1 * eo(seg(t, a, a + .4))); });
+  }
+  // now
+  const nw = S('now');
+  show($('#now'), on(t, 'now', .45), 0, nw ? .96 + .04 * eo(seg(t, nw.start, nw.start + 1)) : 1);
+  if (nw) document.querySelectorAll('#now .tags span').forEach((s, k) => { s.style.opacity = seg(t, nw.start + .6 + k * .4, nw.start + .9 + k * .4); });
+  // race: the recorded frames play at the race speed; the stopwatch shows the real elapsed time
+  const rc = S('race');
+  $('#race').style.opacity = on(t, 'race', .4);
+  if (rc && t >= rc.start - .5 && t < rc.end + .5) {
+    const v = clamp((t - rc.start) * rc.speed, 0, R.total);          // seconds into the recording
+    const f = Math.min(NFR, Math.max(1, Math.floor(v * 30) + 1));
+    if (f !== lastRaceFrame) {
+      const img = $('#rimg'); img.src = `out/frames/${String(f).padStart(5, '0')}.jpg`;
+      try { await img.decode(); } catch {}
+      lastRaceFrame = f;
+    }
+    const q0 = R.questions[0].submit, qN = R.questions.at(-1).done;
+    $('#clock').innerHTML = `${clamp(v - q0, 0, qN - q0).toFixed(1)}<small>s</small>`;
+    $('#clock').style.color = v >= qN ? 'var(--lime)' : '#F4F4F4';
+    R.questions.forEach((q, k) => {
+      const el = $('#q' + k), active = v >= q.submit && v < q.done, done = v >= q.done;
+      el.className = 'q' + (active ? ' on' : done ? ' ok' : '');
+      el.querySelector('.n').textContent = done ? '✓' : k + 1;
+      el.querySelector('.r').textContent = done ? `answered in ${(q.done - q.submit).toFixed(1)} s · ${q.sources} sources` : active ? `searching AAI's research… ${(v - q.submit).toFixed(1)} s` : '';
+    });
+  }
+  // punch + match
+  const pu = S('punch');
+  $('#punch').style.opacity = on(t, 'punch', .45);
+  if (pu) {
+    show($('#pc1'), seg(t, pu.start + .2, pu.start + .6), 20 * (1 - eo(seg(t, pu.start + .2, pu.start + .6))));
+    show($('#pc2'), seg(t, pu.start + .7, pu.start + 1.1), 20 * (1 - eo(seg(t, pu.start + .7, pu.start + 1.1))));
+    const m = pu.matchAt;
+    $('#match').style.opacity = seg(t, m - .2, m + .3);
+    show($('#qa'), seg(t, m + .2, m + .6), 14 * (1 - eo(seg(t, m + .2, m + .6))));
+    show($('#qt'), seg(t, m + 1.4, m + 1.8), 14 * (1 - eo(seg(t, m + 1.4, m + 1.8))));
+    show($('#same'), seg(t, m + 3.2, m + 3.6), 0, .9 + .1 * eo(seg(t, m + 3.2, m + 3.6)));
+  }
+  // metric: numbers count up
+  const me = S('metric');
+  $('#metric').style.opacity = on(t, 'metric', .45);
+  if (me) {
+    document.querySelectorAll('#metric .grid div').forEach((d, k) => { const a = me.start + .4 + k * .5; show(d, seg(t, a, a + .4), 20 * (1 - eo(seg(t, a, a + .4)))); });
+    const c = (a, n) => eo(seg(t, me.start + a, me.start + a + 1.2)) * n;
+    $('#m1').textContent = `${c(.4, 3.3).toFixed(1)} s`; $('#m2').textContent = `${Math.round(c(.9, 44))}/44`; $('#m3').textContent = Math.round(c(1.4, 15));
+  }
+  // feature scenes
+  const key = Object.keys(FEAT).find(k => { const s = S(k); return s && t >= s.start && t < s.end; });
+  const winOn = key && !FEAT[key].tiles ? on(t, key, .4) : 0;
+  $('#win').style.opacity = winOn; $('#win').style.transform = `translateY(${(1 - winOn) * 20}px)`;
+  for (const im of Object.values(imgs)) { im.style.opacity = 0; im.style.display = 'none'; }
+  if (key && FEAT[key].shots) {
+    const s = S(key), list = FEAT[key].shots, per = (s.end - s.start) / list.length;
+    list.forEach((n, k) => {
+      const a = s.start + k * per, b = a + per;
+      const o = k === 0 ? (list.length === 1 ? 1 : 1 - seg(t, b - .25, b)) : Math.min(seg(t, a - .1, a + .25), k === list.length - 1 ? 1 : 1 - seg(t, b - .25, b));
+      if (t >= a - .2 && t < b + .1) { imgs[n].style.display = 'block'; imgs[n].style.opacity = o; imgs[n].style.transform = `scale(${1 + .06 * seg(t, a, b + .3)})`; }
+    });
+  }
+  const ev = S('everywhere');
+  $('#tiles').style.opacity = ev ? on(t, 'everywhere', .4) : 0;
+  if (ev) {
+    [['#tTg', 0], ['#tWa', .4], ['#tWg', .8], ['#tVo', 1.2]].forEach(([s, d]) => { const a = ev.start + .2 + d; show($(s), seg(t, a, a + .4), 24 * (1 - eo(seg(t, a, a + .4)))); });
+    document.querySelectorAll('#tiles .bub').forEach((b, k) => { const a = ev.start + .5 + k * .4; show(b, seg(t, a, a + .3), 8 * (1 - seg(t, a, a + .3))); });
+    show($('#tiles .call'), seg(t, ev.start + 3.0, ev.start + 3.4), 0, .9 + .1 * eo(seg(t, ev.start + 3.0, ev.start + 3.4)));
+  }
+  if (key) {
+    const f = FEAT[key], s = S(key);
+    if (key !== lastFeat) { $('#kick').textContent = f.kick; $('#title').textContent = f.title; $('#chips').innerHTML = f.chips.map(c => `<span>${c}</span>`).join(''); lastFeat = key; }
+    show($('#copy'), on(t, key, .4), 20 * (1 - eo(seg(t, s.start + .15, s.start + .6))));
+    const n = f.chips.length, span = Math.min(.7, (s.end - s.start - 1.4) / n);
+    document.querySelectorAll('#chips span').forEach((c, k) => { const a = s.start + .5 + k * span; show(c, seg(t, a, a + .3), 10 * (1 - eo(seg(t, a, a + .3)))); });
+  } else show($('#copy'), 0);
+  // what AAI needs
+  const aa = S('aai');
+  $('#aai').style.opacity = on(t, 'aai', .45);
+  if (aa) {
+    document.querySelectorAll('#aai .cards div').forEach((d, k) => { const a = aa.start + .3 + k * .5; show(d, seg(t, a, a + .4), 20 * (1 - eo(seg(t, a, a + .4)))); });
+    $('#aai .risks').style.opacity = seg(t, aa.start + 2, aa.start + 2.5);
+  }
+  // short-version montage
+  const mo = S('montage');
+  $('#mont').style.opacity = mo ? on(t, 'montage', .35) : 0;
+  if (mo) document.querySelectorAll('#mont .m').forEach((m, k) => { const a = mo.start + .15 + k * .45; show(m, seg(t, a, a + .35), 20 * (1 - eo(seg(t, a, a + .35)))); });
+  // outro
+  const ou = S('outro');
+  if (ou) show($('#outro'), eo(seg(t, ou.start, ou.start + .8)), 0, .97 + .03 * eo(seg(t, ou.start, ou.start + 1.2)));
+}
+window.init = init; window.renderFrame = renderFrame;
+</script>
+</body>
+</html>

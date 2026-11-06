@@ -52,7 +52,7 @@ function render(a, air) {
   const live = air?.available && air.city;
   const d = air?.districts || [];
   const vs = air?.compare?.change_pct;
-  const sources = a.sources.slice(0, 6).map(s => `<li><b>[${s.n}]</b> ${s.live ? 'AAI sensor network (live)' : `${esc(s.title)}${s.page ? `, ${esc(t('page_n', { p: s.page }))}` : ''}${s.date ? ` · ${esc(s.date)}` : ''}`}
+  const sources = a.sources.slice(0, 6).map(s => `<li><b>[${s.n}]</b> ${s.live ? 'AAI sensor network (live)' : `${esc(s.title)}${s.page ? `, ${esc(t('page_n', { p: s.page }))}` : ''}${s.section ? `, ${esc(t('answer_to_q', { n: s.section.n }))}` : ''}${s.date ? ` · ${esc(s.date)}` : ''}${!s.url && !s.live ? ` · ${esc(t('src_unpublished'))}` : ''}`}
       <q>${esc(s.quote.length > 200 ? s.quote.slice(0, 197) + '…' : s.quote)}</q>
       ${s.url ? `<a href="${safeHref(s.url)}" target="_blank" rel="noopener">${esc(safeHref(s.url).replace(/^https?:\/\//, '').slice(0, 70))}</a>` : ''}</li>`).join('');
   document.title = `${t('br_title')} · ${a.question.slice(0, 60)}`;

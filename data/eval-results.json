@@ -1,13 +1,13 @@
 {
-  "run_at": "2026-11-05T15:42:23.692Z",
+  "run_at": "2026-11-06T10:51:58.765Z",
   "model": "claude-haiku-5-5",
   "total": 44,
   "passed": 44,
   "accuracy_pct": 100,
-  "median_seconds": 3.3,
-  "cost_usd": 0.0787,
-  "minutes": 1.1,
-  "escalated": 1,
+  "median_seconds": 3.7,
+  "cost_usd": 0.1434,
+  "minutes": 1.5,
+  "escalated": 2,
   "items": [
     {
       "question": "What was the average PM2.5 level in Almaty in 2025?",
@@ -16,9 +16,9 @@
       "has_fact": true,
       "cited": true,
       "model": "claude-haiku-5-5",
-      "ms": 3841,
+      "ms": 5895,
       "source": "What Was Air Quality Like in Almaty in 2025?",
-      "answer": "The sources give two different annual averages for 2025, and they come from different measurement networks. AAI's independent sensor network recorded an annual average of 31.2 µg/m³, which AAI's annual report gives as 6.3 times the WHO guideline. Annual average PM2.5 concentration: 31.2 µg/m³, or 6."
+      "answer": "AAI's own sensor network puts Almaty's 2025 average PM2.5 at about 31 µg/m³, or 31.2 µg/m³ in AAI's annual report Annual average PM2.5 concentration: 31.2 µg/m³, or 6.3 times the WHO guideline.[1] The national Kazhydromet network gives a much lower figure. According to AAI's The 2025 Paradox: what K"
     },
     {
       "question": "How many cigarettes did an Almaty resident \"smoke\" by breathing the air in 2025?",
@@ -27,9 +27,9 @@
       "has_fact": true,
       "cited": true,
       "model": "claude-haiku-5-5",
-      "ms": 3736,
+      "ms": 3521,
       "source": "What Was Air Quality Like in Almaty in 2025?",
-      "answer": "According to AAI's 2025 annual report, the average Almaty resident was exposed to a pollution burden equivalent to smoking 518 cigarettes over the year. In 2025, the average Almaty resident effectively \"smoked\" 518 cigarettes — approximately 26 packs — or nearly 1.42 cigarettes per day.[1] The same "
+      "answer": "According to AAI's What Was Air Quality Like in Almaty in 2025? (EN, 2026-01-27), the average Almaty resident in 2025 was exposed to an air pollution burden equivalent to smoking 518 cigarettes over the year. In 2025, the average Almaty resident effectively \"smoked\" 518 cigarettes — approximately 26"
     },
     {
       "question": "How many cigarettes a day did an Almaty resident \"smoke\" in 2025?",
@@ -38,9 +38,9 @@
       "has_fact": true,
       "cited": true,
       "model": "claude-haiku-5-5",
-      "ms": 3262,
+      "ms": 3240,
       "source": "What Was Air Quality Like in Almaty in 2025?",
-      "answer": "The sources put the citywide figure at nearly 1.42 cigarettes per day, which is 518 cigarettes over the year. In 2025, the average Almaty resident effectively \"smoked\" 518 cigarettes — approximately 26 packs — or nearly 1.42 cigarettes per day.[1] This is an analogy built on PM2.5 levels rather than"
+      "answer": "According to AAI's What Was Air Quality Like in Almaty in 2025? (EN, 2026-01-27), in 2025, the average Almaty resident effectively \"smoked\" 518 cigarettes — approximately 26 packs — or nearly 1.42 cigarettes per day.[1] The same report explains that this is a comparison tool rather than a literal eq"
     },
     {
       "question": "How many cigarettes did a Turksib district resident \"smoke\" in 2025?",
@@ -49,9 +49,9 @@
       "has_fact": true,
       "cited": true,
       "model": "claude-haiku-5-5",
-      "ms": 3443,
+      "ms": 3013,
       "source": "What Was Air Quality Like in Almaty in 2025?",
-      "answer": "According to AAI's 2025 analysis, in Turksib District, air pollution exposure was comparable to smoking 776 cigarettes per resident[1] over the year. This is well above the citywide figure, where the average Almaty resident effectively \"smoked\" 518 cigarettes[2] in 2025. The figure is an estimate, b"
+      "answer": "According to AAI's \"What Was Air Quality Like in Almaty in 2025?\" (2026-01-27), In Turksib District, air pollution exposure was comparable to smoking 776 cigarettes per resident.[1] That report's annual figure for the average Almaty resident is lower, at 518 cigarettes — approximately 26 packs — or "
     },
     {
       "question": "How many clean-air days did Almaty have in 2025?",
@@ -60,9 +60,9 @@
       "has_fact": true,
       "cited": true,
       "model": "claude-haiku-5-5",
-      "ms": 3750,
+      "ms": 5219,
       "source": "What Was Air Quality Like in Almaty in 2025?",
-      "answer": "AAI's sources give two different counts for 2025, and they use different thresholds. The English annual report says Almaty recorded 148 \"safe\" days by WHO guidelines, down 16 from 164 in 2024, and that this is about 40% of the year. Over the past year, Almaty recorded 148 days (40.5% of the year) wh"
+      "answer": "AAI's annual report, \"What Was Air Quality Like in Almaty in 2025?\" (2026-01-27), counts 148 days (40.5% of the year) when the daily average PM2.5 concentration met the WHO guideline[1], which is 16 days fewer than in 2024. However, that same report describes the threshold as 5 µg/m³, while its othe"
     },
     {
       "question": "How many clean-air days did Almaty have in 2024?",
@@ -71,9 +71,9 @@
       "has_fact": true,
       "cited": true,
       "model": "claude-haiku-5-5",
-      "ms": 3520,
+      "ms": 5757,
       "source": "What Was Air Quality Like in Almaty in 2025?",
-      "answer": "The sources give different counts for 2024, and they measure different things. AAI's 2024 sensor archive records 138 days at or below the WHO 24-hour guideline of 15 µg/m³ across 366 days with data. The number of \"safe\" days (according to WHO guidelines) decreased by 16 compared with the previous ye"
+      "answer": "The sources give two different counts for 2024, and they measure different things, so I'm flagging the conflict with . AAI's PM2.5 report on 2025 air quality (27 January 2026) says Almaty had 164 \"safe\" days in 2024 under WHO guidelines, and that 2025 had 148 such days, 16 fewer. The number of \"safe"
     },
     {
       "question": "What was the average PM2.5 in Turksib district in 2025?",
@@ -82,9 +82,9 @@
       "has_fact": true,
       "cited": true,
       "model": "claude-haiku-5-5",
-      "ms": 2820,
+      "ms": 3250,
       "source": "What Was Air Quality Like in Almaty in 2025?",
-      "answer": "The sources give two different figures for Turksib in 2025. AAI's own report says Turksib District (46.8 µg/m³) was 2.1 times more polluted than Bostandyk District (22.1 µg/m³)[1]. Kazhydromet's automated stations, by contrast, put the annual average at 17.0 µg/m³ according to Kazhydromet versus 46."
+      "answer": "AAI's own figures and Kazhydromet's figures differ for Turksib District in 2025. AAI's 2025 report gives an annual average of 46.8 µg/m³ for Turksib, 2.1 times more polluted than Bostandyk District (22.1 µg/m³)[1], according to AAI's \"What Was Air Quality Like in Almaty in 2025?\" (2026-01-27). Kazhy"
     },
     {
       "question": "What was the average PM2.5 in Bostandyk district in 2025?",
@@ -93,9 +93,9 @@
       "has_fact": true,
       "cited": true,
       "model": "claude-haiku-5-5",
-      "ms": 3199,
+      "ms": 3799,
       "source": "What Was Air Quality Like in Almaty in 2025?",
-      "answer": "The sources give two different figures for Bostandyk District in 2025, because they come from different measurement networks. AAI's own sensor-based comparison puts the district at 22.1 µg/m³ Turksib District (46.8 µg/m³) was 2.1 times more polluted than Bostandyk District (22.1 µg/m³)[1]. Kazhydrom"
+      "answer": "Two AAI-related sources give different 2025 figures for Bostandyk district, and they measure different things. AAI's own 2025 report gives Bostandyk District: 22.1 µg/m³ (the lowest concentration in the city)[1] for PM2.5 across 2025, according to AAI's \"What Was Air Quality Like in Almaty in 2025?\""
     },
     {
       "question": "How many times dirtier was the air in Turksib than in Bostandyk in 2025?",
@@ -104,9 +104,9 @@
       "has_fact": true,
       "cited": true,
       "model": "claude-haiku-5-5",
-      "ms": 6815,
+      "ms": 7801,
       "source": "What Was Air Quality Like in Almaty in 2025?",
-      "answer": "The answer depends on the source. AAI's own 2025 sensor figures put Turksib at 46.8 µg/m³ of PM2.5 against 22.1 µg/m³ in Bostandyk, which makes Turksib 2.1 times more polluted than Bostandyk[1]. Kazhydromet's automated stations report a much smaller gap for the same year, with Turksib at 17.0 µg/m³ "
+      "answer": "AAI's 2025 annual figures put Turksib at about 2.1 times Bostandyk's PM2.5 level: Turksib District (46.8 µg/m³) was 2.1 times more polluted than Bostandyk District (22.1 µg/m³)[1] in AAI's What Was Air Quality Like in Almaty in 2025? (EN, 2026-01-27)[1]. Kazhydromet's automated stations give a much "
     },
     {
       "question": "How many times above the WHO guideline was Almaty's average PM2.5 in 2025?",
@@ -115,9 +115,9 @@
       "has_fact": true,
       "cited": true,
       "model": "claude-haiku-5-5",
-      "ms": 3283,
+      "ms": 3683,
       "source": "What Was Air Quality Like in Almaty in 2025?",
-      "answer": "AAI's own sources give the annual average PM2.5 figure for 2025 as 31.2 µg/m³, which is 6.3 times the WHO guideline.[1] A second AAI sensor archive gives a slightly different average of 31 µg/m³ on average over 365 days[2]. The two figures differ only by rounding and by the data set used, and the so"
+      "answer": "AAI's own annual report puts Almaty's 2025 average PM2.5 at 31.2 µg/m³, which is 6.3 times the WHO annual guideline. Key Indicators: • Annual average PM2.5 concentration: 31.2 µg/m³, or 6.3 times the WHO guideline.[1] The same figure appears in AAI's October 2026 article on blood experiments, which "
     },
     {
       "question": "How many schools were analysed in the study of air near schools?",
@@ -126,9 +126,9 @@
       "has_fact": true,
       "cited": true,
       "model": "claude-haiku-5-5",
-      "ms": 3434,
+      "ms": 3052,
       "source": "The Air Children in Almaty Breathe: Air Quality Near Schools and Kindergartens",
-      "answer": "The study analysed 352 schools. Data were analyzed near 1,008 kindergartens and 352 schools, including both public and private educational institutions in Almaty.[1] One part of the report, however, refers to 365 schools: the location of 365 schools and 1008 kindergartens in Almaty was combined with"
+      "answer": "The study analysed data from 352 schools. As part of this study, data were analyzed near 1,008 kindergartens and 352 schools, including both public and private educational institutions in Almaty.[1] Taken together, data from 1 360 educational institutions (352 schools + 1 008 kindergartens) were use"
     },
     {
       "question": "How many kindergartens were analysed in the study of air near schools?",
@@ -137,9 +137,9 @@
       "has_fact": true,
       "cited": true,
       "model": "claude-haiku-5-5",
-      "ms": 2844,
+      "ms": 2833,
       "source": "The Air Children in Almaty Breathe: Air Quality Near Schools and Kindergartens",
-      "answer": "The study analysed data near 1,008 kindergartens and 352 schools in Almaty, covering both public and private institutions. As part of this study, data were analyzed near 1,008 kindergartens and 352 schools, including both public and private educational institutions in Almaty.[1] The figure of 1,008 "
+      "answer": "The study analysed data near 1,008 kindergartens and 352 schools in Almaty. As part of this study, data were analyzed near 1,008 kindergartens and 352 schools, including both public and private educational institutions in Almaty.[1] This figure comes from AAI's English report \"The Air Children in Al"
     },
     {
       "question": "What share of school days near schools had PM2.5 above Kazakhstan’s daily limit?",
@@ -148,9 +148,9 @@
       "has_fact": true,
       "cited": true,
       "model": "claude-haiku-5-5",
-      "ms": 3121,
+      "ms": 3251,
       "source": "The Air Children in Almaty Breathe: Air Quality Near Schools and Kindergartens",
-      "answer": "Over the school period, exceedances of Kazakhstan's average daily permissible limit of 35 μg/m³ were recorded on 48.4% of school days, which is 76 out of 157 days. If we look only at school days, excluding weekends, public holidays, and school vacations, the picture changes very little. Over the ent"
+      "answer": "According to AAI's The Air Children in Almaty Breathe: Air Quality Near Schools and Kindergartens (EN, 2026-07-03), if we look only at school days, excluding weekends, public holidays, and school vacations, the picture changes very little. Over the entire observation period, exceedances of average d"
     },
     {
       "question": "How many school days out of 157 were above Kazakhstan’s daily PM2.5 limit near schools?",
@@ -159,9 +159,9 @@
       "has_fact": true,
       "cited": true,
       "model": "claude-haiku-5-5",
-      "ms": 3119,
+      "ms": 3210,
       "source": "The Air Children in Almaty Breathe: Air Quality Near Schools and Kindergartens",
-      "answer": "According to AAI's research on air near Almaty schools and kindergartens, on 48.4% of school days, or 76 out of 157 school days, PM2.5 concentrations near Almaty schools and kindergartens exceeded Kazakhstan's 24-hour permissible limit of 35 μg/m³.[1] The same count appears in the Russian-language r"
+      "answer": "The answer is 76 of the 157 school days, which is 48.4%. AAI's children's-day report on schools and kindergartens (2026-07-03) states that on 48.4% of school days, or 76 out of 157 school days, PM2.5 concentrations near Almaty schools and kindergartens exceeded Kazakhstan's 24-hour permissible limit"
     },
     {
       "question": "Which school had the most polluted air?",
@@ -170,9 +170,9 @@
       "has_fact": true,
       "cited": true,
       "model": "claude-haiku-5-5",
-      "ms": 3363,
+      "ms": 3277,
       "source": "The Air Children in Almaty Breathe: Air Quality Near Schools and Kindergartens",
-      "answer": "The most polluted school in the sources is School No. 156 in Alatau district, which ranks first with a result of 71.3 µg/m³. The most polluted institutions are located in the Alatau district, where average concentrations during the school year exceeded 70 μg/m³, which is 16 times higher than the WHO"
+      "answer": "Based on AAI's research on schools and kindergartens, the most polluted school was School No. 156 in Alatau district, which ranks first with an average of 71.3 µg/m³ Schools The picture is similar among Almaty's 352 schools, and here again, Alatau district unexpectedly comes out on top. School No. 1"
     },
     {
       "question": "What was the average PM2.5 near the cleanest school in Medeu district?",
@@ -181,9 +181,9 @@
       "has_fact": true,
       "cited": true,
       "model": "claude-haiku-5-5",
-      "ms": 2590,
+      "ms": 3142,
       "source": "The Air Children in Almaty Breathe: Air Quality Near Schools and Kindergartens",
-      "answer": "The cleanest school in Medeu district had an average daily PM2.5 concentration of 19.7 µg/m³ during the analysis period. The gap between the city's cleanest school, located in Medeu district, with an average daily concentration of 19.7 µg/m³ during the analysis period, and the most polluted school i"
+      "answer": "The cleanest school in Medeu district averaged 19.7 µg/m³ of PM2.5 during the analysis period of AAI's \"The Air Children in Almaty Breathe: Air Quality Near Schools and Kindergartens\" (2026-07-03). The gap between the city's cleanest school, located in Medeu district, with an average daily concentra"
     },
     {
       "question": "How big was the gap between the most and least polluted schools?",
@@ -192,9 +192,9 @@
       "has_fact": true,
       "cited": true,
       "model": "claude-haiku-5-5",
-      "ms": 3260,
+      "ms": 3254,
       "source": "The Air Children in Almaty Breathe: Air Quality Near Schools and Kindergartens",
-      "answer": "The gap was 3.5 times. The cleanest school, in Medeu district, averaged 19.7 µg/m³ over the analysis period, while the most polluted school, in Alatau district, averaged 71.3 µg/m³, a difference of 50 µg/m³ or 3.5 times.[1] The same ratio appears in AAI's Russian and Kazakh versions of the report, w"
+      "answer": "AAI's children's-day report (EN, 2026-07-03) puts the gap between the most and least polluted educational institutions at 3.5 times. The cleanest school, in Medeu district, had an average daily concentration of 19.7 µg/m³ during the analysis period, while the most polluted school in Alatau district "
     },
     {
       "question": "What was the average PM2.5 near schools in December 2025?",
@@ -202,10 +202,10 @@
       "pass": true,
       "has_fact": true,
       "cited": true,
-      "model": "claude-haiku-5-5",
-      "ms": 7091,
+      "model": "claude-sonnet-5-5",
+      "ms": 6128,
       "source": "The Air Children in Almaty Breathe: Air Quality Near Schools and Kindergartens",
-      "answer": "The sources give two different December 2025 figures. The AAI study of air near schools and kindergartens puts the December monthly average at 62.4 μg/m³[1], with Turksib at 85.8 μg/m³ and Medeu and Bostandyk between 41 and 46 μg/m³ (Medeu and Bostandyk districts – from 41 to 46 μg/m³[2]). The AAI s"
+      "answer": "The sources do not give a December 2025 average near schools for the whole city. The closest figure is for Turksib district: according to AAI's school and kindergarten study (2026-07-03), the average daily PM2.5 concentration near schools and kindergartens there reached 85.8 µg/m³ in December[1]. No"
     },
     {
       "question": "What was the PM2.5 level near the Balausa kindergarten?",
@@ -214,9 +214,9 @@
       "has_fact": true,
       "cited": true,
       "model": "claude-haiku-5-5",
-      "ms": 3121,
+      "ms": 3295,
       "source": "The Air Children in Almaty Breathe: Air Quality Near Schools and Kindergartens",
-      "answer": "The sources give a single figure for the Balausa kindergarten: its average daily PM2.5 concentration is 71.3 µg/m³. For a three-year-old child attending Balausa kindergarten or Nursery-Kindergarten No. 1, where the concentration is 71.3 µg/m³, this means that every morning in the playground, every d"
+      "answer": "Two sources give the Balausa figure differently, so I cannot pick one without noting it. AAI's analysis of schools and kindergartens (2026-07-03) gives 71.3 µg/m³ for Balausa kindergarten, as an average daily PM2.5 concentration for October 2025 to April 2026, and it is the same level the report giv"
     },
     {
       "question": "What share of PM2.5 in Almaty comes from urban road dust?",
@@ -225,9 +225,9 @@
       "has_fact": true,
       "cited": true,
       "model": "claude-haiku-5-5",
-      "ms": 3228,
+      "ms": 2942,
       "source": "Main Sources of PM2.5 Pollution in Almaty",
-      "answer": "According to AAI's PMF analysis, urban road dust is the largest single contributor to PM2.5 in Almaty, at 32%. These particles originate from the city's two major highways: Al-Farabi Avenue and the Eastern Bypass Road.[1] The source is linked to elevated concentrations of elements linked to brake, t"
+      "answer": "The largest share of PM2.5 in Almaty comes from urban road dust, at 32%, according to AAI's Main Sources of PM2.5 Pollution in Almaty (EN, 2026-03-05). This source is associated with elevated concentrations of elements linked to brake, tire and road surface wear.[1] The estimate comes from a year-lo"
     },
     {
       "question": "What share of PM2.5 in Almaty comes from the urban atmosphere factor?",
@@ -236,9 +236,9 @@
       "has_fact": true,
       "cited": true,
       "model": "claude-haiku-5-5",
-      "ms": 3512,
+      "ms": 4818,
       "source": "Main Sources of PM2.5 Pollution in Almaty",
-      "answer": "The urban atmosphere factor accounts for 20% of PM2.5 in Almaty. Its chemical profile clearly contains coal and biomass markers.[1] The urban atmosphere factor is characterized as mixed background pollution, comprising industrial and combustion emissions, as well as the accumulation of pollutants un"
+      "answer": "The urban atmosphere factor accounts for 20% of PM2.5 in Almaty. This comes from a receptor-model study using samples collected from August 2022 to July 2023 at a single site on the KazNU campus, published by AAI on 5 March 2026. The factor is characterized as mixed background pollution, comprising "
     },
     {
       "question": "Where were the PM2.5 samples collected for the study of pollution sources?",
@@ -247,9 +247,9 @@
       "has_fact": true,
       "cited": true,
       "model": "claude-haiku-5-5",
-      "ms": 2921,
+      "ms": 3630,
       "source": "Main Sources of PM2.5 Pollution in Almaty",
-      "answer": "The PM2.5 samples for the source study were collected at a single site in Almaty. Sampling was conducted at a single site in Almaty (the KazNU campus).[1] The study used a year-long series of PM2.5 samples collected from August 2022 to July 2023, with chemical analysis.[2]"
+      "answer": "The PM2.5 samples for the source study were collected at a single site in Almaty, on the KazNU campus. Sampling was conducted at a single site in Almaty (the KazNU campus).[1] The sampling period ran from August 2022 to July 2023 (a year-long series of PM2.5 samples collected from August 2022 to Jul"
     },
     {
       "question": "What did the blood experiment find on red blood cells after the walk?",
@@ -258,9 +258,9 @@
       "has_fact": true,
       "cited": true,
       "model": "claude-haiku-5-5",
-      "ms": 3047,
+      "ms": 3140,
       "source": "Can You See Almaty’s Smog in Your Own Blood?",
-      "answer": "Small dark particles were found on red blood cells in the blood samples of the three participants who walked the hour-long route without respirators, and the sources add that black particles were also seen on red blood cells in those three. After the walk, soot particles were detected under a micros"
+      "answer": "After the hour-long walk, small dark particles were found on red blood cells in the blood samples of all three participants who had walked the route without respirators. Zhuldyz, Mukhtar and Aizhuldyz[1] were the three, and the particles were seen under a light microscope. The two participants who w"
     },
     {
       "question": "What share of Almaty residents took no environmental action in the past year?",
@@ -269,9 +269,9 @@
       "has_fact": true,
       "cited": true,
       "model": "claude-haiku-5-5",
-      "ms": 3628,
-      "source": "How Almaty residents perceive smog: results of the annual Almaty Air Initiative survey",
-      "answer": "According to AAI's 2026 survey, 46.4% took none of these actions[1] over the past year, meaning none of the environmental actions the survey asked about (planting trees, public hearings or campaigns, filing a complaint, or donating money). The same figure is repeated in the later summary, where only"
+      "ms": 2946,
+      "source": "Public perceptions of air quality in Almaty: third annual study (reviewed by PwC), p. 26",
+      "answer": "According to AAI's third annual study (reviewed by PwC) (2026-10-15), 46.4% took none of these actions[1] over the past year, referring to tree planting, public hearings or campaigns, filing a complaint, or donating money. The figure is the same in AAI's How Almaty residents perceive smog report (20"
     },
     {
       "question": "What share of Almaty residents use no measures to protect themselves from polluted air?",
@@ -280,9 +280,9 @@
       "has_fact": true,
       "cited": true,
       "model": "claude-haiku-5-5",
-      "ms": 2963,
+      "ms": 14096,
       "source": "How Almaty residents perceive smog: results of the annual Almaty Air Initiative survey",
-      "answer": "Two AAI sources give different figures for this, so I flag the discrepancy. The 2026 AAI survey summary reports that 17% use no measures to protect themselves from polluted air[1], while the report reviewed by PwC gives 16.8%[2] for the same question. The two numbers are close and likely reflect rou"
+      "answer": "About 17% of Almaty residents report taking no measures to protect themselves from polluted air, according to AAI's How Almaty residents perceive smog: results of the annual Almaty Air Initiative survey (EN, 2026-08-28)[1]. By age, that share stays fairly even, between 13% and 22%, and is highest am"
     },
     {
       "question": "What share of 25–34-year-olds in Almaty use air purifiers?",
@@ -291,9 +291,9 @@
       "has_fact": true,
       "cited": true,
       "model": "claude-haiku-5-5",
-      "ms": 3329,
+      "ms": 4140,
       "source": "How Almaty residents perceive smog: results of the annual Almaty Air Initiative survey",
-      "answer": "Among 25–34-year-olds, the share using air purifiers is reported as 35.5% in the 2026 wave of AAI's survey. The use of air purifiers varies sharply by age: it is highest among respondents aged 25–34 (35.5%) and falls to 10.5% among those aged 55–64.[1] The earlier survey summary gives a different fi"
+      "answer": "According to AAI's \"Public perceptions of air quality in Almaty: third annual study (reviewed by PwC)\" (2026-10-15), air purifier use varies sharply by age: it is highest among respondents aged 25–34 (35.5%) and falls to 10.5% among those aged 55–64.[1] The 2026 survey's source passages do not name "
     },
     {
       "question": "What share of Almaty residents report allergic reactions from smog?",
@@ -302,9 +302,9 @@
       "has_fact": true,
       "cited": true,
       "model": "claude-haiku-5-5",
-      "ms": 2872,
+      "ms": 7202,
       "source": "How Almaty residents perceive smog: annual AAI survey, p. 7",
-      "answer": "Allergic reactions are one of the more common complaints. In AAI's annual survey, 43% of residents reported allergic reactions as a manifestation of polluted air The most commonly reported manifestations are smog and haze (58%), smell of smoke or vehicle exhaust (53%), dust and dirt (51%). Residents"
+      "answer": "AAI's sources give two figures. In its most recent annual report (28 August 2026), allergic reactions (43%)[1] are among the everyday effects residents report from polluted air. The report's health section gives a lower figure, with allergic reactions (39%)[2] among the most commonly reported sympto"
     },
     {
       "question": "By how much did Kazhydromet's count of PM10 exceedances fall in 2025?",
@@ -312,10 +312,10 @@
       "pass": true,
       "has_fact": true,
       "cited": true,
-      "model": "claude-haiku-5-5",
-      "ms": 4043,
-      "source": "The 2025 Paradox: What Kazhydromet’s Data Leaves Out",
-      "answer": "According to Kazhydromet's figures, PM10 exceedances of the maximum one-time limit fell from 1,091 in 2024 to 772 in 2025, which is a 1.4-fold decrease. | PM2.5 | 3,236 | 2,131 | 1.5-fold decrease | PM10 | 1,091 | 772 | 1.4-fold decrease[1]\n\nThe raw-data check by AAI counted a different PM10 total f"
+      "model": "claude-sonnet-5-5",
+      "ms": 6799,
+      "source": "The 2025 Paradox: what Kazhydromet's data leaves out, p. 6",
+      "answer": "According to the Russian-language table in AAI's \"The 2025 Paradox\" (2026-03-31), Kazhydromet's count of PM10 exceedances of the maximum one-time permissible concentration fell from 1,091 in 2024 to 772 in 2025, which the table describes as a 1.4-fold decrease. Kazhydromet's figures show 1,091 PM10 "
     },
     {
       "question": "When did the Almaty delegation visit Sofia to study its low emission zone?",
@@ -324,9 +324,9 @@
       "has_fact": true,
       "cited": true,
       "model": "claude-haiku-5-5",
-      "ms": 3130,
+      "ms": 2773,
       "source": "Low Emission Zone: Sofia’s Experience",
-      "answer": "The Almaty delegation visited Sofia, Bulgaria, from 6 to 10 July 2026. Prepared following the working visit of a delegation from Almaty to Sofia, Bulgaria, held on 6–10 July 2026.[1] The purpose was to study Sofia's practical experience in implementing a low emission zone (institutional, technical a"
+      "answer": "The Almaty delegation visited Sofia from 6 to 10 July 2026, according to AAI's Low Emission Zone: Sofia's Experience (EN, 2026-08-24). Prepared following the working visit of a delegation from Almaty to Sofia, Bulgaria, held on 6–10 July 2026.[1] The delegation included representatives of the Almaty"
     },
     {
       "question": "Насколько выросла средняя концентрация PM2.5 в Алматы в 2025 году по сравнению с 2024 годом?",
@@ -335,9 +335,9 @@
       "has_fact": true,
       "cited": true,
       "model": "claude-haiku-5-5",
-      "ms": 5548,
-      "source": "Каким был воздух в Алматы в 2025 году?",
-      "answer": "По данным AAI, среднегодовая концентрация PM2.5 в 2025 году составила 31,2 мкг/м³, а в 2024 году 24,1 мкг/м³, то есть рост примерно на 30%. Воздух стал на 30% грязнее, чем в 2024 году (24.1 мкг/м³).[1] Однако архив датчиков AAI даёт другие цифры: 31 мкг/м³ за 2025 год и 27,7 мкг/м³ за 2024 год. Расх"
+      "ms": 7797,
+      "source": "AAI sensor archive, daily PM2.5 in Almaty, 2025",
+      "answer": "По данным архива датчиков AAI, среднесуточная концентрация PM2.5 в Алматы в 2025 году составила 31 мкг/м³, а в 2024 году 27,7 мкг/м³, то есть рост примерно на 3,3 мкг/м³ (около 12%). 2025 city-wide daily average PM2.5 in Almaty from AAI sensors: 31 µg/m³ on average over 365 days.[1] 2024 city-wide d"
     },
     {
       "question": "Какую долю PM2.5 в Алматы дают ТЭЦ и котельные по исследованию КазНУ?",
@@ -346,9 +346,9 @@
       "has_fact": true,
       "cited": true,
       "model": "claude-haiku-5-5",
-      "ms": 3180,
+      "ms": 3117,
       "source": "Основные источники выбросов PM2.5 в Алматы",
-      "answer": "По исследованию КазНУ, проведенному на основе годовой серии проб за август 2022 — июль 2023 года, вклад ТЭЦ и котельных в PM2.5 составляет 18%. По итогам PMF анализа для Алматы получено следующее распределение вкладов в PM2.5: Городская дорожная пыль — 32% • Городская атмосфера — 20% • ТЭЦ и котельн"
+      "answer": "По исследованию КазНУ, ТЭЦ и котельные дают около 18% PM2.5 в Алматы. Это данные PMF-анализа, проведенного на основе проб, отобранных в одной точке на кампусе КазНУ с августа 2022 по июль 2023 года, поэтому доля не обязательно одинакова для всех районов и дней. В ответе AAI на запрос СМИ от 2 ноября"
     },
     {
       "question": "Какой процент автотранспорта (выхлопов) был в исследовании КазНУ?",
@@ -357,9 +357,9 @@
       "has_fact": true,
       "cited": true,
       "model": "claude-haiku-5-5",
-      "ms": 3604,
-      "source": "AAI answers to Kursiv: the heating season, sources of smog and health",
-      "answer": "Согласно исследованию КазНУ, непосредственные выхлопные выбросы транспорта дали 14% вклада в PM2.5. Первое комплексное исследование химического состава PM2.[1] Эта цифра не означает полной доли транспорта: для транспорта показатель 14% отражает только выделенный фактор выхлопов и не включает полност"
+      "ms": 4122,
+      "source": "AAI answers to Tengrinews on Almaty air, 2 November 2026",
+      "answer": "В исследовании КазНУ, посвящённом химическому составу PM2.5 (отбор проб с августа 2022 по июль 2023 года), вклад транспортных выхлопов оценён в 14%. Исследование проведено коалицией ученых КазНУ, Назарбаев Университета и международных исследователей, оценило вклад пяти факторов следующим образом: го"
     },
     {
       "question": "Насколько готова новая газовая часть ТЭЦ-2?",
@@ -368,9 +368,9 @@
       "has_fact": true,
       "cited": true,
       "model": "claude-haiku-5-5",
-      "ms": 2979,
+      "ms": 5497,
       "source": "AAI answers to Tengrinews on Almaty air, 2 November 2026",
-      "answer": "По состоянию на 23 октября новая газовая часть ТЭЦ-2 была готова примерно на 95% и находилась на стадии пусконаладки. До конца 2026 года планируется завершить комплексное опробование, а вывод новой мощности на рынок ожидается в 2027 году.[1]"
+      "answer": "По состоянию на 23 октября 2026 года новая газовая часть ТЭЦ-2 была готова примерно на 95% и находилась на стадии пусконаладки, а действующая угольная станция продолжала обеспечивать город теплом (AAI written answer to the media, 2 ноября 2026). Вывод новой мощности на рынок ожидается в 2027 году, а"
     },
     {
       "question": "Какова готовность перевода ТЭЦ-3 на газ по данным Минэнерго?",
@@ -379,9 +379,9 @@
       "has_fact": true,
       "cited": true,
       "model": "claude-haiku-5-5",
-      "ms": 2996,
+      "ms": 3667,
       "source": "AAI answers to Tengrinews on Almaty air, 2 November 2026",
-      "answer": "По данным Минэнерго, сообщение от 19 сентября, готовность перевода ТЭЦ-3 на газ составляла 27,09%. 19 сентября Минэнерго сообщало о готовности 27,09% и рисках отставания.[1] Более поздние сообщения «Самрук-Энерго» указывают на завершение реконструкции в 2027 году, поэтому на 2 ноября нельзя считать "
+      "answer": "Минэнерго сообщало о готовности ТЭЦ-3 к переходу на газ в 27,09% на 19 сентября 2026 года, и AAI в ответе СМИ от 2 ноября 2026 года ссылается на эту цифру, одновременно указывая, что более поздние сообщения «Самрук-Энерго» называют завершение реконструкции в 2027 году. По ТЭЦ-3 переход еще менее про"
     },
     {
       "question": "Сколько автомобилей проверили в сентябре в рамках пилота зоны низких выбросов (LEZ) и у скольких выявили превышение?",
@@ -390,9 +390,9 @@
       "has_fact": true,
       "cited": true,
       "model": "claude-haiku-5-5",
-      "ms": 2929,
+      "ms": 3361,
       "source": "AAI answers to Tengrinews on Almaty air, 2 November 2026",
-      "answer": "В сентябре в рамках пилота LEZ проверили 6 833 автомобиля, и у 922 из них, или 13,5%, выявили превышение нормативов. После регулировки топливной системы 561 автомобиль успешно прошёл повторный замер.[1] Эти данные взяты из промежуточных результатов AAI, и это полезный результат для настройки контрол"
+      "answer": "Согласно ответу AAI журналистам «Тенгринews» от 2 ноября 2026 года, в сентябре 2026 года в рамках пилота LEZ проверили 6 833 автомобиля, и у 922 из них (13,5%) выявили превышение нормативов. [16] Промежуточные результаты уже показывают масштаб технической проблемы: в сентябре проверили 6 833 автомоб"
     },
     {
       "question": "Когда в Алматы начался отопительный сезон 2026–2027 годов?",
@@ -401,9 +401,9 @@
       "has_fact": true,
       "cited": true,
       "model": "claude-haiku-5-5",
-      "ms": 2888,
+      "ms": 2495,
       "source": "AAI answers to Tengrinews on Almaty air, 2 November 2026",
-      "answer": "По данным AAI, отопительный сезон 2026–2027 годов в Алматы начался 9 октября с подачи тепла на социальные объекты. В Алматы отопительный сезон 2026–2027 годов начался 9 октября с подачи тепла на социальные объекты.[1] Этот же срок указан в городской публикации акимата."
+      "answer": "По данным AAI, отопительный сезон 2026–2027 годов в Алматы начался 9 октября с подачи тепла на социальные объекты. В Алматы отопительный сезон 2026–2027 годов начался 9 октября с подачи тепла на социальные объекты.[1] Эта информация содержится в ответах AAI журналистам от 2 ноября 2026 года."
     },
     {
       "question": "В какие часы в холодный сезон обычно максимум PM2.5 в Алматы?",
@@ -412,9 +412,9 @@
       "has_fact": true,
       "cited": true,
       "model": "claude-haiku-5-5",
-      "ms": 3529,
-      "source": "Каким был воздух в Алматы в 2025 году?",
-      "answer": "Ответ: по отчётам AAI, в холодный сезон максимум PM2.5 приходится на вечер. По данным за 2025 год, зимой максимальные значения фиксируются в интервале 19:00–21:00, где концентрации превышают 80 мкг/м³ Максимальные значения фиксируются в интервале 19:00–21:00 (свыше 80 мкг/м³), что объясняется снижен"
+      "ms": 5242,
+      "source": "AAI answers to Tengrinews on Almaty air, 2 November 2026",
+      "answer": "Согласно written answer AAI журналу Tengrinews (2 ноября 2026), в холодный сезон типичный максимум приходился на промежуток 19:00–21:00 когда совпадали вечерний трафик, отопительная нагрузка и ухудшение рассеивания[1]. Исследование AAI по данным 2024 года (опубликовано 3 февраля 2025) указывает, что"
     },
     {
       "question": "Сколько преждевременных смертей в год в Алматы связывают с воздействием PM2.5?",
@@ -423,9 +423,9 @@
       "has_fact": true,
       "cited": true,
       "model": "claude-haiku-5-5",
-      "ms": 2772,
+      "ms": 2868,
       "source": "AAI answers to Kursiv: the heating season, sources of smog and health",
-      "answer": "По оценке AAI, исследование за 2022–2024 годы связывает с воздействием PM2.5 до примерно 2,1 тысячи преждевременных смертей в год. 5 на основе концентраций, смертности и международных исследований зависимости преждевременной смертности от загрязнения.[1] Источник: AAI, интервью для Kursiv (2 ноября "
+      "answer": "Согласно ответу AAI на вопросы издания Kursiv (2 ноября 2026 года), исследование, охватывающее 2022–2024 годы, оценило число преждевременных смертей, связанных с воздействием PM2.5, примерно в 2,1 тысячи случаев в год. Это не перечень смертей, в которых в свидетельствах о смерти указан смог, а оценк"
     },
     {
       "question": "Какие рекомендации вы бы дали жителям Алматы в дни сильного смога, чтобы снизить риски для здоровья?",
@@ -433,10 +433,10 @@
       "pass": true,
       "has_fact": true,
       "cited": true,
-      "model": "claude-sonnet-5-5",
-      "ms": 8917,
-      "source": "AAI answers to Kursiv: the heating season, sources of smog and health",
-      "answer": "Полностью отказываться от прогулок на всю зиму не нужно, но в дни сильного загрязнения стоит сокращать время на улице и интенсивность дыхания.[1] Если качество воздуха относится к категории «вредно для чувствительных групп» (оранжевый индикатор), детям, пожилым людям, беременным и людям с заболевани"
+      "model": "claude-haiku-5-5",
+      "ms": 3688,
+      "source": "AAI answers to Tengrinews on Almaty air, 2 November 2026",
+      "answer": "Вопрос касается рекомендаций жителям, поэтому опираюсь на ответы AAI журналистам от 2 ноября 2026 года. Пункт про сохранение личных мер опирается на отдельный документ: Личные меры не решают проблему загрязнения и не должны подменять ответственность города и крупных источников, но они могут снизить "
     },
     {
       "question": "Какой была среднесуточная концентрация PM2.5 в Алматы 1 ноября 2026 года?",
@@ -445,9 +445,9 @@
       "has_fact": true,
       "cited": true,
       "model": "claude-haiku-5-5",
-      "ms": 3314,
-      "source": "AAI sensor archive, daily PM2.5 in Almaty, 2026",
-      "answer": "По данным AAI, среднесуточная концентрация PM2.5 в Алматы 1 ноября 2026 года составила 72,3 мкг/м³ по данным сети датчиков AAI On 2026-11-01 the city-wide daily average PM2.5 was 72.3 µg/m³.[1] В ответах для СМИ, подготовленных 5 ноября, та же дата приводится как 77,5 мкг/м³: по данным нашей сети мо"
+      "ms": 6538,
+      "source": "AAI answers to media questions on smog in Almaty, 5 November 2026",
+      "answer": "По данным AAI за 2026 год, среднесуточная концентрация PM2.5 в Алматы 1 ноября в источниках приводится в разных значениях. В ответе СМИ от 5 ноября 2026 года, самом свежем из материалов AAI, по данным сети мониторинга, 1 ноября среднесуточная концентрация PM2.5 достигла 77,5 мкг/м³[1]. В ответе от 2"
     },
     {
       "question": "Сколько автомобилей ежедневно передвигается по Алматы?",
@@ -456,9 +456,9 @@
       "has_fact": true,
       "cited": true,
       "model": "claude-haiku-5-5",
-      "ms": 2738,
+      "ms": 3871,
       "source": "AAI answers to Tengrinews on Almaty air, 2 November 2026",
-      "answer": "По данным исследования AAI и Sergek Group, ежедневно по Алматы передвигается около 650 тысяч автомобилей. В другом материале AAI говорится о более чем 600 тысячах автомобилей в день, что близко к этой оценке.\n\nПо данным исследования Almaty Air Initiative и Sergek Group, ежедневно по Алматы передвига"
+      "answer": "По данным исследования AAI и Sergek Group, ежедневно по Алматы передвигается около 650 тысяч автомобилей, где автомобили экологических классов 0–4 обеспечивали 37% пробега, но формировали 79% выбросов NOx и 78% выбросов[1] PM от транспорта. В другом исследовании AAI, опубликованном 21 января 2026 го"
     },
     {
       "question": "Какую долю транспортных выбросов PM дают грузовики в Алматы?",
@@ -467,9 +467,9 @@
       "has_fact": true,
       "cited": true,
       "model": "claude-haiku-5-5",
-      "ms": 2927,
-      "source": "Not the Quantity, but the Quality: How the Structure of Almaty’s Vehicle Fleet Affects Air Quality",
-      "answer": "Грузовики, на долю которых приходится около 3% общего пробега, дают 64% транспортных выбросов PM (мелких частиц) в Алматы. With a share of 3% of the total mileage, trucks account for 32% of NOx emissions and 64% of PM, highlighting their disproportionately high contribution to vehicle pollution.[1] "
+      "ms": 3624,
+      "source": "Не количество, а качество: как структура автопарка влияет на воздух в Алматы",
+      "answer": "Грузовики в Алматы дают 64% выбросов PM от автотранспорта, при этом их доля в общем пробеге составляет около 3%. Если рассматривать вклад по видам транспорта, то при доле в 3% от общего пробега выхлопы грузовых автомобилей обеспечивают 32% выбросов NOx и 64% PM, демонстрируя высокий удельный вклад в"
     },
     {
       "question": "Қаланың қай аймағында жағдай аса ауыр? Не себепті?",
@@ -478,9 +478,9 @@
       "has_fact": true,
       "cited": true,
       "model": "claude-haiku-5-5",
-      "ms": 5264,
-      "source": "2025 жылы Алматының ауа сапасы қандай болды?",
-      "answer": "Жылдық есеп бойынша ең ауыр жағдай қаланың солтүстік және солтүстік-батыс аудандарында тіркелген, ал ең қолайлысы Бостандық ауданында, онда PM2.5 орташа мәні 22,1 мкг/м³ болған. Ең қолайсыз жағдай қаланың солтүстік және солтүстік-батыс аудандарында тіркеледі. Мұнда PM2.5 орташа мәндері жоғары болаты"
+      "ms": 7582,
+      "source": "AAI answers to media questions on smog in Almaty, 5 November 2026",
+      "answer": "Алматының қай ауданында ауа жағдайы ауыр екені туралы AAI деректері екі түрлі көрсеткішке сүйенеді. AAI-дің 2025 жылғы жылдық талдауы бойынша PM2.5-тің орташа жылдық концентрациясы ең жоғары Түрксіб ауданында (46,8 мкг/м³), содан кейін Жетісу (37,9 мкг/м³) және Алатау (37,7 мкг/м³) аудандарында тірк"
     },
     {
       "question": "Алматыда қай маусымда тұмша басылып, қай мезгілде керісінше үдейді?",
@@ -489,9 +489,9 @@
       "has_fact": true,
       "cited": true,
       "model": "claude-haiku-5-5",
-      "ms": 4789,
-      "source": "2024 жылы алматылықтар қандай ауамен тыныстады?",
-      "answer": "Алматыдағы ауа қыста ең нашар, ал жазда ең таза болады. Алматыдағы PM2.5 концентрациясы әр маусымда айтарлықтай өзгереді. “Ең таза” кезең әдеттегідей 11,5 мкг/м³ мәнін құрайтын жаз мезгілі[1], ал қыста ластану максимумға жетеді (49,9 мкг/м³), бұл жазғы көрсеткіштерден бес есе жоғары.[2] Тәулік ішінд"
+      "ms": 6607,
+      "source": "AAI sensor archive, daily PM2.5 in Almaty, 2025",
+      "answer": "Алматыда PM2.5 деңгейі жылдың суық кезеңінде жоғары болып, жазда төмендейтіні AAI дереккөздерінде көрсетілген. AAI-дің 2025 жылғы бақылау деректері бойынша желтоқсанда орташа ай концентрациясы 60,9 µg/m³, ал тамызда 11 µg/m³ болды, ал қыс айларындағы орташа концентрация жазғыдан бес есе жоғары болды"
     }
   ]
 }

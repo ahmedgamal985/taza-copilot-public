@@ -88,8 +88,8 @@ function bubble(m, i) {
   if (m.role === 'error') return `<div class="tw-msg tw-bot tw-err">${esc(m.text)}</div>`;
   const text = esc(m.text).replace(/\[(\d+)\]/g, '<sup>[$1]</sup>');
   const srcs = (m.sources || []).map(s => `<li><blockquote>${esc(s.quote)}</blockquote>
-      <span class="small">[${s.n}] ${s.live ? esc(t('tw_live')) : `${esc(s.title)}${s.page ? `, ${esc(t('page_n', { p: s.page }))}` : ''}`}
-      ${s.url ? ` · <a href="${safeHref(s.url)}" target="_blank" rel="noopener">${esc(t('open_source'))}</a>` : ''}</span></li>`).join('');
+      <span class="small">[${s.n}] ${s.live ? esc(t('tw_live')) : `${esc(s.title)}${s.page ? `, ${esc(t('page_n', { p: s.page }))}` : ''}${s.section ? `, ${esc(t('answer_to_q', { n: s.section.n }))}` : ''}`}
+      ${s.url ? ` · <a href="${safeHref(s.url)}" target="_blank" rel="noopener">${esc(t('open_source'))}</a>` : s.live ? '' : ` · ${esc(t('src_unpublished'))}`}</span></li>`).join('');
   return `<div class="tw-msg tw-bot">
     <div>${text}</div>
     ${srcs ? `<details class="tw-srcs"><summary>📚 ${esc(I18N.plural('source', m.sources.length))} · ${esc(t('exact_quote'))}</summary><ol>${srcs}</ol></details>` : ''}
@@ -159,7 +159,7 @@ async function send(question, { voice = false } = {}) {
     reader.cancel().catch(() => {});
     if (!data) throw new Error(t('req_failed'));
     log.push({ role: 'bot', id: data.id, text: data.text, found: data.found,
-      sources: data.sources.map(s => ({ n: s.n, quote: s.quote, title: s.title, page: s.page, url: s.url, live: s.live })) });
+      sources: data.sources.map(s => ({ n: s.n, quote: s.quote, title: s.title, page: s.page, section: s.section, url: s.url, live: s.live })) });
     save(); renderLog();
     return data;
   } catch (err) {

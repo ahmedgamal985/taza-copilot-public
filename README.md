@@ -5,10 +5,10 @@
 🌐 **Live: https://taza-copilot.online** · 🤖 Telegram: [@SmogHuntersBot](https://t.me/SmogHuntersBot) ·
 🧩 Widget demo: https://taza-copilot.online/widget-demo.html
 
-> **About this public copy.** This is the full source code of the live platform. Its search index leaves out
-> AAI's 4 written answers to the media (November 2026), because they are not confirmed as public yet; the live
-> site uses them and quotes them with their title and date. The deploy workflow (`.github/workflows/deploy.yml`)
-> is also left out, because it needs the team's Cloudflare secrets.
+> **About this public copy.** This is the full source code of the live platform, kept identical to it. Its search index
+> leaves out AAI's 4 written answers to the media (November 2026), because they are not confirmed as public yet; the live
+> site uses them and quotes them with their title and date. The deploy workflow (`.github/workflows/deploy.yml`) is also
+> left out, because it needs the team's Cloudflare secrets.
 
 Ask AAI's research anything, in English, Russian or Kazakh. Taza Copilot searches every AAI report
 and live sensor data, and answers in seconds with **the exact quote, the page, and a link that opens
@@ -187,7 +187,8 @@ Uploading research needs `pdftotext` (Linux: `apt install poppler-utils`; Window
 
 1. **Plan.** The AI writes short search queries in English, Russian and Kazakh and decides whether
    live sensor data is needed.
-2. **Search.** BM25 over 1,500+ report pages and article sections (no vector database needed), merged across languages, with a bonus for passages where the query words appear side by side.
+2. **Search.** BM25 over 1,500+ report pages and article sections (no vector database needed), merged across languages, with a bonus for passages where the query words appear side by side. Each passage is also matched on the edges of its neighbours and brings the next passage along (a figure often follows the sentence that names the topic), "ТЭЦ-2" counts as one word, and AAI's newest material (last 45 days) gets two extra slots, so its latest position is not buried under older reports. AAI's written answers to the media have no public file: their passages say which question they answer instead of a page.
+   The fast model's answer goes to the stronger model once when it has no source, says the research does not cover the question, or copies Russian or Kazakh wording into an English answer. Team test of 9 media questions: `node scripts/team-test.mjs`.
 3. **Answer.** With Claude, each page is sent as a `search_result` block with citations enabled,
    so the quotes come back extracted from the source. With other providers, passages are numbered
    and the model cites numbers; the platform shows the original passage text.

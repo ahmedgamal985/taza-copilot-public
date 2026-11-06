@@ -1,0 +1,134 @@
+{
+ "hook": {
+  "id": "hook",
+  "text": "On November second, a Tengrinews journalist sent Almaty Air Initiative five questions about the city's air.",
+  "hash": "a48b64d8e7",
+  "dur": 6.687
+ },
+ "cost": {
+  "id": "cost",
+  "text": "AAI's experts answered by hand: three pages, twenty-three sources, and hours of work.",
+  "hash": "eda47eb5c7",
+  "dur": 6.766
+ },
+ "now": {
+  "id": "now",
+  "text": "Now, the same five questions, asked live.",
+  "hash": "f5208ab86c",
+  "dur": 3.004
+ },
+ "race": {
+  "id": "race",
+  "text": "Taza Copilot searches only AAI's published research and its live sensors, and answers each question in seconds, with the exact quote, the page, and a link.",
+  "hash": "9193c8952f",
+  "dur": 11.311
+ },
+ "punch": {
+  "id": "punch",
+  "text": "All five, in forty-one seconds.",
+  "hash": "14a033f82b",
+  "dur": 2.769
+ },
+ "match": {
+  "id": "match",
+  "text": "And the facts match AAI's own answer: thirty-one point two micrograms in twenty twenty-five, thirty percent worse than the year before.",
+  "hash": "1eb201e781",
+  "dur": 9.247
+ },
+ "metric": {
+  "id": "metric",
+  "text": "Across forty-four test questions, including fifteen real questions that journalists and colleagues sent to the initiative, every answer came with a source, in a median of three point three seconds.",
+  "hash": "d27418a1e3",
+  "dur": 12.669
+ },
+ "trust": {
+  "id": "trust",
+  "text": "It checks claims from the news, shows both figures when sources disagree, and says so when the research does not cover a question.",
+  "hash": "06a6b909d6",
+  "dur": 7.549
+ },
+ "live": {
+  "id": "live",
+  "text": "Live data from more than a hundred and fifty sensors: the map, the best time to go out, comparisons with other cities, and schools ranked by the air right now.",
+  "hash": "ee739286be",
+  "dur": 9.247
+ },
+ "everywhere": {
+  "id": "everywhere",
+  "text": "Ask by voice, on Telegram, on WhatsApp, where you can even call Taza, or from a widget on any website.",
+  "hash": "41376b04f6",
+  "dur": 6.687
+ },
+ "decisions": {
+  "id": "decisions",
+  "text": "And any answer becomes a one-page policy brief.",
+  "hash": "e0b6621326",
+  "dur": 3.161
+ },
+ "part2": {
+  "id": "part2",
+  "text": "The same research can reach every driver and rider in inDrive.",
+  "hash": "2a2f472d60",
+  "dur": 3.788
+ },
+ "driver": {
+  "id": "driver",
+  "text": "Drivers get a morning alert on bad-air days, and a reminder to close the windows in traffic. In a jam, the air inside a car is forty percent more polluted, says AAI's own fleet study.",
+  "hash": "f8af2c05ed",
+  "dur": 12.591
+ },
+ "rider": {
+  "id": "rider",
+  "text": "Riders see the air at their pickup point, and drivers find a cleaner spot for a break.",
+  "hash": "82f273ac32",
+  "dur": 4.833
+ },
+ "api": {
+  "id": "api",
+  "text": "All from one API call, and the location is never stored.",
+  "hash": "752d1d1e32",
+  "dur": 4.284
+ },
+ "aai": {
+  "id": "aai",
+  "text": "For AAI, it costs about seven dollars a month, needs no developers, and the code is open.",
+  "hash": "ec63d62f09",
+  "dur": 6.113
+ },
+ "outro": {
+  "id": "outro",
+  "text": "Taza Copilot. Ask AAI's research anything.",
+  "hash": "548e07ef0a",
+  "dur": 3.788
+ },
+ "s_hook": {
+  "id": "s_hook",
+  "text": "A journalist sent Almaty Air Initiative five questions. Answering by hand took hours and twenty-three sources.",
+  "hash": "67346dc504",
+  "dur": 7.158
+ },
+ "s_race": {
+  "id": "s_race",
+  "text": "Taza Copilot answered all five live, in forty-one seconds, each with the exact quote, the page, and a link.",
+  "hash": "d479da88bd",
+  "dur": 8.202
+ },
+ "s_match": {
+  "id": "s_match",
+  "text": "The same facts as AAI's own answer.",
+  "hash": "e9892a5905",
+  "dur": 2.691
+ },
+ "s_more": {
+  "id": "s_more",
+  "text": "Live sensor data, voice, Telegram, WhatsApp, and a widget for any website.",
+  "hash": "8fc7ab451f",
+  "dur": 5.642
+ },
+ "s_indrive": {
+  "id": "s_indrive",
+  "text": "And inside inDrive: air alerts and advice for drivers and riders.",
+  "hash": "30246e8de5",
+  "dur": 4.833
+ }
+}

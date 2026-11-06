@@ -19,3 +19,5 @@ video/full/out/
 video/full/shots/
 video/full/shots_v/
 video/full/*.png
+# Race video: the recording, its frames and renders (video/race/capture.mjs + build.mjs remake them)
+video/race/out/

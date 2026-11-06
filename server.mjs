@@ -6,7 +6,7 @@ import { join, extname, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { gzipSync } from 'node:zlib';
 import { loadIndex, search, tokenize } from './lib/search.mjs';
-import { ask, groupGaps, summarizeResearch } from './lib/copilot.mjs';
+import { ask, groupGaps, summarizeResearch, SEARCH_OPTS } from './lib/copilot.mjs';
 import { getStations, getStationDetail, hasAaiKey, warm, airSummary, compareAir, outdoorPlan } from './lib/aai.mjs';
 import { listProviders, listModels, PROVIDERS } from './lib/providers.mjs';
 import { startTelegram } from './lib/telegram.mjs';
@@ -645,19 +645,25 @@ data: ${JSON.stringify(data)}
       const lang = ['en', 'ru', 'kk'].includes(url.searchParams.get('lang')) ? url.searchParams.get('lang') : null;
       const k = Math.min(8, Math.max(1, Number.parseInt(url.searchParams.get('k'), 10) || 5));
       const queries = q.split('|').map(s => s.trim()).filter(s => s.length > 1).slice(0, 4);
-      let found = search(index, queries, { limit: 12, maxPerDoc: 2 });
+      let found = search(index, queries, { limit: 12, maxPerDoc: 2, neighbors: true, fresh: SEARCH_OPTS.fresh });
       // The asker's language first, when the research exists in it
       if (lang) found = [...found.filter(r => r.lang === lang), ...found.filter(r => r.lang !== lang)];
       // From each page, the paragraphs that share the most words with the question (kept in page order, up to ~1,200 characters)
       const words = new Set(queries.flatMap(tokenize));
+      // The best-matching paragraph and the ones right after it (the figures usually follow the sentence that
+      // names the topic: "…95% ready." → "emissions fall from 37.1 to 2.7 thousand t"), up to ~1,600 characters
       const pick = blocks => {
-        const scored = (blocks || []).map((b, i) => ({ b: b.replace(/\s+/g, ' ').trim(), i, s: tokenize(b).filter(w => words.has(w)).length }));
-        const keep = [...scored].sort((a, b) => b.s - a.s || a.i - b.i);
-        const chosen = []; let len = 0;
-        for (const x of keep) { if (len && len + x.b.length > 1200) continue; chosen.push(x); len += x.b.length; if (len > 1000) break; }
-        return chosen.sort((a, b) => a.i - b.i).map(x => x.b).join(' … ').slice(0, 1400);
+        const list = (blocks || []).map(b => b.replace(/\s+/g, ' ').trim());
+        const score = list.map(b => tokenize(b).filter(w => words.has(w)).length);
+        const i = score.indexOf(Math.max(...score));
+        // best paragraph first, then the ones after it, then the one before it, kept in their original order
+        const order = [i, i + 1, i + 2, i - 1, i + 3, i - 2].filter(k => k >= 0 && k < list.length);
+        const keep = new Set(); let len = 0;
+        for (const k of order) { if (len && len + list[k].length > 1800) continue; keep.add(k); len += list[k].length; if (len > 1600) break; }
+        return [...keep].sort((a, b) => a - b).map(k => list[k]).join(' ').slice(0, 1900);
       };
-      const results = found.slice(0, k).map((r, i) => ({ n: i + 1, title: r.title, page: r.page ?? null, url: r.url, lang: r.lang, date: r.date || null,
+      const results = found.slice(0, k).map((r, i) => ({ n: i + 1, title: r.title, page: r.page ?? null, url: r.url || null,
+        answer_to_question: r.section ? `${r.section.n}: ${r.section.q}` : undefined, published_online: r.url ? undefined : false, lang: r.lang, date: r.date || null,
         text: pick(r.blocks) }));
       return send(req, res, 200, { query: queries, results, found: results.length,
         note: results.length ? 'Quote these passages exactly and give the title, page and link. If they do not answer the question, say AAI research does not cover it.' : 'Nothing in AAI research matches. Say so; do not guess.' });

@@ -13,7 +13,7 @@ window.I18N = (() => {
       step1: 'Understanding the question', step2: 'Searching {n} AAI sources in 3 languages',
       step3: 'Reading the most relevant pages', step4: 'Writing the answer with exact quotes',
       answered_in: 'Answered in {s} s', instant: 'Instant answer (asked before)', free_local: 'free (local)', your_key: 'your key',
-      page_n: 'page {p}', open_source: 'Open source ↗', exact_quote: '✓ exact quote', req_failed: 'Request failed',
+      page_n: 'page {p}', answer_to_q: 'answer to question {n}', src_unpublished: 'AAI written answer · not published online', open_source: 'Open source ↗', exact_quote: '✓ exact quote', req_failed: 'Request failed',
       map_h1: 'Air now in Almaty', map_lead: "Live PM2.5 from AAI's sensor network.",
       map_loading: 'Loading live data from AAI sensors…',
       map_nokey: 'Live data will appear here once the AAI API key is connected.',
@@ -194,7 +194,7 @@ window.I18N = (() => {
       step1: 'Разбираю вопрос', step2: 'Ищу в {n} источниках AAI на 3 языках',
       step3: 'Читаю самые подходящие страницы', step4: 'Пишу ответ с точными цитатами',
       answered_in: 'Ответ за {s} с', instant: 'Мгновенный ответ (вопрос уже задавали)', free_local: 'бесплатно (локально)', your_key: 'ваш ключ',
-      page_n: 'стр. {p}', open_source: 'Открыть источник ↗', exact_quote: '✓ точная цитата', req_failed: 'Запрос не удался',
+      page_n: 'стр. {p}', answer_to_q: 'ответ на вопрос {n}', src_unpublished: 'письменный ответ AAI · не опубликован онлайн', open_source: 'Открыть источник ↗', exact_quote: '✓ точная цитата', req_failed: 'Запрос не удался',
       map_h1: 'Воздух в Алматы сейчас', map_lead: 'PM2.5 в реальном времени с датчиков AAI.',
       map_loading: 'Загружаю данные с датчиков AAI…',
       map_nokey: 'Живые данные появятся здесь после подключения ключа AAI API.',
@@ -376,7 +376,7 @@ window.I18N = (() => {
       step1: 'Сұрақты түсініп жатырмын', step2: 'AAI-дің {n} дереккөзінен 3 тілде іздеп жатырмын',
       step3: 'Ең қажетті беттерді оқып жатырмын', step4: 'Нақты дәйексөздермен жауап жазып жатырмын',
       answered_in: 'Жауап {s} с ішінде', instant: 'Лезде жауап (бұрын сұралған)', free_local: 'тегін (жергілікті)', your_key: 'сіздің кілтіңіз',
-      page_n: '{p}-бет', open_source: 'Дереккөзді ашу ↗', exact_quote: '✓ нақты дәйексөз', req_failed: 'Сұрау орындалмады',
+      page_n: '{p}-бет', answer_to_q: '{n}-сұраққа жауап', src_unpublished: 'AAI-дің жазбаша жауабы · онлайн жарияланбаған', open_source: 'Дереккөзді ашу ↗', exact_quote: '✓ нақты дәйексөз', req_failed: 'Сұрау орындалмады',
       map_h1: 'Алматыдағы қазіргі ауа', map_lead: 'AAI датчиктерінен PM2.5 нақты уақытта.',
       map_loading: 'AAI датчиктерінен деректер жүктелуде…',
       map_nokey: 'AAI API кілті қосылғаннан кейін деректер осында шығады.',
@@ -550,9 +550,9 @@ window.I18N = (() => {
 
   // Plurals: "1 source / 2 sources", "1 источник / 2 источника / 5 источников"
   const PLURAL = {
-    en: { source: ['source', 'sources'], question: ['question', 'questions'] },
-    ru: { source: ['источник', 'источника', 'источников'], question: ['вопрос', 'вопроса', 'вопросов'] },
-    kk: { source: ['дереккөз'], question: ['сұрақ'] },
+    en: { source: ['source', 'sources'], passage: ['passage', 'passages'], question: ['question', 'questions'] },
+    ru: { source: ['источник', 'источника', 'источников'], passage: ['фрагмент', 'фрагмента', 'фрагментов'], question: ['вопрос', 'вопроса', 'вопросов'] },
+    kk: { source: ['дереккөз'], passage: ['үзінді'], question: ['сұрақ'] },
   };
   function plural(lang, word, n) {
     const f = PLURAL[lang][word];

@@ -201,8 +201,8 @@ function render(d) {
       <div class="row">
         <span class="n">[${s.n}]</span>
         ${s.live ? '<span class="badge live">LIVE</span>' : `<span class="badge">${esc((s.lang || '').toUpperCase())}</span>`}
-        <span>${esc(s.title)}${s.page ? `, ${esc(t('page_n', { p: s.page }))}` : ''}</span>
-        <a href="${href}" target="_blank" rel="noopener">${esc(t('open_source'))}</a>
+        <span>${esc(s.title)}${s.page ? `, ${esc(t('page_n', { p: s.page }))}` : ''}${s.section ? `, ${esc(t('answer_to_q', { n: s.section.n }))}: «${esc(s.section.q)}»` : ''}</span>
+        ${s.url ? `<a href="${href}" target="_blank" rel="noopener">${esc(t('open_source'))}</a>` : `<span class="muted">${esc(t('src_unpublished'))}</span>`}
         ${d.mode === 'ai' ? `<span class="verified">${esc(t('exact_quote'))}</span>` : ''}
         <span class="src-tools">
           <button type="button" class="mini" data-card="${s.n}" title="${esc(t('card_btn'))}">🖼 ${esc(t('card_short'))}</button>
@@ -212,9 +212,12 @@ function render(d) {
       <p class="cite-out small muted" id="cite-${s.n}" hidden></p>
     </div>`;
   }).join('');
+  // "6 passages · 2 sources": several quotes often come from one document
+  const nDocs = new Set(d.sources.map(s => s.title)).size;
+  const counted = d.sources.length === nDocs ? I18N.plural('source', nDocs) : `${I18N.plural('passage', d.sources.length)} · ${I18N.plural('source', nDocs)}`;
   const meta = d.shared || d.saved
-    ? `<span class="fast">${esc(t(d.saved ? 'h_saved' : 'shared_note'))}</span><span>${esc(I18N.plural('source', d.sources.length))}</span>`
-    : `<span class="fast">${esc(d.cached ? t('instant') : t('answered_in', { s: secs }))}</span><span>${esc(I18N.plural('source', d.sources.length))}${cost}</span>${d.model ? `<span>${esc(d.provider_label)} · ${d.auto ? `auto → ${esc(d.model)}` : esc(d.model)}${d.own_key ? ` · ${esc(t('your_key'))}` : ''}</span>` : ''}`;
+    ? `<span class="fast">${esc(t(d.saved ? 'h_saved' : 'shared_note'))}</span><span>${esc(counted)}</span>`
+    : `<span class="fast">${esc(d.cached ? t('instant') : t('answered_in', { s: secs }))}</span><span>${esc(counted)}${cost}</span>${d.model ? `<span>${esc(d.provider_label)} · ${d.auto ? `auto → ${esc(d.model)}` : esc(d.model)}${d.own_key ? ` · ${esc(t('your_key'))}` : ''}</span>` : ''}`;
   // Rate (only right after asking), share, and turn into a one-page policy brief
   const actions = d.id ? `<div class="actions" role="group">
       ${d.shared || d.saved ? '' : `<button type="button" class="act" data-act="up" aria-pressed="${d.vote === 'up'}" title="${esc(t('act_up'))}" aria-label="${esc(t('act_up'))}">👍</button>
@@ -358,11 +361,12 @@ const startParams = new URLSearchParams(location.search);
 // ---------- APA citation and a quote card image for social media ----------
 const yearOf = s => (/^\d{4}/.test(s.date || '') ? s.date.slice(0, 4) : 'n.d.');
 function apa(s) {
-  const url = safeHref(s.url).split('#')[0];
+  // APA: no extra full stop after a title that already ends with ? or !; a written answer that is not
+  // published online gets "[Unpublished written answer]" instead of a link
+  const end = s.url ? ` ${safeHref(s.url).split('#')[0]}` : ' [Unpublished written answer].';
   return {
-    // APA: no extra full stop after a title that already ends with ? or !
-    ref: `Almaty Air Initiative. (${yearOf(s)}). ${s.title}${/[.?!]$/.test(s.title) ? '' : '.'} ${url}`,
-    inText: `(Almaty Air Initiative, ${yearOf(s)}${s.page ? `, p. ${s.page}` : ''})`,
+    ref: `Almaty Air Initiative. (${yearOf(s)}). ${s.title}${/[.?!]$/.test(s.title) ? '' : '.'}${end}`,
+    inText: `(Almaty Air Initiative, ${yearOf(s)}${s.page ? `, p. ${s.page}` : s.section ? `, answer to question ${s.section.n}` : ''})`,
   };
 }
 // Wraps text to the width, shrinking the font until it fits the space
@@ -1079,7 +1083,7 @@ const history_ = (() => {
     addAnswer: (d, channel) => {
       if (!d?.text) return;
       add({ type: 'answer', channel, id: d.id, question: d.question, lang: d.lang, text: d.text, found: d.found, verdict: d.verdict || null,
-        sources: (d.sources || []).map(s => ({ n: s.n, title: s.title, page: s.page, url: s.url, live: s.live, lang: s.lang, quote: (s.quote || '').slice(0, 400) })) });
+        sources: (d.sources || []).map(s => ({ n: s.n, title: s.title, page: s.page, section: s.section, url: s.url, live: s.live, lang: s.lang, quote: (s.quote || '').slice(0, 400) })) });
     },
     addVoice: transcript => {
       const lines = (transcript || []).filter(l => l?.text).map(l => ({ role: l.role === 'user' ? 'user' : 'agent', text: String(l.text).slice(0, 2000) }));
@@ -1102,7 +1106,7 @@ function renderHistory() {
       <div class="hist-body">
         <p>${esc(h.text).replace(/\[(\d+)\]/g, '<sup>[$1]</sup>')}</p>
         ${h.sources.length ? `<p class="muted small"><b>${esc(t('h_sources'))}:</b></p><ol class="small">${h.sources.map(s =>
-          `<li>${s.live ? 'AAI sensor network (live)' : `<a href="${safeHref(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a>${s.page ? `, ${esc(t('page_n', { p: s.page }))}` : ''}`}</li>`).join('')}</ol>` : ''}
+          `<li>${s.live ? 'AAI sensor network (live)' : `${s.url ? `<a href="${safeHref(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a>` : esc(s.title)}${s.page ? `, ${esc(t('page_n', { p: s.page }))}` : ''}${s.section ? `, ${esc(t('answer_to_q', { n: s.section.n }))}` : ''}${s.url ? '' : ` · ${esc(t('src_unpublished'))}`}`}</li>`).join('')}</ol>` : ''}
         <button type="button" class="act no-print" data-hopen="${list.length - 1 - i}">${esc(t('h_open'))} →</button>
       </div>
     </details>`).join('') : `<p class="muted">${esc(t('h_empty'))}</p>`;
@@ -1128,7 +1132,7 @@ $('#hExport').addEventListener('click', () => {
       md.push(`## ${t('h_voice')} · ${when(h.at)}`, '', ...h.lines.map(l => `**${l.role === 'user' ? t('h_you') : 'Taza'}:** ${l.text}  `), '');
     } else {
       md.push(`## ${h.question}`, `*${when(h.at)} · ${h.channel === 'voice' ? t('h_by_voice') : t('h_typed')}*`, '', h.text, '');
-      if (h.sources.length) md.push(`**${t('h_sources')}**`, '', ...h.sources.map(s => `${s.n}. ${s.live ? 'AAI sensor network (live)' : `[${s.title}${s.page ? `, ${t('page_n', { p: s.page })}` : ''}](${s.url})`}${s.quote ? ` — “${s.quote.replace(/\s+/g, ' ')}”` : ''}`), '');
+      if (h.sources.length) md.push(`**${t('h_sources')}**`, '', ...h.sources.map(s => `${s.n}. ${s.live ? 'AAI sensor network (live)' : (s.url ? `[${s.title}${s.page ? `, ${t('page_n', { p: s.page })}` : ''}](${s.url})` : `${s.title}${s.section ? `, ${t('answer_to_q', { n: s.section.n })}` : ''} (${t('src_unpublished')})`)}${s.quote ? ` — “${s.quote.replace(/\s+/g, ' ')}”` : ''}`), '');
     }
   }
   const a = document.createElement('a');
@@ -1241,7 +1245,7 @@ async function loadStats() {
 async function loadSources() {
   const list = await fetch('/api/sources').then(r => r.json());
   $('#sourceList').innerHTML = list.sort((a, b) => b.date.localeCompare(a.date)).map(s =>
-    `<li><span class="badge">${esc(String(s.lang).toUpperCase())}</span> <a href="${safeHref(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a> <span class="muted">· ${esc(s.date)}${s.pages ? ` · ${esc(t('src_pages', { n: s.pages }))}` : ''}${s.kind === 'press' ? ` · ${esc(t('src_press'))}` : ''}</span></li>`).join('');
+    `<li><span class="badge">${esc(String(s.lang).toUpperCase())}</span> ${s.url ? `<a href="${safeHref(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a>` : esc(s.title)} <span class="muted">· ${esc(s.date)}${s.pages ? ` · ${esc(t('src_pages', { n: s.pages }))}` : ''}${s.kind === 'press' ? ` · ${esc(t('src_press'))}` : ''}</span></li>`).join('');
 }
 
 // ---------- Installable app (PWA) ----------

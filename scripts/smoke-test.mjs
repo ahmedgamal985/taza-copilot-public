@@ -207,7 +207,14 @@ for (const f of ['/app.js', '/i18n.js', '/voice.js', '/style.css', '/vendor/leaf
   check('inDrive brief: one role on request', pr.rider && !pr.driver && pr.lang === 'kk');
   const se = await raw(`/api/search?q=${encodeURIComponent('cigarettes 2025|сигарет 2025')}&lang=en`);
   const sj = se.status === 200 ? JSON.parse(se.body) : {};
-  check('search API: AAI passages with title and link, the 518 cigarettes found', sj.found > 0 && sj.results.every(r => r.title && /^https:\/\//.test(r.url)) && sj.results.some(r => /518/.test(r.text)));
+  check('search API: AAI passages with title and link, the 518 cigarettes found', sj.found > 0 && sj.results.every(r => r.title && (/^https:\/\//.test(r.url) || r.published_online === false)) && sj.results.some(r => /518/.test(r.text)));
+  // Team test Q2/Q4: a fact in the passage right after the match (LEZ since 28 April, ТЭЦ-2 37.1 → 2.7) reaches the
+  // results; media answers have no link and say which question they answer
+  const lez = JSON.parse((await raw(`/api/search?q=${encodeURIComponent('Is there a low emission zone (LEZ) operating in Almaty?|зона низких выбросов LEZ Алматы работает')}&k=8`)).body);
+  const lp = lez.results?.find(r => /28 апреля/.test(r.text));
+  check('search: AAI\'s latest LEZ status found, with the question it answers and no fake link', Boolean(lp && lp.published_online === false && !lp.url && /^4:/.test(lp.answer_to_question || '')));
+  const chp = JSON.parse((await raw(`/api/search?q=${encodeURIComponent('Когда ТЭЦ-2 переведут на газ и как изменятся её выбросы?|ТЭЦ-2 перевод на газ выбросы')}&k=8`)).body);
+  check('search: ТЭЦ-2 emission figures (37,1 → 2,7) come with the gas conversion passage', (chp.results || []).some(r => /37,1/.test(r.text)));
   check('search API: nothing for off-topic, 400 for empty', JSON.parse((await raw('/api/search?q=pizza%20recipe')).body).found === 0 && (await raw('/api/search?q=')).status === 400);
   const vr = await raw('/video/taza-indrive.mp4', { headers: { Range: 'bytes=0-1' } });
   check('concept video: byte ranges for phones', vr.status === 206 && /^bytes 0-1\//.test(vr.headers['content-range'] || '') && /video\/mp4/.test(vr.headers['content-type'] || ''));
