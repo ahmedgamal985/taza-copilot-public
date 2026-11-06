@@ -1,6 +1,6 @@
 // Accuracy test: simple questions whose answers are checked facts from AAI research, including real
 // questions journalists and colleagues sent to AAI (in Russian and Kazakh).
-// Every question runs on the fast model (Haiku) only, so a full run costs about $0.05.
+// Every question runs on the fast model (Haiku) only, so a full run costs about $0.10.
 // An answer passes when it contains the expected fact AND cites at least one source.
 //   node --env-file=../.env scripts/eval.mjs
 // Results go to data/eval-results.json and appear on the dashboard.
