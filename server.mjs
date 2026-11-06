@@ -6,7 +6,7 @@ import { join, extname, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { gzipSync } from 'node:zlib';
 import { loadIndex, search, tokenize } from './lib/search.mjs';
-import { ask, groupGaps, summarizeResearch, SEARCH_OPTS } from './lib/copilot.mjs';
+import { ask, groupGaps, summarizeResearch, SEARCH_OPTS, HEART, HEART_RU } from './lib/copilot.mjs';
 import { getStations, getStationDetail, hasAaiKey, warm, airSummary, compareAir, outdoorPlan } from './lib/aai.mjs';
 import { listProviders, listModels, PROVIDERS } from './lib/providers.mjs';
 import { startTelegram } from './lib/telegram.mjs';
@@ -689,6 +689,8 @@ data: ${JSON.stringify(data)}
         return s;
       };
       const queries = q.split('|').map(s => s.trim()).filter(s => s.length > 1).slice(0, 4).map(reportWords);
+      // heart diseases: the Ministry's figures AAI quotes are in Russian and say "системы кровообращения"
+      if (HEART.test(q)) queries.push(HEART_RU);
       // The same passage in another language is skipped (dedupe), so the slots carry different facts
       const ranked = search(index, queries, { limit: 12, maxPerDoc: 2, neighbors: true, dedupe: true, fresh: SEARCH_OPTS.fresh });
       // The best k by relevance, whatever their language: putting the asker's language first BEFORE choosing pushed out
