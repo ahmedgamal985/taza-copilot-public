@@ -673,23 +673,47 @@ data: ${JSON.stringify(data)}
       // into "AAI's research does not cover it"
       if (q.length < 2) return send(req, res, 200, { found: 0, results: [], error: 'No search words were sent. Call taza_search_research again with the question in q, as keywords in English, Russian and Kazakh separated by |, for example: kebab houses air | шашлычные воздух | кәуапхана ауа.' });
       const lang = ['en', 'ru', 'kk'].includes(url.searchParams.get('lang')) ? url.searchParams.get('lang') : null;
-      const k = Math.min(8, Math.max(1, Number.parseInt(url.searchParams.get('k'), 10) || 5));
+      const k = Math.min(8, Math.max(1, Number.parseInt(url.searchParams.get('k'), 10) || 7));
       // An assistant often searches with the question itself ("сколько машин в Алматы"); AAI's reports say "registered
       // vehicles" ("зарегистрировано автомобилей", "тіркелген автокөлік"), so a question about cars gets those words too
       const CARS = /\b(cars?|vehicles?)\b|машин|автомобил|көлік/i;
-      const reportWords = s => !CARS.test(s) ? s
-        : /[әғқңөұүһі]/i.test(s) ? `${s} тіркелген автокөлік саны` : /[а-яё]/i.test(s) ? `${s} зарегистрировано автомобилей` : `${s} vehicles registered`;
+      // and a question about the low emission zone, the words of AAI's answer on its status ("LEZ … technical mode")
+      const LEZ = /\bLEZ\b|low.emission|низк\w* выброс|низкоэмисс|төмен (шығарынд|эмисс)/i;
+      const reportWords = s => {
+        const kk = /[әғқңөұүһі]/i.test(s), ru = /[а-яё]/i.test(s);
+        if (CARS.test(s)) s += kk ? ' тіркелген автокөлік саны' : ru ? ' зарегистрировано автомобилей' : ' vehicles registered';
+        if (LEZ.test(s)) s += kk ? ' LEZ аймақ техникалық режим' : ru ? ' LEZ зона технический режим' : ' LEZ pilot technical mode';
+        return s;
+      };
       const queries = q.split('|').map(s => s.trim()).filter(s => s.length > 1).slice(0, 4).map(reportWords);
-      let found = search(index, queries, { limit: 12, maxPerDoc: 2, neighbors: true, fresh: SEARCH_OPTS.fresh });
-      // The asker's language first, when the research exists in it
+      // The same passage in another language is skipped (dedupe), so the slots carry different facts
+      const ranked = search(index, queries, { limit: 12, maxPerDoc: 2, neighbors: true, dedupe: true, fresh: SEARCH_OPTS.fresh });
+      // The best k by relevance, whatever their language: putting the asker's language first BEFORE choosing pushed out
+      // facts that exist in one language only (the LEZ running since 28 April is in a Russian media answer). AAI's newest
+      // material (last 45 days) keeps one of the k slots when it was found at all.
+      const since = new Date(Date.now() - SEARCH_OPTS.fresh.days * 864e5).toISOString().slice(0, 10);
+      // AAI's two newest matching passages (the current status of a policy, a plant or the zone) keep a slot each
+      // and the best passage in the asker's language is always in (when the other languages' words were weak, as in
+      // "kebab houses | шаурма кебаб", it is often the one that answers). Must-haves first, then the rest by relevance.
+      const isNew = r => r.date && r.date >= since;
+      const bestOwn = lang && ranked.find(r => r.lang === lang);
+      const must = [...new Set([bestOwn, ...ranked.filter(isNew).slice(0, 2)].filter(Boolean))].slice(0, Math.max(1, k - 2));
+      let found = [...must, ...ranked.filter(r => !must.includes(r))].slice(0, k);
+      // kept in relevance order
+      found.sort((a, b) => ranked.indexOf(a) - ranked.indexOf(b));
+      // Within those, the asker's language first
       if (lang) found = [...found.filter(r => r.lang === lang), ...found.filter(r => r.lang !== lang)];
       // From each page, the paragraphs that share the most words with the question (kept in page order, up to ~1,200 characters)
       const words = new Set(queries.flatMap(tokenize));
+      // Rare words count more when choosing the paragraph ("Turksib" over "cigarettes", which every page of the report has)
+      const idf = w => Math.log(1 + (index.N - (index.df.get(w) || 0) + 0.5) / ((index.df.get(w) || 0) + 0.5));
       // The best-matching paragraph and the ones right after it (the figures usually follow the sentence that
       // names the topic: "…95% ready." → "emissions fall from 37.1 to 2.7 thousand t"), up to ~1,600 characters
       const pick = blocks => {
         const list = (blocks || []).map(b => b.replace(/\s+/g, ' ').trim());
-        const score = list.map(b => tokenize(b).filter(w => words.has(w)).length);
+        // a paragraph that holds measured figures (µg/m³, %, "times") is the more likely answer
+        const score = list.map(b => [...new Set(tokenize(b).filter(w => words.has(w)))].reduce((s, w) => s + idf(w), 0)
+          + (/\d\s?(мкг|µg|μg|%|раз|times|есе|тыс|мың|thousand)/i.test(b) ? 2 : 0));
         const i = score.indexOf(Math.max(...score));
         // best paragraph first, then the ones after it, then the one before it, kept in their original order
         const order = [i, i + 1, i + 2, i - 1, i + 3, i - 2].filter(k => k >= 0 && k < list.length);
