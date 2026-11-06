@@ -22,3 +22,9 @@ video/full/shots_v/
 video/full/*.png
 # Race video: the recording, its frames and renders (video/race/capture.mjs + build.mjs remake them)
 video/race/out/
+# Story video: render output and screenshots (video/story/capture.mjs + build.mjs remake them; the final MP4 is in docs/video)
+video/story/out/
+video/story/shots/
+video/story/sheet.py
+video/story/vo-test/
+video/story/live/

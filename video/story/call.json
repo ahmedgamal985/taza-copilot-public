@@ -1,0 +1,11 @@
+{
+ "note": "The WhatsApp call, re-enacted. Taza's lines are the live platform's real answers (answers.json, 6 Nov 2026), said shorter.",
+ "lines": [
+  { "id": "c_en_q", "who": "aliya", "voice": "eXEr1iiK7vnX4qM1sNwu", "lang": "en", "say": "Hi Taza! Can my kids walk to school this morning?", "sub": "Hi Taza! Can my kids walk to school this morning?" },
+  { "id": "c_en_a", "who": "taza", "voice": "hpp4J3VqNfWAUOO0d1Us", "lang": "en", "say": "Yes, the morning is one of the cleanest times today, around thirty-four micrograms. Avoid eight to ten in the evening: it gets close to eighty.", "sub": "Yes: the morning is one of the cleanest times today, ≈ 34 µg/m³. Avoid 20:00–22:00, close to 80." },
+  { "id": "c_ru_q", "who": "aliya", "voice": "eXEr1iiK7vnX4qM1sNwu", "lang": "ru", "say": "А какая школа в Алматы с самым грязным воздухом?", "sub": "Which school in Almaty has the dirtiest air?" },
+  { "id": "c_ru_a", "who": "taza", "voice": "hpp4J3VqNfWAUOO0d1Us", "lang": "ru", "say": "По исследованию AAI — школа номер сто пятьдесят шесть в Алатауском районе: семьдесят один и три десятых микрограмма за отопительный сезон.", "sub": "AAI's study: School No. 156 in Alatau district, 71.3 µg/m³ over the heating season." },
+  { "id": "c_kk_q", "who": "aliya", "voice": "eXEr1iiK7vnX4qM1sNwu", "lang": "kk", "say": "Ал қазір қай ауданда ауа ең лас?", "sub": "And which district has the dirtiest air right now?" },
+  { "id": "c_kk_a", "who": "taza", "voice": "hpp4J3VqNfWAUOO0d1Us", "lang": "kk", "say": "Қазір ең лас аудан — Түрксіб: PM2.5 жүз сексен сегіз микрограмм.", "sub": "Right now the dirtiest district is Turksib: PM2.5 188 µg/m³." }
+ ]
+}

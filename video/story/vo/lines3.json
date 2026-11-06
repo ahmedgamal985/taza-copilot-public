@@ -1,0 +1,146 @@
+{
+ "x_hook1": {
+  "id": "x_hook1",
+  "text": "[serious] Fourteen thousand premature deaths a year in Kazakhstan are linked to air pollution.",
+  "hash": "4932bd322a",
+  "dur": 5.878
+ },
+ "x_hook2": {
+  "id": "x_hook2",
+  "text": "[quietly] Up to twenty-one hundred of them... in Almaty alone.",
+  "hash": "3a472e6ca8",
+  "dur": 4.127
+ },
+ "x_intro": {
+  "id": "x_intro",
+  "text": "The answers that could protect people are buried in a hundred and fifty sources from A-A-I. [pause] Taza Copilot finds them in seconds. Meet three people.",
+  "hash": "4a6c791d58",
+  "dur": 11.233
+ },
+ "x_dana1": {
+  "id": "x_dana1",
+  "text": "Dana is a journalist on deadline: did the air really get cleaner? A request like hers used to take AAI's team about five hours.",
+  "hash": "54c65a81df",
+  "dur": 8.829
+ },
+ "x_dana2": {
+  "id": "x_dana2",
+  "text": "Taza answers in seconds, with the exact quote, the page and the link. She compares cities, checks a claim, and prints a policy brief.",
+  "hash": "ec44a6d947",
+  "dur": 10.031
+ },
+ "x_aliya1": {
+  "id": "x_aliya1",
+  "text": "Aliya has two kids. She doesn't open websites. She texts Taza on WhatsApp, like a friend. In Russian, English, or Kazakh.",
+  "hash": "f8f0c65f3b",
+  "dur": 10.188
+ },
+ "x_aliya2": {
+  "id": "x_aliya2",
+  "text": "And when her hands are full... she just calls.",
+  "hash": "18ed9e07d5",
+  "dur": 2.847
+ },
+ "x_tg1": {
+  "id": "x_tg1",
+  "text": "On Telegram, Taza lives where parents already talk. A daily air card for the school.",
+  "hash": "83444eb43d",
+  "dur": 6.269
+ },
+ "x_tg2": {
+  "id": "x_tg2",
+  "text": "Questions by voice. Forwarded rumours, fact-checked.",
+  "hash": "2b43f0799d",
+  "dur": 4.127
+ },
+ "x_tg3": {
+  "id": "x_tg3",
+  "text": "Air near me, saved places, and alerts. And inline, in any chat.",
+  "hash": "aa25037045",
+  "dur": 5.956
+ },
+ "x_arman1": {
+  "id": "x_arman1",
+  "text": "Nine p.m. Arman is driving the evening rush for inDrive. Taza tells him the air right now, the worst hours, and the cleanest.",
+  "hash": "1407ec5f63",
+  "dur": 8.673
+ },
+ "x_arman2": {
+  "id": "x_arman2",
+  "text": "Stuck in traffic? Shut the windows. With them open, drivers breathe air seven times dirtier than pedestrians. [pause] AAI's research, page five.",
+  "hash": "98dbc2e06a",
+  "dur": 11.311
+ },
+ "x_arman3": {
+  "id": "x_arman3",
+  "text": "One call to Taza's partner API. For every driver and rider, in three languages.",
+  "hash": "f36f45d229",
+  "dur": 6.348
+ },
+ "x_admin1": {
+  "id": "x_admin1",
+  "text": "Behind it all: the AAI team. One person, no code. Upload a report, and Taza quotes it seconds later. Subscribers get a five-point summary, in three languages.",
+  "hash": "ccd6543989",
+  "dur": 11.964
+ },
+ "x_admin2": {
+  "id": "x_admin2",
+  "text": "Taza checks air.org.kz every day. An outdated source is hidden in one click. And the questions nobody could answer show what to research next.",
+  "hash": "1ab63b3cf4",
+  "dur": 10.449
+ },
+ "x_proof": {
+  "id": "x_proof",
+  "text": "Every answer is measured: forty-four out of forty-four correct. Any AI provider works, or a local model with Ollama, where the AI cost is zero. Hosting: about seven dollars a month.",
+  "hash": "8ecf7321ca",
+  "dur": 14.994
+ },
+ "metric": {
+  "id": "metric",
+  "text": "[serious] From hours of reading reports... to a sourced answer in seconds.",
+  "hash": "e4a4df0cb0",
+  "dur": 4.441
+ },
+ "thanks": {
+  "id": "thanks",
+  "text": "Thank you. Try it, right now. [pause] And now... over to Aimira.",
+  "hash": "334deb0af3",
+  "dur": 7.628
+ },
+ "c_en_q": {
+  "id": "c_en_q",
+  "text": "Hi Taza! Can my kids walk to school this morning?",
+  "hash": "ff1fcdd9d6",
+  "dur": 2.847
+ },
+ "c3_en_a": {
+  "id": "c3_en_a",
+  "text": "Yes, the morning is one of the cleanest times today. Avoid eight to ten in the evening.",
+  "hash": "bb121d6b97",
+  "dur": 5.068
+ },
+ "c_ru_q": {
+  "id": "c_ru_q",
+  "text": "А какая школа в Алматы с самым грязным воздухом?",
+  "hash": "474781aa64",
+  "dur": 3.004
+ },
+ "c3_ru_a": {
+  "id": "c3_ru_a",
+  "text": "По исследованию AAI — школа номер сто пятьдесят шесть, в Алатауском районе.",
+  "hash": "ca6467e930",
+  "dur": 5.799
+ },
+ "c_kk_q": {
+  "id": "c_kk_q",
+  "text": "Ал 2025 жылы қай ауданда ауа ең лас болды?",
+  "hash": "f95be7166e",
+  "dur": 3.631
+ },
+ "c_kk_a": {
+  "id": "c_kk_a",
+  "text": "Түрксіб ауданы: орташа PM2.5 қырық алты бүтін сегіз микрограмм, Бостандықтан екі еседен астам жоғары.",
+  "hash": "90fc4269b2",
+  "dur": 8.281
+ }
+}

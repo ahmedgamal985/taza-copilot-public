@@ -1,0 +1,639 @@
+{
+ "dana": {
+  "question": "Did Almaty's air really get cleaner in 2025?",
+  "mode": "answer",
+  "answer": "No. AAI's sources show that air quality in Almaty got worse in 2025, not better. AAI's annual analysis, the last completed annual analysis by Almaty Air Initiative, gives an average PM2.5 level in 2025 of 31.2 µg/m³, which is 6.3 times the WHO annual guideline (5 µg/m³) and almost 30% above the 2024 figure of 24.1 µg/m³.[1] Over the year, the number of \"clean\" days by WHO norms fell by 16 compared with the previous year, from 164 days in 2024 to 148 days in 2025.[2]\n\nKazhydromet's figures show a different picture for ozone, where in 2025, exceedances of ozone standards fell by 99% compared with 2024, according to Kazhydromet's official report.[3] AAI notes that this figure needs careful reading, since its ozone data for one station is incomplete. The ozone result does not change the overall conclusion on PM2.5, which is the main pollutant AAI tracks.",
+  "sources": [
+   {
+    "title": "AAI answers to Tengrinews on Almaty air, 2 November 2026",
+    "page": null,
+    "url": null
+   },
+   {
+    "title": "What Was Almaty's Air Like in 2025? Annual PM2.5 report",
+    "page": 2,
+    "url": "https://air.org.kz/wp-content/uploads/2026/02/2025-жылы-Алматының-ауа-сапасы-қандай-болды.docx.pdf#page=2"
+   },
+   {
+    "title": "2025 жылғы парадокс: Қазгидромет есебіндегі ескерілмеген маңызды жағдайлар",
+    "page": null,
+    "url": "https://air.org.kz/kk/research/2025-zhyl%D2%93y-paradoks-%D2%9Bazgidromet-eseb%D1%96ndeg%D1%96-esker%D1%96lmegen-ma%D2%A3yzdy-zha%D2%93daylar/"
+   }
+  ],
+  "verdict": null,
+  "model": "claude-haiku-5-5",
+  "ms": 4007
+ },
+ "aliya_chat": {
+  "question": "Мои дети ходят в школу в Турксибе. Насколько там грязный воздух?",
+  "mode": "answer",
+  "answer": "Воздух в Турксибском районе один из самых грязных в городе. За отопительный сезон 2025–2026 годов средний PM2.5 там составил 59,3 µg/m³ против 31,1 µg/m³ в Бостандыкском районе[1]. В 6 из 7 проанализированных месяцев средние месячные значения в Турксибе превышали казахстанский среднесуточный норматив, исключением стал только апрель[2]. Пик пришёлся на декабрь 2025 года: 85,8 µg/m³ в Турксибском районе[3]. Ребёнок, посещающий школу или детский сад в этом районе, за один сезон накапливает дозу, эквивалентную 423 сигаретам, или 2,7 сигареты в день для взрослого[4].\n\nВ утренние часы, когда дети идут в школу (примерно с 7:00 до 9:00), в Турксибском и Алатауском районах концентрации держатся на уровне 40–46 µg/m³, тогда как на юге города они опускаются до 19–22 µg/m³[5]. По живым данным сети AAI на 6 ноября 2026 года, в Турксибском районе PM2.5 составлял 188 µg/m³ (AQI 263) по данным 26 датчиков[6].",
+  "sources": [
+   {
+    "title": "The Air Children in Almaty Breathe: Air Quality Near Schools and Kindergartens",
+    "page": null,
+    "url": "https://air.org.kz/en/research/the-air-children-in-almaty-breathe-air-quality-near-schools-and-kindergartens/"
+   },
+   {
+    "title": "The Air Children in Almaty Breathe: Air Quality Near Schools and Kindergartens",
+    "page": null,
+    "url": "https://air.org.kz/en/research/the-air-children-in-almaty-breathe-air-quality-near-schools-and-kindergartens/"
+   },
+   {
+    "title": "The Air Children in Almaty Breathe: Air Quality Near Schools and Kindergartens",
+    "page": null,
+    "url": "https://air.org.kz/en/research/the-air-children-in-almaty-breathe-air-quality-near-schools-and-kindergartens/"
+   },
+   {
+    "title": "The air children in Almaty breathe: schools and kindergartens",
+    "page": 18,
+    "url": "https://air.org.kz/wp-content/uploads/2026/05/Отчет-День-защиты-детей-2026.pdf#page=18"
+   },
+   {
+    "title": "The Air Children in Almaty Breathe: Air Quality Near Schools and Kindergartens",
+    "page": null,
+    "url": "https://air.org.kz/en/research/the-air-children-in-almaty-breathe-air-quality-near-schools-and-kindergartens/"
+   },
+   {
+    "title": "AAI sensor network, live averages by district (2026-11-06T23:45:00+05:00)",
+    "page": null,
+    "url": "https://air.org.kz/en/"
+   }
+  ],
+  "verdict": null,
+  "model": "claude-sonnet-5-5",
+  "ms": 5509
+ },
+ "call_ru": {
+  "question": "Какая школа в Алматы с самым грязным воздухом?",
+  "mode": "answer",
+  "answer": "Самой загрязнённой школой Алматы оказалась школа № 156 в Алатауском районе: она занимает первое место с концентрацией 71,3 µg/m³, на том же уровне, что и самые загрязнённые детские сады[1]. Данные относятся к периоду с октября 2025 по апрель 2026 года и взяты из исследования AAI о воздухе у школ и детских садов (3 июля 2026 года). Это не говорит о плохом управлении школой, а лишь о том, что она расположена там, где воздух в среднем грязнее.[2] Среди 20 школ с наибольшей нагрузкой 8 находятся в Алатауском районе, 7 в Турксибском, 2 в Жетысуском и по одной в Алмалинском и Наурызбайском.[3]",
+  "sources": [
+   {
+    "title": "The Air Children in Almaty Breathe: Air Quality Near Schools and Kindergartens",
+    "page": null,
+    "url": "https://air.org.kz/en/research/the-air-children-in-almaty-breathe-air-quality-near-schools-and-kindergartens/"
+   },
+   {
+    "title": "The Air Children in Almaty Breathe: Air Quality Near Schools and Kindergartens",
+    "page": null,
+    "url": "https://air.org.kz/en/research/the-air-children-in-almaty-breathe-air-quality-near-schools-and-kindergartens/"
+   },
+   {
+    "title": "The Air Children in Almaty Breathe: Air Quality Near Schools and Kindergartens",
+    "page": null,
+    "url": "https://air.org.kz/en/research/the-air-children-in-almaty-breathe-air-quality-near-schools-and-kindergartens/"
+   }
+  ],
+  "verdict": null,
+  "model": "claude-sonnet-5-5",
+  "ms": 4754
+ },
+ "call_kk": {
+  "question": "Алматының қай ауданында ауа ең лас?",
+  "mode": "answer",
+  "answer": "Қазір ең лас аудан – Түрксіб: AAI сенсор желісінің тікелей деректері бойынша (2026-11-06) онда PM2.5 188 µg/m³, AQI 263 болды, ал Алатауда PM2.5 176,2 µg/m³ құрады. Түрксіб ауданында PM2.5 188 µg/m³, PM10 227,4 µg/m³, AQI 263 (26 сенсордан), Алатау ауданында PM2.5 176,2 µg/m³, AQI 251 (22 сенсордан) көрсетілген.[1] Ұзақ мерзімді көрсеткіш те осыны растайды: AAI-дің 2025 жылғы есебі бойынша Түрксіб ауданындағы ластану деңгейі (46,8 мкг/м³) Бостандық ауданынан (22,1 мкг/м³) 2,1 есе жоғары.[2] Ал 2024 жылғы есепте Алматының солтүстік-шығысы ең лас, ал қаланың оңтүстігі 2 есе таза деп көрсетілген.[3]",
+  "sources": [
+   {
+    "title": "AAI sensor network, live averages by district (2026-11-06T23:45:00+05:00)",
+    "page": null,
+    "url": "https://air.org.kz/en/"
+   },
+   {
+    "title": "What Was Almaty's Air Like in 2025? Annual PM2.5 report",
+    "page": 3,
+    "url": "https://air.org.kz/wp-content/uploads/2026/02/2025-жылы-Алматының-ауа-сапасы-қандай-болды.docx.pdf#page=3"
+   },
+   {
+    "title": "What air did Almaty breathe in 2024?",
+    "page": 13,
+    "url": "https://air.org.kz/wp-content/uploads/2025/02/Каким-воздухом-дышали-алматинцы-в-2024-году.pdf#page=13"
+   }
+  ],
+  "verdict": null,
+  "model": "claude-sonnet-5-5",
+  "ms": 5497
+ },
+ "check": {
+  "question": "Almaty's air got 50% cleaner in 2025",
+  "mode": "factcheck",
+  "answer": "AAI's annual analysis shows the opposite, with air quality worsening in 2025. The average annual PM2.5 concentration in Almaty for 2025 was 31.2 µg/m³, which is 6.3 times the WHO recommendation of 5 µg/m³, and compared with 2024 (24.1 µg/m³) it marks a 30% deterioration in air quality.[1] Kazhydromet's figures are the only ones that show a decline: according to the agency's annual report, average background pollution in Almaty decreased by 31% in 2025 compared with 2024 (API: 5.8 → 4.1)[2], but AAI notes that at first glance, these figures suggest an overall improvement in air quality, however, the composition of pollution has changed considerably.[3] The \"50%\" figure does not appear in any of the sources.",
+  "sources": [
+   {
+    "title": "What Was Almaty's Air Like in 2025? Annual PM2.5 report",
+    "page": 5,
+    "url": "https://air.org.kz/wp-content/uploads/2026/01/Каким-был-воздух-в-Алматы.pdf#page=5"
+   },
+   {
+    "title": "The 2025 Paradox: What Kazhydromet’s Data Leaves Out",
+    "page": null,
+    "url": "https://air.org.kz/en/research/the-2025-paradox-what-kazhydromets-data-leaves-out/"
+   },
+   {
+    "title": "The 2025 Paradox: What Kazhydromet’s Data Leaves Out",
+    "page": null,
+    "url": "https://air.org.kz/en/research/the-2025-paradox-what-kazhydromets-data-leaves-out/"
+   }
+  ],
+  "verdict": "CONTRADICTED",
+  "model": "claude-haiku-5-5",
+  "ms": 3476
+ },
+ "tg_check": {
+  "question": "Говорят, что 80% смога в Алматы дают машины",
+  "mode": "factcheck",
+  "answer": "Исследования AAI не подтверждают долю в 80%. По данным анализа источников PM2.5 (опубликован 5 марта 2026), выхлопы автомобилей дают лишь 14% частиц, а дорожная пыль — 32%. Выбросы выхлопных газов связаны с районами интенсивного движения и близостью к крупным магистралям (14%)[1], а наибольший вклад вносит городская дорожная пыль (32%)[2]. Эти данные получены по пробам с одной точки (кампус КазНУ) за период с августа 2022 по июль 2023 года, поэтому они ориентировочные. Угольные ТЭЦ и котельные дают около 18%, а отопление частных домов — 16%[3]. В письменных ответах СМИ от 5 ноября 2026 года AAI подчёркивает, что универсальной доли «во всем загрязнении» не существует, поскольку вклад источников зависит от конкретного вещества[4]. Транспорт особенно значим для оксидов азота: грузовой транспорт даёт непропорционально большое количество загрязнения[5], а зимние концентрации PM2.5 определяет прежде всего сжигание угля[6].",
+  "sources": [
+   {
+    "title": "Main Sources of PM2.5 Pollution in Almaty",
+    "page": null,
+    "url": "https://air.org.kz/en/research/main-sources-of-pm2-5-pollution-in-almaty/"
+   },
+   {
+    "title": "Main Sources of PM2.5 Pollution in Almaty",
+    "page": null,
+    "url": "https://air.org.kz/en/research/main-sources-of-pm2-5-pollution-in-almaty/"
+   },
+   {
+    "title": "Main Sources of PM2.5 Pollution in Almaty",
+    "page": null,
+    "url": "https://air.org.kz/en/research/main-sources-of-pm2-5-pollution-in-almaty/"
+   },
+   {
+    "title": "AAI answers to media questions on smog in Almaty, 5 November 2026",
+    "page": null,
+    "url": null
+   },
+   {
+    "title": "AAI answers to media questions on smog in Almaty, 5 November 2026",
+    "page": null,
+    "url": null
+   },
+   {
+    "title": "AAI answers to media questions on smog in Almaty, 5 November 2026",
+    "page": null,
+    "url": null
+   }
+  ],
+  "verdict": "CONTRADICTED",
+  "model": "claude-sonnet-5-5",
+  "ms": 6248
+ },
+ "partner_driver": {
+  "available": true,
+  "lang": "en",
+  "at": "2026-11-06T19:03:16.784Z",
+  "air": {
+   "pm25": 95.5,
+   "category": "unhealthy",
+   "level": "bad",
+   "sensors": 142,
+   "worst_district": {
+    "district": "Turksib",
+    "pm25": 188
+   }
+  },
+  "best_time": {
+   "hours": "06:00–08:00",
+   "pm25": 33.6
+  },
+  "worst_time": {
+   "hours": "20:00–22:00",
+   "pm25": 79.7
+  },
+  "send_push": true,
+  "push_window": "07:00–10:00 Asia/Almaty",
+  "driver": {
+   "title": "⚠️ Polluted air today · 95.5 µg/m³",
+   "body": "In traffic jams, keep the windows closed and use recirculation: with open windows you breathe air 7× dirtier than pedestrians at intersections (AAI). Dirtiest hours: 20:00–22:00.",
+   "tips": [
+    "In traffic jams, close the windows and switch to recirculation. AAI: in a jam the air inside a car is 40% dirtier than in moving traffic, and with open windows 7× dirtier than for pedestrians at intersections.",
+    "Check the cabin air filter: a clogged one lets more fine dust in.",
+    "Take your breaks away from big roads, especially at 20:00–22:00."
+   ],
+   "jam": {
+    "title": "Traffic jam: close the windows",
+    "body": "Switch to recirculation. In a jam the air inside a car is 40% dirtier than in moving traffic, and 7× dirtier with open windows than for pedestrians (AAI, p. 5)."
+   }
+  },
+  "ask_url": "https://taza-copilot.online/?lang=en",
+  "source": {
+   "title": "Not the Quantity, but the Quality: how the structure of Almaty’s vehicle fleet affects air quality (AAI)",
+   "page": 5,
+   "url": "https://air.org.kz/wp-content/uploads/2026/02/Not-the-Quantity-but-the-Quality_-How-the-Structure-of-Almatys-Vehicle-Fleet-Affects-Air-Quality.pdf#page=5",
+   "quote": "Drivers and passengers stuck in traffic with the open windows breathe air seven times more polluted than pedestrians standing at intersections. Furthermore, air pollution inside a car stuck in traffic is 40% higher than under free-flowing traffic conditions.",
+   "live": "https://air.org.kz/"
+  }
+ },
+ "partner_rider": {
+  "available": true,
+  "lang": "en",
+  "at": "2026-11-06T19:03:16.784Z",
+  "air": {
+   "pm25": 95.5,
+   "category": "unhealthy",
+   "level": "bad",
+   "sensors": 142,
+   "worst_district": {
+    "district": "Turksib",
+    "pm25": 188
+   }
+  },
+  "best_time": {
+   "hours": "06:00–08:00",
+   "pm25": 33.6
+  },
+  "worst_time": {
+   "hours": "20:00–22:00",
+   "pm25": 79.7
+  },
+  "send_push": true,
+  "push_window": "07:00–10:00 Asia/Almaty",
+  "rider": {
+   "title": "⚠️ Polluted air today · 95.5 µg/m³",
+   "body": "Wait for your car indoors, not by a busy road, and ask the driver to close the windows. Cleanest hours: 06:00–08:00.",
+   "tips": [
+    "Wait indoors until your car is close: the app shows when it arrives.",
+    "Ask the driver to close the windows and switch to recirculation.",
+    "Children, older people and people with asthma: avoid walks along busy roads, especially at 20:00–22:00.",
+    "If you must be outside for long, an N95/FFP2 mask helps."
+   ]
+  },
+  "ask_url": "https://taza-copilot.online/?lang=en",
+  "source": {
+   "title": "Not the Quantity, but the Quality: how the structure of Almaty’s vehicle fleet affects air quality (AAI)",
+   "page": 5,
+   "url": "https://air.org.kz/wp-content/uploads/2026/02/Not-the-Quantity-but-the-Quality_-How-the-Structure-of-Almatys-Vehicle-Fleet-Affects-Air-Quality.pdf#page=5",
+   "quote": "Drivers and passengers stuck in traffic with the open windows breathe air seven times more polluted than pedestrians standing at intersections. Furthermore, air pollution inside a car stuck in traffic is 40% higher than under free-flowing traffic conditions.",
+   "live": "https://air.org.kz/"
+  }
+ },
+ "outdoor": {
+  "available": true,
+  "day": "today",
+  "hours": [
+   {
+    "h": 0,
+    "pm25": null,
+    "kind": "actual",
+    "category": "unknown"
+   },
+   {
+    "h": 1,
+    "pm25": 51.8,
+    "kind": "estimate",
+    "category": "sensitive"
+   },
+   {
+    "h": 2,
+    "pm25": 46.2,
+    "kind": "estimate",
+    "category": "sensitive"
+   },
+   {
+    "h": 3,
+    "pm25": 41.3,
+    "kind": "estimate",
+    "category": "sensitive"
+   },
+   {
+    "h": 4,
+    "pm25": 38,
+    "kind": "estimate",
+    "category": "sensitive"
+   },
+   {
+    "h": 5,
+    "pm25": 34.4,
+    "kind": "estimate",
+    "category": "moderate"
+   },
+   {
+    "h": 6,
+    "pm25": 33.2,
+    "kind": "estimate",
+    "category": "moderate"
+   },
+   {
+    "h": 7,
+    "pm25": 34,
+    "kind": "estimate",
+    "category": "moderate"
+   },
+   {
+    "h": 8,
+    "pm25": 33.1,
+    "kind": "estimate",
+    "category": "moderate"
+   },
+   {
+    "h": 9,
+    "pm25": 35,
+    "kind": "estimate",
+    "category": "moderate"
+   },
+   {
+    "h": 10,
+    "pm25": 37.1,
+    "kind": "estimate",
+    "category": "sensitive"
+   },
+   {
+    "h": 11,
+    "pm25": 38.3,
+    "kind": "estimate",
+    "category": "sensitive"
+   },
+   {
+    "h": 12,
+    "pm25": 39,
+    "kind": "estimate",
+    "category": "sensitive"
+   },
+   {
+    "h": 13,
+    "pm25": 38.6,
+    "kind": "estimate",
+    "category": "sensitive"
+   },
+   {
+    "h": 14,
+    "pm25": 37.4,
+    "kind": "estimate",
+    "category": "sensitive"
+   },
+   {
+    "h": 15,
+    "pm25": 38.4,
+    "kind": "estimate",
+    "category": "sensitive"
+   },
+   {
+    "h": 16,
+    "pm25": 45.5,
+    "kind": "estimate",
+    "category": "sensitive"
+   },
+   {
+    "h": 17,
+    "pm25": 61.8,
+    "kind": "estimate",
+    "category": "sensitive"
+   },
+   {
+    "h": 18,
+    "pm25": 73,
+    "kind": "estimate",
+    "category": "unhealthy"
+   },
+   {
+    "h": 19,
+    "pm25": 77.9,
+    "kind": "estimate",
+    "category": "unhealthy"
+   },
+   {
+    "h": 20,
+    "pm25": 80,
+    "kind": "estimate",
+    "category": "unhealthy"
+   },
+   {
+    "h": 21,
+    "pm25": 79.3,
+    "kind": "estimate",
+    "category": "unhealthy"
+   },
+   {
+    "h": 22,
+    "pm25": 74.7,
+    "kind": "estimate",
+    "category": "unhealthy"
+   },
+   {
+    "h": 23,
+    "pm25": 68.1,
+    "kind": "estimate",
+    "category": "sensitive"
+   }
+  ],
+  "best": {
+   "from": 6,
+   "to": 8,
+   "pm25": 33.6,
+   "category": "moderate"
+  },
+  "worst": {
+   "from": 20,
+   "to": 22,
+   "pm25": 79.7,
+   "category": "unhealthy"
+  },
+  "hour_now": 0,
+  "today_vs_typical": 1,
+  "now": null,
+  "source": "https://air.org.kz/en/"
+ },
+ "air": {
+  "available": true,
+  "at": "2026-11-06T19:03:16.784Z",
+  "city": {
+   "pm25": 95.5,
+   "category": "unhealthy",
+   "sensors": 142,
+   "updated": "2026-11-06T19:00:27.618467+00:00"
+  },
+  "districts": [
+   {
+    "district": "Turksib",
+    "pm25": 188,
+    "category": "very",
+    "sensors": 26
+   },
+   {
+    "district": "Alatau",
+    "pm25": 176.2,
+    "category": "very",
+    "sensors": 22
+   },
+   {
+    "district": "Zhetysu",
+    "pm25": 144.9,
+    "category": "very",
+    "sensors": 12
+   },
+   {
+    "district": "Almaly",
+    "pm25": 47.4,
+    "category": "sensitive",
+    "sensors": 10
+   },
+   {
+    "district": "Auezov",
+    "pm25": 36.8,
+    "category": "sensitive",
+    "sensors": 10
+   },
+   {
+    "district": "Medeu",
+    "pm25": 25.6,
+    "category": "moderate",
+    "sensors": 22
+   },
+   {
+    "district": "Nauryzbay",
+    "pm25": 24.9,
+    "category": "moderate",
+    "sensors": 12
+   },
+   {
+    "district": "Bostandyk",
+    "pm25": 8.7,
+    "category": "good",
+    "sensors": 21
+   }
+  ],
+  "compare": null,
+  "days": [
+   {
+    "date": "2026-10-24",
+    "pm25": 21.1,
+    "category": "moderate"
+   },
+   {
+    "date": "2026-10-25",
+    "pm25": 36.7,
+    "category": "sensitive"
+   },
+   {
+    "date": "2026-10-26",
+    "pm25": 39.5,
+    "category": "sensitive"
+   },
+   {
+    "date": "2026-10-27",
+    "pm25": 52.3,
+    "category": "sensitive"
+   },
+   {
+    "date": "2026-10-28",
+    "pm25": 54.3,
+    "category": "sensitive"
+   },
+   {
+    "date": "2026-10-29",
+    "pm25": 51.3,
+    "category": "sensitive"
+   },
+   {
+    "date": "2026-10-30",
+    "pm25": 64.4,
+    "category": "sensitive"
+   },
+   {
+    "date": "2026-10-31",
+    "pm25": 66.1,
+    "category": "sensitive"
+   },
+   {
+    "date": "2026-11-01",
+    "pm25": 72.3,
+    "category": "unhealthy"
+   },
+   {
+    "date": "2026-11-02",
+    "pm25": 33.9,
+    "category": "moderate"
+   },
+   {
+    "date": "2026-11-03",
+    "pm25": 27.9,
+    "category": "moderate"
+   },
+   {
+    "date": "2026-11-04",
+    "pm25": 45.8,
+    "category": "sensitive"
+   },
+   {
+    "date": "2026-11-05",
+    "pm25": 40.2,
+    "category": "sensitive"
+   },
+   {
+    "date": "2026-11-06",
+    "pm25": 53,
+    "category": "sensitive"
+   }
+  ],
+  "source": "https://air.org.kz/en/"
+ },
+ "stats": {
+  "questions": 302,
+  "on_topic_questions": 298,
+  "answered_with_source_pct": 99,
+  "median_seconds": 5.4,
+  "cost_per_answer_usd": 0.0173,
+  "feedback": {
+   "up": 1,
+   "down": 0,
+   "helpful_pct": 100
+  },
+  "time_saved": {
+   "sourced_answers": 295,
+   "manual_minutes": 20,
+   "hours": 98.3
+  },
+  "by_model": [
+   {
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "questions": 107,
+    "cost_each_usd": 0.03
+   },
+   {
+    "model": "claude-haiku-5-5",
+    "provider": "anthropic",
+    "questions": 86,
+    "cost_each_usd": 0.0015
+   }
+  ],
+  "unanswered_count": 3
+ },
+ "wa_kk": {
+  "question": "Мектептердің маңындағы ауа қандай? Балаларға қауіпті ме?",
+  "answer": "Иә, мектептер маңындағы ауа балалар үшін қауіпті. Оқу күндерінің 48,4%-ында (157 оқу күнінің 76-сында) мектептер мен балабақшалар маңындағы PM2.5 концентрациясы орташа тәуліктік ҚР ШРК деңгейінен (35 мкг/м³) жоғары болған.[1] Солтүстік аудандарда жылыту маусымындағы оқу күндерінің 90%-ында ДДСҰ белгілеген орташа тәуліктік нормадан (15 мкг/м³) асып кеткен.[2] Ең жоғары ластану Алатау ауданындағы білім беру мекемелерінің маңында байқалды: онда оқу жылы бойынша орташа концентрация 70 мкг/м³ асып, ДДСҰ ұсынымынан 16 есеге дейін жоғары болды.[3] Балалар үшін қауіп жоғары, себебі олар дене салмағының әр килограмына шаққанда ересектерге қарағанда 2–3 есе көп ауа жұтады.[4] Бұл деректер AAI-дің «Алматыдағы балалар тыныс алатын ауа» зерттеуінен алынған (2026-06-10).",
+  "sources": [
+   {
+    "title": "Алматыдағы балалар тыныс алатын ауа: мектептер мен балабақшалардың маңындағы ауа сапасы нені көрсетеді",
+    "page": null
+   },
+   {
+    "title": "Алматыдағы балалар тыныс алатын ауа: мектептер мен балабақшалардың маңындағы ауа сапасы нені көрсетеді",
+    "page": null
+   },
+   {
+    "title": "Алматыдағы балалар тыныс алатын ауа: мектептер мен балабақшалардың маңындағы ауа сапасы нені көрсетеді",
+    "page": null
+   },
+   {
+    "title": "The Air Children in Almaty Breathe: Air Quality Near Schools and Kindergartens",
+    "page": null
+   }
+  ]
+ },
+ "call_kk2": {
+  "question": "2025 жылы Алматының қай ауданында ауа ең лас болды?",
+  "answer": "Түрксіб ауданы 2025 жылы ең лас болды. AAI-дың «2025 жылы Алматының ауа сапасы қандай болды?» зерттеуіне (2026-01-27) сәйкес Түрксіб ауданындағы ластану деңгейі 46,8 мкг/м³ болды, ал Бостандық ауданында бұл көрсеткіш 22,1 мкг/м³ болды, яғни Түрксіб 2,1 есе жоғары.[1] Түрксіб ауданында тұрғын ауамен тыныстау арқылы 776 темекі шеккендей зиян шеккен, ал қала бойынша орташа есеппен бұл 518 темекіге тең.[2]",
+  "sources": [
+   {
+    "title": "2025 жылы Алматының ауа сапасы қандай болды?",
+    "page": null
+   },
+   {
+    "title": "What Was Almaty's Air Like in 2025? Annual PM2.5 report",
+    "page": 2
+   }
+  ]
+ }
+}

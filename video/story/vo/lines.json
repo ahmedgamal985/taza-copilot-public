@@ -1,0 +1,170 @@
+{
+ "hook1": {
+  "id": "hook1",
+  "text": "[serious] Fourteen thousand.",
+  "hash": "e74916ea80",
+  "dur": 1.802
+ },
+ "hook2": {
+  "id": "hook2",
+  "text": "That is how many premature deaths a year in Kazakhstan are linked to air pollution.",
+  "hash": "3a97660cd4",
+  "dur": 4.519
+ },
+ "hook3": {
+  "id": "hook3",
+  "text": "[quietly] Up to two thousand one hundred of them... in Almaty.",
+  "hash": "9941c3ffef",
+  "dur": 3.553
+ },
+ "problem": {
+  "id": "problem",
+  "text": "The research to protect people already exists: a hundred and fifty reports by Almaty Air Initiative. [pause] But nobody reads a hundred and fifty reports... for one answer.",
+  "hash": "044394310c",
+  "dur": 12.748
+ },
+ "meet": {
+  "id": "meet",
+  "text": "So we built Taza Copilot. Meet three people. Three questions. One day in Almaty.",
+  "hash": "9492752079",
+  "dur": 6.269
+ },
+ "arman1": {
+  "id": "arman1",
+  "text": "Seven a.m. Arman starts his first shift with inDrive. His question: windows open, or shut?",
+  "hash": "e3808278ec",
+  "dur": 7.889
+ },
+ "arman2": {
+  "id": "arman2",
+  "text": "Before the first ride, Taza tells him the cleanest hours, and the worst. And why to keep the windows shut: in a jam with open windows, drivers breathe air seven times dirtier than pedestrians. [pause] AAI's research, page five.",
+  "hash": "49b6ec9d3e",
+  "dur": 17.241
+ },
+ "arman3": {
+  "id": "arman3",
+  "text": "One call to Taza's partner API. For drivers and for riders. In three languages.",
+  "hash": "314dff404e",
+  "dur": 6.687
+ },
+ "aliya1": {
+  "id": "aliya1",
+  "text": "Eight fifteen. Aliya has two kids, and one question: can they walk to school today? [pause] She doesn't open websites. She opens WhatsApp.",
+  "hash": "7c03885170",
+  "dur": 11.154
+ },
+ "aliya2": {
+  "id": "aliya2",
+  "text": "And when her hands are full... she just calls.",
+  "hash": "18ed9e07d5",
+  "dur": 3.161
+ },
+ "aliya3": {
+  "id": "aliya3",
+  "text": "English. Russian. Kazakh. One call.",
+  "hash": "2d8f1217c9",
+  "dur": 4.127
+ },
+ "tg": {
+  "id": "tg",
+  "text": "On Telegram, Taza lives where parents already talk: a daily air card for the school, questions by voice, rumours checked, saved places and alerts.",
+  "hash": "7257503116",
+  "dur": 10.371
+ },
+ "dana1": {
+  "id": "dana1",
+  "text": "Six thirty a.m. Dana is a journalist, on deadline. Her question: did the air really get cleaner? [pause] A media request like hers used to take AAI's team about five hours of work.",
+  "hash": "abfadee703",
+  "dur": 13.401
+ },
+ "dana2": {
+  "id": "dana2",
+  "text": "Taza answers in seconds. With the exact quote, the page, and the link. And when the research doesn't cover something, it says so.",
+  "hash": "848dbb0101",
+  "dur": 9.639
+ },
+ "dana3": {
+  "id": "dana3",
+  "text": "She compares districts, years, even other cities. Checks a claim. And turns the answer into a policy brief.",
+  "hash": "1b08bb0380",
+  "dur": 8.046
+ },
+ "voice": {
+  "id": "voice",
+  "text": "Or she just talks to it. The voice agent answers out loud, and shows her the map.",
+  "hash": "401a681a3c",
+  "dur": 6.113
+ },
+ "admin": {
+  "id": "admin",
+  "text": "Behind it all: the AAI team. One person, no code. Upload a report, and Taza quotes it seconds later. Subscribers get a five-point summary. And an outdated source is hidden in one click.",
+  "hash": "2c2f9d90ce",
+  "dur": 14.028
+ },
+ "dash": {
+  "id": "dash",
+  "text": "Every answer is measured. Forty-four out of forty-four on the accuracy test. Ninety-nine percent of answers with a source.",
+  "hash": "042e967099",
+  "dur": 8.673
+ },
+ "cost": {
+  "id": "cost",
+  "text": "Any AI provider works: Claude, OpenAI, OpenRouter, DeepInfra. [pause] Or a local model with Ollama, where the AI cost is zero. Hosting: about seven dollars a month.",
+  "hash": "78f22d12d7",
+  "dur": 14.367
+ },
+ "metric": {
+  "id": "metric",
+  "text": "[serious] From hours of reading reports... to a sourced answer in seconds.",
+  "hash": "e4a4df0cb0",
+  "dur": 4.519
+ },
+ "close": {
+  "id": "close",
+  "text": "Taza won't clean the air. [pause] But no one in Almaty should have to guess about it anymore.",
+  "hash": "71a6244688",
+  "dur": 6.426
+ },
+ "thanks": {
+  "id": "thanks",
+  "text": "Thank you. Try it, right now. [pause] And now... over to Aimira.",
+  "hash": "334deb0af3",
+  "dur": 7.889
+ },
+ "c_en_q": {
+  "id": "c_en_q",
+  "text": "Hi Taza! Can my kids walk to school this morning?",
+  "hash": "ff1fcdd9d6",
+  "dur": 2.769
+ },
+ "c_en_a": {
+  "id": "c_en_a",
+  "text": "Yes, the morning is one of the cleanest times today, around thirty-four micrograms. Avoid eight to ten in the evening: it gets close to eighty.",
+  "hash": "0246ce9e20",
+  "dur": 8.751
+ },
+ "c_ru_q": {
+  "id": "c_ru_q",
+  "text": "А какая школа в Алматы с самым грязным воздухом?",
+  "hash": "474781aa64",
+  "dur": 3.161
+ },
+ "c_ru_a": {
+  "id": "c_ru_a",
+  "text": "По исследованию AAI — школа номер сто пятьдесят шесть в Алатауском районе: семьдесят один и три десятых микрограмма за отопительный сезон.",
+  "hash": "364f6d1097",
+  "dur": 9.404
+ },
+ "c_kk_q": {
+  "id": "c_kk_q",
+  "text": "Ал қазір қай ауданда ауа ең лас?",
+  "hash": "606e5658e3",
+  "dur": 2.273
+ },
+ "c_kk_a": {
+  "id": "c_kk_a",
+  "text": "Қазір ең лас аудан — Түрксіб: PM2.5 жүз сексен сегіз микрограмм.",
+  "hash": "3db3876593",
+  "dur": 6.922
+ }
+}

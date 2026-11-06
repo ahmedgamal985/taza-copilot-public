@@ -1,0 +1,56 @@
+{
+ "note": "3:28 cut: shorter answers, same real facts (answers.json, 6 Nov 2026).",
+ "lines": [
+  {
+   "id": "c_en_q",
+   "who": "aliya",
+   "voice": "eXEr1iiK7vnX4qM1sNwu",
+   "lang": "en",
+   "say": "Hi Taza! Can my kids walk to school this morning?",
+   "sub": "Hi Taza! Can my kids walk to school this morning?"
+  },
+  {
+   "id": "c3_en_a",
+   "who": "taza",
+   "voice": "hpp4J3VqNfWAUOO0d1Us",
+   "lang": "en",
+   "say": "Yes, the morning is one of the cleanest times today. Avoid eight to ten in the evening.",
+   "sub": "Yes: the morning is one of the cleanest times today. Avoid 20:00–22:00.",
+   "show": "Yes, the morning is one of the cleanest times today. Avoid 20:00–22:00 in the evening."
+  },
+  {
+   "id": "c_ru_q",
+   "who": "aliya",
+   "voice": "eXEr1iiK7vnX4qM1sNwu",
+   "lang": "ru",
+   "say": "А какая школа в Алматы с самым грязным воздухом?",
+   "sub": "Which school in Almaty has the dirtiest air?"
+  },
+  {
+   "id": "c3_ru_a",
+   "who": "taza",
+   "voice": "hpp4J3VqNfWAUOO0d1Us",
+   "lang": "ru",
+   "say": "По исследованию AAI — школа номер сто пятьдесят шесть, в Алатауском районе.",
+   "sub": "AAI's study: School No. 156, in Alatau district.",
+   "show": "По исследованию AAI — школа № 156, в Алатауском районе."
+  },
+  {
+   "id": "c_kk_q",
+   "who": "aliya",
+   "voice": "eXEr1iiK7vnX4qM1sNwu",
+   "lang": "kk",
+   "say": "Ал 2025 жылы қай ауданда ауа ең лас болды?",
+   "sub": "And which district had the dirtiest air in 2025?"
+  },
+  {
+   "id": "c_kk_a",
+   "who": "taza",
+   "voice": "hpp4J3VqNfWAUOO0d1Us",
+   "lang": "kk",
+   "say": "Түрксіб ауданы: орташа PM2.5 қырық алты бүтін сегіз микрограмм, Бостандықтан екі еседен астам жоғары.",
+   "sub": "Turksib district: 46.8 µg/m³ on average, more than twice Bostandyk (AAI, 2025).",
+   "show": "Түрксіб ауданы: орташа PM2.5 — 46,8 мкг/м³, Бостандықтан екі еседен астам жоғары."
+  }
+ ]
+}

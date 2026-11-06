@@ -1,0 +1,595 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Taza Copilot · One day in Almaty</title>
+<style>
+@font-face { font-family: Poppins; font-weight: 300; src: url(../fonts/poppins-latin-300-normal.woff2); }
+@font-face { font-family: Poppins; font-weight: 400; src: url(../fonts/poppins-latin-400-normal.woff2); }
+@font-face { font-family: Poppins; font-weight: 500; src: url(../fonts/poppins-latin-500-normal.woff2); }
+@font-face { font-family: Poppins; font-weight: 600; src: url(../fonts/poppins-latin-600-normal.woff2); }
+@font-face { font-family: Poppins; font-weight: 700; src: url(../fonts/poppins-latin-700-normal.woff2); }
+:root { --lime: #c6f432; --bg: #101315; --ink: #f4f5f2; --mute: #9aa1a6; --red: #ff6b57; --card: #1b2024; --line: #2a3137; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--bg); color: var(--ink); font-family: Poppins, 'Segoe UI', Arial, sans-serif; }
+.cy { font-family: 'Segoe UI', Arial, sans-serif; }
+.scene { position: absolute; inset: 0; opacity: 0; display: none; }
+.abs { position: absolute; }
+.o0 { opacity: 0; }
+/* smog */
+#smog { position: absolute; inset: -200px; opacity: 0; }
+#smog i { position: absolute; border-radius: 50%; filter: blur(90px); }
+#sky { position: absolute; inset: 0; opacity: 0; background: radial-gradient(1200px 700px at 50% 110%, #2f6f8f 0%, #17384d 45%, #0d1a24 100%); }
+/* hook */
+#hookWrap { position: absolute; left: 0; right: 0; top: 300px; text-align: center; }
+#n14 { font-size: 300px; font-weight: 700; letter-spacing: -8px; line-height: 1; }
+#l14 { font-size: 46px; color: #d6d6d2; margin-top: 18px; font-weight: 400; }
+#almaty { position: absolute; left: 0; right: 0; top: 560px; text-align: center; }
+#almaty b { display: block; font-size: 170px; color: var(--red); font-weight: 700; letter-spacing: -4px; line-height: 1; }
+#almaty span { font-size: 52px; color: #e8e8e4; }
+.src { position: absolute; left: 0; right: 0; bottom: 60px; text-align: center; font-size: 24px; color: #8b9196; }
+/* problem */
+#docs { position: absolute; left: 330px; top: 250px; width: 1260px; height: 700px; display: grid; grid-template-columns: repeat(15, 1fr); gap: 14px 18px; }
+#docs i { display: block; width: 58px; height: 68px; border-radius: 6px; background: #22282d; border: 2px solid #3b444b; position: relative; }
+#docs i::before { content: ''; position: absolute; left: 10px; right: 10px; top: 16px; height: 4px; background: #4a545c; box-shadow: 0 10px 0 #4a545c, 0 20px 0 #4a545c, 0 30px 0 #3c454c; border-radius: 2px; }
+#docs i.hot { border-color: var(--lime); }
+#pTitle { position: absolute; left: 0; right: 0; top: 90px; text-align: center; font-size: 64px; font-weight: 600; }
+#pTitle b { color: var(--lime); }
+#pOne { position: absolute; left: 0; right: 0; top: 470px; text-align: center; font-size: 104px; font-weight: 700; }
+/* logo and characters */
+#logo { position: absolute; left: 0; right: 0; top: 330px; text-align: center; }
+#logo .mark { display: inline-flex; align-items: center; gap: 34px; }
+#logo .sq { width: 150px; height: 150px; border-radius: 38px; background: var(--lime); display: grid; place-items: center; color: #101315; font-size: 92px; font-weight: 700; }
+#logo .nm { font-size: 136px; font-weight: 700; letter-spacing: -3px; }
+#logo .nm em { font-style: normal; color: var(--lime); }
+#logo p { font-size: 40px; color: var(--mute); margin-top: 18px; }
+#cast { position: absolute; left: 0; right: 0; top: 330px; display: flex; justify-content: center; gap: 70px; }
+.who { width: 520px; text-align: center; }
+.who .av { width: 300px; height: 300px; margin: 0 auto; border-radius: 50%; overflow: hidden; }
+.who h3 { font-size: 64px; font-weight: 700; margin-top: 26px; letter-spacing: 1px; }
+.who h4 { font-size: 34px; font-weight: 400; color: var(--mute); }
+.who .q { display: inline-block; margin-top: 30px; padding: 22px 34px; border-radius: 26px; background: #2b3135; font-size: 28px; font-weight: 500; color: #e6e8e4; white-space: nowrap; }
+.who.on h3 { color: var(--lime); }
+.who.on .q { background: #fff; color: #111; }
+.who.on .av { box-shadow: 0 0 0 10px rgba(198,244,50,.25), 0 0 90px rgba(198,244,50,.55); }
+/* character header */
+.head { position: absolute; left: 90px; top: 70px; display: flex; align-items: center; gap: 34px; }
+.head .clock { font-size: 120px; font-weight: 700; letter-spacing: -3px; line-height: 1; min-width: 330px; }
+.head .av { width: 150px; height: 150px; border-radius: 50%; flex: none; overflow: hidden; }
+.head h3 { font-size: 46px; font-weight: 700; line-height: 1.1; }
+.head h3 small { display: block; font-size: 26px; font-weight: 400; color: var(--mute); }
+.head .q { display: inline-block; margin-top: 12px; padding: 10px 22px; border-radius: 18px; background: #fff; color: #111; font-size: 26px; font-weight: 500; }
+.title { position: absolute; left: 90px; top: 80px; font-size: 64px; font-weight: 700; letter-spacing: -1px; }
+.title small { display: block; font-size: 30px; font-weight: 400; color: var(--mute); letter-spacing: 0; margin-top: 6px; }
+/* cards on the left */
+.col { position: absolute; left: 90px; top: 330px; width: 980px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 28px; padding: 30px 36px; margin-bottom: 24px; font-size: 34px; line-height: 1.35; }
+.card b { font-weight: 600; }
+.card .k { color: var(--lime); font-weight: 700; }
+.card .s { display: block; margin-top: 10px; font-size: 23px; color: var(--mute); }
+.big7 { font-size: 150px; font-weight: 700; color: var(--red); line-height: .9; float: left; margin: 0 30px 0 0; letter-spacing: -4px; }
+.code { font-family: Consolas, 'Courier New', monospace; font-size: 25px; line-height: 1.5; background: #0b0e10; border-radius: 24px; padding: 28px 32px; border: 1px solid var(--line); color: #cfd6db; white-space: pre; }
+.code .g { color: var(--lime); }
+.code .y { color: #ffd479; }
+.chips { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 22px; }
+.chips span { padding: 10px 22px; border-radius: 999px; background: #232a2f; border: 1px solid var(--line); font-size: 26px; font-weight: 500; }
+.chips span.on { background: var(--lime); color: #111; border-color: var(--lime); }
+.tick { font-size: 36px; font-weight: 500; margin-bottom: 20px; display: flex; gap: 18px; align-items: center; }
+.tick i { font-style: normal; width: 50px; text-align: center; }
+/* phone */
+.phone { position: absolute; width: 450px; height: 920px; border-radius: 62px; background: #050607; padding: 14px; box-shadow: 0 40px 120px rgba(0,0,0,.6), 0 0 0 2px #2b3035; }
+.phone .scr { position: relative; width: 100%; height: 100%; border-radius: 50px; overflow: hidden; background: #fff; }
+.phone .notch { position: absolute; left: 50%; top: 14px; width: 130px; height: 34px; margin-left: -65px; border-radius: 20px; background: #050607; z-index: 30; }
+.tagc { position: absolute; padding: 8px 18px; border-radius: 999px; font-size: 22px; font-weight: 600; background: #fff; color: #111; }
+/* driver app (concept) */
+.drv { position: absolute; inset: 0; background: linear-gradient(32deg, transparent 47%, #3a434b 47%, #3a434b 49.5%, transparent 49.5%), linear-gradient(118deg, transparent 58%, #343c43 58%, #343c43 60%, transparent 60%), linear-gradient(80deg, transparent 22%, #30373d 22%, #30373d 23.5%, transparent 23.5%), repeating-linear-gradient(0deg, #1b2024 0 118px, #232a2f 118px 121px), repeating-linear-gradient(90deg, transparent 0 96px, #232a2f 96px 99px), #1b2024; }
+.drv .car { position: absolute; z-index: 2; left: 190px; top: 560px; width: 46px; height: 46px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 0 14px rgba(198,244,50,.18); }
+
+.drv .online { position: absolute; z-index: 2; left: 24px; right: 24px; bottom: 24px; padding: 22px; border-radius: 26px; background: #15191c; color: #fff; font-size: 22px; }
+.drv .online b { color: var(--lime); }
+.push { position: absolute; z-index: 5; left: 14px; right: 14px; top: 58px; border-radius: 26px; background: rgba(250,250,248,.97); color: #111; padding: 18px 20px; box-shadow: 0 16px 40px rgba(0,0,0,.35); font-size: 19px; line-height: 1.35; }
+.push .hd { display: flex; align-items: center; gap: 10px; font-size: 16px; color: #666; margin-bottom: 6px; }
+.push .ic { width: 30px; height: 30px; border-radius: 8px; background: var(--lime); display: grid; place-items: center; font-weight: 700; color: #111; font-size: 17px; }
+.push b { display: block; font-size: 20px; margin-bottom: 4px; }
+/* whatsapp-like chat */
+.wa { position: absolute; inset: 0; background: #efeae2; display: flex; flex-direction: column; }
+.wa .bar { height: 120px; padding: 62px 20px 0; background: #0b6b5f; color: #fff; display: flex; align-items: center; gap: 14px; font-size: 22px; font-weight: 600; flex: none; }
+.wa .bar i { width: 44px; height: 44px; border-radius: 50%; background: var(--lime); color: #111; display: grid; place-items: center; font-style: normal; font-weight: 700; }
+.wa .bar small { display: block; font-size: 15px; font-weight: 400; opacity: .85; }
+.msgs { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; padding: 16px 14px; gap: 10px; overflow: hidden; }
+.m { max-width: 88%; padding: 12px 16px; border-radius: 16px; font-size: 20px; line-height: 1.38; color: #111; box-shadow: 0 1px 1px rgba(0,0,0,.12); display: none; }
+.m.me { align-self: flex-end; background: #d9fdd3; border-top-right-radius: 4px; }
+.m.it { align-self: flex-start; background: #fff; border-top-left-radius: 4px; }
+.m .t { display: block; text-align: right; font-size: 13px; color: #888; margin-top: 4px; }
+.m .ref { display: block; margin-top: 8px; font-size: 15px; color: #0b6b5f; }
+.typing { align-self: flex-start; background: #fff; padding: 14px 18px; border-radius: 16px; display: none; gap: 6px; }
+.typing i { width: 10px; height: 10px; border-radius: 50%; background: #999; display: inline-block; margin: 0 2px; }
+/* call */
+.call { position: absolute; inset: 0; background: linear-gradient(180deg, #0f3d36, #0a1f1c 70%); color: #fff; text-align: center; opacity: 0; }
+.call .av { width: 170px; height: 170px; border-radius: 50%; background: var(--lime); color: #111; display: grid; place-items: center; font-size: 80px; font-weight: 700; margin: 190px auto 26px; }
+.call h5 { font-size: 34px; font-weight: 600; }
+.call p { font-size: 22px; opacity: .8; margin-top: 8px; }
+.call .wave { display: flex; gap: 8px; justify-content: center; align-items: center; height: 120px; margin-top: 70px; }
+.call .wave i { width: 10px; border-radius: 6px; background: var(--lime); height: 10px; }
+.call .btns { position: absolute; left: 0; right: 0; bottom: 70px; display: flex; justify-content: center; gap: 60px; }
+.call .btns i { width: 86px; height: 86px; border-radius: 50%; background: #2a3d3a; display: grid; place-items: center; font-style: normal; font-size: 34px; }
+.call .btns i.end { background: #e5483b; }
+.sub { position: absolute; left: 90px; top: 380px; width: 1000px; }
+.sub .who2 { font-size: 30px; font-weight: 600; color: var(--mute); display: flex; gap: 16px; align-items: center; }
+.sub .lang { padding: 4px 16px; border-radius: 10px; background: var(--lime); color: #111; font-size: 24px; font-weight: 700; }
+.sub .say { font-size: 50px; font-weight: 600; line-height: 1.25; margin-top: 18px; }
+.sub .en { font-size: 32px; color: #c7ccd0; margin-top: 18px; line-height: 1.35; }
+#langRow { position: absolute; left: 90px; top: 850px; display: flex; gap: 18px; }
+#langRow span { padding: 14px 34px; border-radius: 18px; border: 2px solid #3a4248; font-size: 34px; font-weight: 700; color: #6d757b; }
+#langRow span.on { background: var(--lime); border-color: var(--lime); color: #111; }
+.reen { position: absolute; right: 60px; top: 40px; font-size: 22px; color: #9aa1a6; padding: 8px 18px; border: 1px solid #3a4248; border-radius: 999px; }
+/* telegram-like */
+.tg { position: absolute; inset: 0; background: #c9dbe8; display: flex; flex-direction: column; }
+.tg .bar { height: 120px; padding: 62px 20px 0; background: #1f2c38; color: #fff; display: flex; align-items: center; gap: 14px; font-size: 22px; font-weight: 600; flex: none; }
+.tg .bar i { width: 44px; height: 44px; border-radius: 50%; background: #5aa6e6; display: grid; place-items: center; font-style: normal; font-size: 22px; }
+.tg .bar small { display: block; font-size: 15px; font-weight: 400; opacity: .7; }
+.tg .m.it { background: #fff; }
+.tg .m.me { background: #e3fcc7; }
+.tg .m .nm { display: block; font-size: 15px; font-weight: 700; color: #2a8bd6; margin-bottom: 2px; }
+.tg .m .nm.bot { color: #4caf50; }
+.tg .fwd { display: block; font-size: 14px; color: #2a8bd6; margin-bottom: 4px; }
+.kb { display: none; grid-template-columns: 1fr 1fr; gap: 6px; align-self: stretch; }
+.kb span { background: rgba(255,255,255,.75); border-radius: 10px; padding: 9px 8px; text-align: center; font-size: 16px; font-weight: 500; color: #1f2c38; }
+.vbar { display: inline-flex; gap: 3px; align-items: center; height: 26px; vertical-align: middle; margin-right: 10px; }
+.vbar i { width: 3px; background: #2a8bd6; border-radius: 2px; }
+/* browser */
+.browser { position: absolute; border-radius: 22px; overflow: hidden; background: #fff; box-shadow: 0 40px 120px rgba(0,0,0,.55), 0 0 0 1px #2b3035; }
+.browser .top { height: 46px; background: #1e2327; display: flex; align-items: center; gap: 10px; padding: 0 18px; }
+.browser .top i { width: 13px; height: 13px; border-radius: 50%; background: #3b4247; }
+.browser .top span { margin-left: 18px; font-size: 18px; color: #aab1b6; background: #2a3035; padding: 4px 20px; border-radius: 10px; }
+.browser .vp { position: relative; overflow: hidden; background: #f3f3ef; }
+.browser .vp img { position: absolute; left: 0; top: 0; width: 100%; opacity: 0; display: none; transform-origin: 50% 0; }
+.badge { position: absolute; white-space: nowrap; padding: 14px 28px; border-radius: 18px; background: var(--lime); color: #111; font-size: 34px; font-weight: 700; box-shadow: 0 20px 50px rgba(0,0,0,.4); }
+/* counters */
+.ctr { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; width: 760px; }
+.ctr div { background: var(--card); border: 1px solid var(--line); border-radius: 26px; padding: 26px 30px; }
+.ctr b { display: block; font-size: 76px; font-weight: 700; color: var(--lime); line-height: 1; letter-spacing: -2px; }
+.ctr span { display: block; font-size: 24px; color: #c9ced2; margin-top: 10px; line-height: 1.3; }
+/* metric + close */
+#mWrap { position: absolute; left: 0; right: 0; top: 330px; text-align: center; }
+#mWrap h6 { font-size: 36px; letter-spacing: 8px; color: var(--lime); font-weight: 600; text-transform: uppercase; }
+#mWrap .l1 { font-size: 92px; font-weight: 700; margin-top: 30px; letter-spacing: -2px; }
+#mWrap .l2 { font-size: 92px; font-weight: 700; color: var(--lime); letter-spacing: -2px; }
+#cWrap { position: absolute; left: 0; right: 0; top: 380px; text-align: center; }
+#cWrap div { font-size: 74px; font-weight: 700; letter-spacing: -1px; line-height: 1.25; }
+#cWrap div + div { font-size: 54px; font-weight: 500; color: #dfe6ea; margin-top: 30px; }
+/* thanks */
+#ty h1 { position: absolute; left: 0; right: 0; top: 90px; text-align: center; font-size: 150px; font-weight: 700; letter-spacing: -4px; }
+#qrs { position: absolute; left: 0; right: 0; top: 330px; display: flex; justify-content: center; gap: 110px; }
+#qrs > div { text-align: center; width: 360px; }
+#qrs .q { width: 330px; height: 330px; margin: 0 auto; border-radius: 34px; background: #f4f4f4; padding: 24px; }
+#qrs .q img { width: 100%; height: 100%; display: block; image-rendering: pixelated; }
+#qrs h5 { font-size: 46px; font-weight: 700; margin-top: 26px; }
+#qrs p { font-size: 28px; color: #c3c8cc; margin-top: 4px; }
+#tryNow { position: absolute; left: 0; right: 0; top: 848px; text-align: center; font-size: 36px; color: #e6e8e4; }
+#aimira { position: absolute; left: 50%; top: 918px; transform: translateX(-50%); padding: 16px 56px; border-radius: 999px; background: #54611f; color: #fff; font-size: 44px; font-weight: 700; white-space: nowrap; }
+#team { position: absolute; left: 0; right: 0; bottom: 18px; text-align: center; font-size: 24px; color: #7d858b; }
+#prog { position: absolute; left: 0; bottom: 0; height: 6px; background: var(--lime); width: 0; z-index: 99; opacity: .9; }
+</style></head>
+<body>
+<div id="smog"></div>
+<div id="sky"></div>
+
+<!-- 1. hook -->
+<section class="scene" id="s-hook">
+  <div id="hookWrap"><div id="n14">0</div><div id="l14">premature deaths a year in Kazakhstan are linked to air pollution</div></div>
+  <div id="almaty"><b>Up to 2,100</b><span>of them in Almaty</span></div>
+  <div class="src" id="hSrc">Source: Almaty Air Initiative (AAI)</div>
+</section>
+
+<!-- 2. problem -->
+<section class="scene" id="s-problem">
+  <div id="pTitle"><b>150</b> reports and articles by Almaty Air Initiative</div>
+  <div id="docs"></div>
+  <div id="pOne">…for one answer?</div>
+</section>
+
+<!-- 3. meet -->
+<section class="scene" id="s-meet">
+  <div id="logo"><div class="mark"><div class="sq">T</div><div class="nm"><em>Taza</em> Copilot</div></div><p>Ask AAI's research anything</p></div>
+  <div id="cast">
+    <div class="who" data-k="dana"><div class="av"></div><h3>DANA</h3><h4>Journalist</h4><div class="q">Did the air really get cleaner?</div></div>
+    <div class="who" data-k="aliya"><div class="av"></div><h3>ALIYA</h3><h4>Mother of two</h4><div class="q">Can my kids walk to school?</div></div>
+    <div class="who" data-k="arman"><div class="av"></div><h3>ARMAN</h3><h4>inDrive driver</h4><div class="q">Windows open or shut today?</div></div>
+  </div>
+</section>
+
+<!-- 4. arman -->
+<section class="scene" id="s-arman">
+  <div class="head"><div class="clock">07:00</div><div class="av" data-av="arman"></div><div><h3>Arman<small>inDrive driver</small></h3><div class="q">Windows open or shut today?</div></div></div>
+  <div class="col" id="aCol1">
+    <div class="card" id="aBest"><span class="k">✅ Cleanest</span> <b>06:00–08:00</b> · ≈ 34 µg/m³</div>
+    <div class="card" id="aWorst"><span style="color:var(--red);font-weight:700">⛔ Dirtiest</span> <b>20:00–22:00</b> · ≈ 80 µg/m³</div>
+    <div class="card" id="a7"><div class="big7">7×</div><b>dirtier air</b> for drivers in a jam with open windows than for pedestrians at intersections.<span class="s">AAI · “Not the Quantity, but the Quality: how Almaty's vehicle fleet affects air quality”, page 5</span></div>
+  </div>
+  <div class="col" id="aCol2">
+    <div class="code" id="aCode"><span class="g">GET</span> /api/partner/brief?role=<span class="y">driver</span>&amp;lang=<span class="y">kk</span>
+
+{ "air": { "pm25": 95.5, "worst_district": "Turksib" },
+  "best_time":  "06:00–08:00",
+  "worst_time": "20:00–22:00",
+  "driver": { "title": "⚠️ Polluted air today · 95.5 µg/m³", … },
+  "source": { "title": "AAI…", "page": 5 } }</div>
+    <div class="chips" id="aChips"><span class="on">🚗 Drivers</span><span class="on">🧍 Riders</span><span>EN</span><span>RU</span><span>KK</span><span>no AI cost · live AAI data</span></div>
+  </div>
+  <div class="phone" id="aPhone" style="left:1330px;top:90px"><div class="notch"></div><div class="scr">
+    <div class="drv"><div class="car"></div><div class="online">🟢 <b>Online</b> · looking for rides nearby…</div></div>
+    <div class="push" id="pDrv"><div class="hd"><div class="ic">T</div>Taza Copilot · now</div><b>⚠️ Polluted air today · 95.5 µg/m³</b>In traffic jams, keep the windows closed and use recirculation: with open windows you breathe air 7× dirtier than pedestrians at intersections (AAI). Dirtiest hours: 20:00–22:00.</div>
+    <div class="push" id="pJam" style="top:330px"><div class="hd"><div class="ic">T</div>Taza Copilot · now</div><b>🚦 Traffic jam: close the windows</b>Switch to recirculation. In a jam the air inside a car is 40% dirtier than in moving traffic, and 7× dirtier with open windows than for pedestrians (AAI, p. 5).</div>
+    <div class="push" id="pRide"><div class="hd"><div class="ic">T</div>Taza Copilot · for riders</div><b>⚠️ Polluted air today · 95.5 µg/m³</b>Wait for your car indoors, not by a busy road, and ask the driver to close the windows. Cleanest hours: 06:00–08:00.</div>
+  </div></div>
+  <div class="tagc" id="aConcept" style="left:1400px;top:1020px;background:#2b3135;color:#dfe3e6">Concept: Taza inside the inDrive app</div>
+</section>
+
+<!-- 5. aliya: WhatsApp chat and call -->
+<section class="scene" id="s-aliya">
+  <div class="head"><div class="clock">08:15</div><div class="av" data-av="aliya"></div><div><h3>Aliya<small>Mother of two</small></h3><div class="q">Can my kids walk to school?</div></div></div>
+  <div class="col" id="wCol">
+    <div class="card" id="wQ"><span class="s" style="margin:0 0 8px">Aliya, on WhatsApp</span>“My kids go to school in Turksib. How dirty is the air there?”</div>
+    <div class="card" id="wA"><span class="s" style="margin:0 0 8px">Taza, from AAI's research</span>Turksib is one of the dirtiest districts: <b>59.3 µg/m³</b> on average over the 2025–26 heating season, against 31.1 in Bostandyk. In the morning, 07:00–09:00, it stays at <b>40–46 µg/m³</b>.<span class="s">AAI · “The Air Children in Almaty Breathe”</span></div>
+  </div>
+  <div class="col" id="ringTxt" style="top:420px"><div style="font-size:64px;font-weight:700">📞 Calling Taza…</div><div style="font-size:36px;color:#c9ced2;margin-top:16px">on WhatsApp, hands full, kids ready</div></div>
+  <div class="sub" id="sub"><div class="who2"><span id="subWho">Aliya</span><span class="lang" id="subLang">EN</span></div><div class="say" id="subSay"></div><div class="en" id="subEn"></div></div>
+  <div id="langRow"><span data-l="en">EN</span><span data-l="ru">RU</span><span data-l="kk">KK</span></div>
+  <div class="phone" id="wPhone" style="left:1330px;top:90px"><div class="notch"></div><div class="scr">
+    <div class="wa"><div class="bar"><i>T</i><div>Taza Copilot<small>online</small></div></div>
+      <div class="msgs">
+        <div class="m me cy" id="w1">Мои дети ходят в школу в Турксибе. Насколько там грязный воздух?<span class="t">08:15 ✓✓</span></div>
+        <div class="typing" id="wTy"><i></i><i></i><i></i></div>
+        <div class="m it cy" id="w2">Воздух в Турксибском районе — один из самых грязных в городе: за отопительный сезон 2025–2026 средний PM2.5 там составил <b>59,3 µg/m³</b> против 31,1 µg/m³ в Бостандыкском.<br><br>Утром, когда дети идут в школу (7:00–9:00), в Турксибе держится <b>40–46 µg/m³</b>.<span class="ref">📄 AAI · The Air Children in Almaty Breathe</span><span class="t">08:15</span></div>
+      </div></div>
+    <div class="call" id="wCall"><div class="av">T</div><h5>Taza Copilot</h5><p id="callSt">WhatsApp voice call · Ringing…</p>
+      <div class="wave" id="wave"></div>
+      <div class="btns"><i>🔇</i><i class="end">✆</i><i>🔊</i></div></div>
+  </div></div>
+  <div class="reen" id="reen">Re-enactment · Taza's lines are its real answers</div>
+  <div class="col" id="callEnd" style="top:420px"><div style="font-size:120px;font-weight:700;letter-spacing:-3px;line-height:1">EN · RU · KK</div><div style="font-size:44px;color:#c9ced2;margin-top:24px">One call. Every answer from AAI's research.</div></div>
+</section>
+
+<!-- 6. telegram -->
+<section class="scene" id="s-tg">
+  <div class="head"><div class="clock">15:00</div><div class="av" data-av="aliya"></div><div><h3>The parents' group<small>Telegram · @SmogHuntersBot</small></h3></div></div>
+  <div class="col" id="tCol"></div>
+  <div class="phone" id="tPhone" style="left:1330px;top:90px"><div class="notch"></div><div class="scr">
+    <div class="tg"><div class="bar"><i>👪</i><div>Parents · Class 3B<small>28 members</small></div></div>
+      <div class="msgs" id="tMsgs">
+        <div class="m it"><span class="nm bot">Taza Copilot</span>🏫 <b>Good morning! Air at Lyceum No. 12</b> · 07:30<br><br>🟡 <b>34 µg/m³</b> · Moderate<br><br>🕐 Best time to go out today: <b>06:00–08:00</b> (≈ 33.6), avoid <b>20:00–22:00</b> (≈ 79.7).<span class="t">07:30</span></div>
+        <div class="m me"><span class="vbar" id="vb"></span>0:04<span class="t">15:02 ✓✓</span></div>
+        <div class="m it"><span class="nm bot">Taza Copilot</span>🎙 You said: <i>«When is it better to go for a walk today?»</i><br><br>🕐 <b>Best time to go out today</b><br>✅ <b>06:00–08:00</b> · ≈ 33.6 µg/m³<br>⛔ Avoid <b>20:00–22:00</b> · ≈ 79.7 µg/m³<span class="t">15:02</span></div>
+        <div class="m me cy"><span class="fwd">Forwarded message</span>Говорят, что 80% смога в Алматы дают машины!<span class="t">15:04 ✓✓</span></div>
+        <div class="m it cy"><span class="nm bot">Taza Copilot</span>🔎 Исследования AAI не подтверждают долю в 80%: выхлопы автомобилей дают <b>14%</b> частиц PM2.5, дорожная пыль — <b>32%</b>, ТЭЦ и котельные — около 18%.<span class="ref" style="color:#2a8bd6">📄 AAI · Main Sources of PM2.5 Pollution in Almaty</span><span class="t">15:04</span></div>
+        <div class="kb" id="tKb"><span>🌫 Air now</span><span>🗺 Districts</span><span>📍 Air near me</span><span>🕐 Best time today</span><span>🔎 Check a claim</span><span>⭐ My places</span><span>🔔 Alerts</span><span>🌐 Language</span></div>
+      </div></div>
+  </div></div>
+  <div class="reen">Re-enactment · real bot texts and AAI data</div>
+</section>
+
+<!-- 7. dana -->
+<section class="scene" id="s-dana">
+  <div class="head"><div class="clock">06:30</div><div class="av" data-av="dana"></div><div><h3>Dana<small>Journalist</small></h3><div class="q">Did the air really get cleaner?</div></div></div>
+  <div class="col" id="dCol1" style="width:640px">
+    <div class="card"><span class="s" style="margin:0 0 6px">A real media request · 2 Nov 2026</span><b>6 questions</b> from one journalist</div>
+    <div class="card">Answered by hand: <b>6 pages</b>, <b>23 sources</b></div>
+    <div class="card" style="font-size:44px"><span class="k" style="font-size:70px">≈ 5 h</span> of work<span class="s">AAI's estimate: 2 h PR + 3 h research</span></div>
+  </div>
+  <div class="col" id="dCol2" style="width:640px"></div>
+  <div class="browser" id="dBr" style="left:780px;top:300px;width:1060px"><div class="top"><i></i><i></i><i></i><span>taza-copilot.online</span></div><div class="vp" style="height:663px"></div></div>
+  <div class="badge" id="dBadge" style="left:90px;top:800px">⚡ Answered in 4.0 s</div>
+</section>
+
+<!-- 8. admin -->
+<section class="scene" id="s-admin">
+  <div class="title">Behind it all: the AAI team<small>🔒 Admin page · only the team has the key</small></div>
+  <div class="col" id="adCol" style="width:640px;top:300px"></div>
+  <div class="browser" id="adBr" style="left:780px;top:250px;width:1060px"><div class="top"><i></i><i></i><i></i><span>taza-copilot.online/admin</span></div><div class="vp" style="height:663px"></div></div>
+</section>
+
+<!-- 9. dashboard -->
+<section class="scene" id="s-dash">
+  <div class="title">Every answer is measured<small>Accuracy dashboard · live on the site</small></div>
+  <div class="ctr abs" id="ctr" style="left:90px;top:300px;width:660px">
+    <div><b data-n="44" data-f="44/44">0</b><span>accuracy test: right figure and a cited source</span></div>
+    <div><b data-n="99" data-f="99%">0</b><span>answers with a source</span></div>
+    <div><b data-n="5.4" data-f="5.4 s">0</b><span>median time to answer (3.6 s on the test)</span></div>
+    <div><b data-n="99" data-f="≈ 99 h">0</b><span>of searching reports saved (estimate)</span></div>
+  </div>
+  <div class="browser" id="dsBr" style="left:820px;top:250px;width:1020px"><div class="top"><i></i><i></i><i></i><span>taza-copilot.online · Accuracy dashboard</span></div><div class="vp" style="height:638px"></div></div>
+</section>
+
+<!-- 10. cost -->
+<section class="scene" id="s-cost">
+  <div class="title">Any AI. Even a free one.<small>Menu → AI model</small></div>
+  <div class="col" style="width:680px;top:300px">
+    <div class="chips" id="provs" style="margin:0 0 30px"><span>Claude</span><span>OpenAI</span><span>OpenRouter</span><span>DeepInfra</span><span>Ollama (local)</span></div>
+    <div class="card" id="cOl"><span class="k" style="font-size:64px">$0</span> AI cost with a local model (Ollama)</div>
+    <div class="card" id="cPer"><b>≈ $0.017</b> per answer with Claude <span class="s">≈ $17 per 1,000 answers · simple questions ≈ $0.0015</span></div>
+    <div class="card" id="cHost"><b>≈ $7 / month</b> hosting, 24/7<span class="s">One Cloudflare container · data in R2</span></div>
+  </div>
+  <div class="browser" id="cBr" style="left:820px;top:250px;width:1020px"><div class="top"><i></i><i></i><i></i><span>taza-copilot.online · AI model</span></div><div class="vp" style="height:638px"></div></div>
+</section>
+
+<!-- 11. metric -->
+<section class="scene" id="s-metric">
+  <div id="mWrap"><h6>Our metric</h6><div class="l1">Time to a sourced answer:</div><div class="l2">from hours to seconds.</div></div>
+</section>
+
+<!-- 12. close -->
+<section class="scene" id="s-close">
+  <div id="cWrap"><div>Taza won't clean the air.</div><div>But no one in Almaty should have to guess about it anymore.</div></div>
+</section>
+
+<!-- 13. thanks -->
+<section class="scene" id="s-thanks">
+  <div id="ty"><h1>Thank you.</h1>
+    <div id="qrs">
+      <div><div class="q"><img src="img/qr_site.png"></div><h5 style="color:var(--lime)">Try it now</h5><p>taza-copilot.online</p></div>
+      <div><div class="q"><img src="img/qr_tg.png"></div><h5 style="color:#38a8f2">Telegram</h5><p>@SmogHuntersBot</p></div>
+      <div><div class="q"><img src="img/qr_wa.png"></div><h5 style="color:#2fd06c">WhatsApp</h5><p>chat or call the Copilot</p></div>
+    </div>
+    <div id="tryNow">Feel free to try it, right now.</div>
+    <div id="aimira">Now, over to Aimira →</div>
+    <div id="team">Team Smog Hunters · Ahmed · Khaled · Usman · Aimira · Zaki</div>
+  </div>
+</section>
+<div id="prog"></div>
+
+<script>
+const $ = s => document.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const cl = x => Math.max(0, Math.min(1, x));
+const seg = (t, a, b) => cl((t - a) / (b - a));
+const eo = x => 1 - Math.pow(1 - x, 3);
+const eio = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+const fade = (t, a, b, f = .45) => Math.min(seg(t, a, a + f), 1 - seg(t, b - f, b));
+function ap(el, t, at, d = .55, dy = 30, until = 1e9, x = 0) {
+  if (!el) return 0;
+  const p = eo(seg(t, at, at + d)) * (1 - seg(t, until - .35, until));
+  el.style.opacity = p; el.style.transform = `translate(${(1 - p) * x}px, ${(1 - p) * dy}px)`;
+  return p;
+}
+let TL;
+const V = id => TL.vo[id], S = id => TL.sc[id];
+const Ve = id => V(id).s + V(id).d;
+
+// ---------- avatars ----------
+let avN = 0;
+function avatar(k) {
+  const cid = 'c' + k + (avN++);
+  const P = {
+    dana: { bg: '#c9822a', in: '#d7a058', skin: '#9c6b4c', top: '#232c45', hair: 'bob' },
+    aliya: { bg: '#1e6f64', in: '#3b8a7f', skin: '#8b5c40', top: '#b4492f', hair: 'bun' },
+    arman: { bg: '#c6f432', in: '#d6f86f', skin: '#d9a17f', top: '#20262b', hair: 'cap' },
+  }[k];
+  const hair = {
+    bob: '<path d="M60 104 Q56 44 100 42 Q144 44 140 104 L140 132 Q128 134 126 120 L130 94 Q126 72 100 70 Q74 72 70 94 L74 120 Q72 134 60 132 Z" fill="#4a2c1d"/>',
+    bun: '<circle cx="100" cy="40" r="17" fill="#141010"/><path d="M62 106 Q58 54 100 52 Q142 54 138 106 L136 142 L128 98 Q124 74 100 72 Q76 74 72 98 L64 142 Z" fill="#141010"/>',
+    cap: '<path d="M66 82 Q68 50 100 48 Q132 50 134 82 Z" fill="#1d2329"/><rect x="118" y="74" width="46" height="11" rx="5" fill="#1d2329"/><circle cx="100" cy="62" r="7" fill="#c6f432"/>',
+  }[P.hair];
+  const extra = k === 'dana' ? '<circle cx="86" cy="100" r="10" fill="none" stroke="#2a1d16" stroke-width="3"/><circle cx="114" cy="100" r="10" fill="none" stroke="#2a1d16" stroke-width="3"/><path d="M96 100 L104 100" stroke="#2a1d16" stroke-width="3"/><path d="M88 150 L100 176 L112 150" stroke="#c0392b" stroke-width="3" fill="none"/><rect x="88" y="172" width="24" height="15" rx="2" fill="#d9d9d9"/>'
+    : k === 'aliya' ? '<path d="M78 158 Q100 172 122 158 L120 150 Q100 162 80 150 Z" fill="#d4a62a"/>'
+    : '<path d="M88 152 L96 196 L104 152 Z" fill="#c6f432"/>';
+  return `<svg viewBox="0 0 200 200" width="100%" height="100%"><defs><clipPath id="${cid}"><circle cx="100" cy="100" r="100"/></clipPath></defs>
+  <g clip-path="url(#${cid})"><rect width="200" height="200" fill="${P.bg}"/><circle cx="100" cy="100" r="80" fill="${P.in}" opacity=".55"/>
+  <path d="M30 210 Q34 150 100 146 Q166 150 170 210 Z" fill="${P.top}"/><rect x="90" y="126" width="20" height="24" fill="${P.skin}" opacity=".85"/>
+  <ellipse cx="100" cy="98" rx="33" ry="38" fill="${P.skin}"/><ellipse cx="67" cy="100" rx="6" ry="9" fill="${P.skin}"/><ellipse cx="133" cy="100" rx="6" ry="9" fill="${P.skin}"/>
+  ${hair}<circle cx="86" cy="100" r="4.5" fill="#1a1a1a"/><circle cx="114" cy="100" r="4.5" fill="#1a1a1a"/>
+  <path d="M80 89 Q86 86 92 89" stroke="#2a1d16" stroke-width="2.5" fill="none"/><path d="M108 89 Q114 86 120 89" stroke="#2a1d16" stroke-width="2.5" fill="none"/>
+  <circle cx="79" cy="113" r="6" fill="#e58a8a" opacity=".45"/><circle cx="121" cy="113" r="6" fill="#e58a8a" opacity=".45"/>
+  <path d="M90 118 Q100 126 110 118" stroke="#3b2015" stroke-width="3" fill="none" stroke-linecap="round"/>${extra}</g></svg>`;
+}
+
+// ---------- browser montage ----------
+const imgCache = {};
+function montage(br, list, t, a, b, opt = {}) {
+  const vp = br.querySelector('.vp');
+  for (const sh of list) { const im = vp.querySelector(`img[data-n="${sh.n}"]`); if (im) im.style.display = 'none'; }
+  const W = list.reduce((x, sh) => x + (sh.w || 1), 0); let acc = 0;
+  list.forEach((sh, k) => {
+    let s0 = a + (b - a) * acc / W; acc += sh.w || 1; let per = (b - a) * (sh.w || 1) / W;
+    if (sh.at != null) { s0 = sh.at; per = (list[k + 1]?.at ?? b) - sh.at; }
+    let im = vp.querySelector(`img[data-n="${sh.n}"]`);
+    if (!im) { im = document.createElement('img'); im.dataset.n = sh.n; im.src = `shots/${sh.n}.png`; vp.appendChild(im); }
+    const s = s0, e = s + per;
+    if (t < s - .3 || t > e + .3) return;
+    if (k > 0 && t < s - .3) return;
+    if ((k < list.length - 1 || opt.hideLast) && t > e + .35) return;
+    // the next shot slides in over the last one: never two half-visible screenshots on top of each other
+    const sl = k === 0 && !opt.slideIn ? 0 : 1 - eio(seg(t, s - .35, s + .05));
+    const o = 1;
+    const p = eio(seg(t, s, e));
+    const z = (sh.z0 ?? 1) + ((sh.z1 ?? 1.06) - (sh.z0 ?? 1)) * p;
+    const y = (sh.y0 ?? 0) + ((sh.y1 ?? 0) - (sh.y0 ?? 0)) * p;
+    im.style.display = 'block'; im.style.opacity = o; im.style.zIndex = (opt.z || 0) + k;
+    im.style.transformOrigin = sh.o || '50% 0';
+    im.style.transform = `translateX(${sl * 102}%) translateY(${-y}%) scale(${z})`;
+    im.style.clipPath = sh.clip ? `inset(0 0 ${sh.clip}% 0)` : 'none';
+  });
+}
+
+// ---------- init ----------
+function init(tl) {
+  TL = tl;
+  for (const el of $$('[data-av]')) el.innerHTML = avatar(el.dataset.av);
+  for (const w of $$('.who')) w.querySelector('.av').innerHTML = avatar(w.dataset.k);
+  const smog = $('#smog');
+  [['#5c5348', 900, 200, 300], ['#3f3b36', 1100, 1100, 500], ['#6a5f50', 800, 600, 700], ['#2f2d2a', 1200, 300, 900], ['#544c42', 700, 1500, 200]].forEach(([c, r, x, y]) => {
+    const i = document.createElement('i'); i.style.cssText = `width:${r}px;height:${r}px;left:${x}px;top:${y}px;background:${c}`; i.dataset.x = x; i.dataset.y = y; smog.appendChild(i);
+  });
+  $('#docs').innerHTML = Array.from({ length: 150 }, () => '<i></i>').join('');
+  $('#wave').innerHTML = Array.from({ length: 22 }, () => '<i></i>').join('');
+  $('#vb').innerHTML = Array.from({ length: 26 }, (_, k) => `<i style="height:${6 + Math.round(18 * Math.abs(Math.sin(k * 1.7)))}px"></i>`).join('');
+  $('#tCol').innerHTML = ['🏫 Daily air card for the school', '🎙 Questions by voice message', '🔎 Checks forwarded posts', '⭐ Saved places and alerts', '🕐 Best time to go out', '🌐 English · Русский · Қазақша']
+    .map(x => `<div class="tick"><i>${x.split(' ')[0]}</i>${x.split(' ').slice(1).join(' ')}</div>`).join('');
+  $('#dCol2').innerHTML = ['✓ The exact quote', '✓ The page and the link', '✓ “Not covered” when it isn\'t', '⇄ Compare districts, years, cities', '🔎 Check a claim', '📄 Policy brief', '🎙 Talk to it: voice + map']
+    .map(x => `<div class="tick">${x}</div>`).join('');
+  $('#adCol').innerHTML = ['⬆ Upload a PDF: searchable in seconds', '✉ 5-point summary to Telegram, in 3 languages', '🔄 Checks air.org.kz every day', '🙈 Hide an outdated source, nothing deleted']
+    .map(x => `<div class="tick" style="font-size:32px">${x}</div>`).join('');
+}
+
+// ---------- frame ----------
+function renderFrame(i) {
+  const t = i / 30;
+  $('#prog').style.width = (100 * t / TL.total) + '%';
+  for (const sc of $$('.scene')) {
+    const s = S(sc.id.slice(2)); const o = fade(t, s.s, s.e, .45);
+    sc.style.display = o > 0 ? 'block' : 'none'; sc.style.opacity = o;
+  }
+  // smog: thick in the hook, thin under the story, gone at the close; the clear sky comes in at the close
+  const smogO = t < S('meet').s ? .9 : t < S('close').s ? .35 : .35 * (1 - seg(t, S('close').s, S('close').s + 3));
+  const sm = $('#smog'); sm.style.opacity = smogO * Math.min(1, seg(t, 0, 2.5) + (t > 3 ? 1 : 0));
+  $$('#smog i').forEach((b, k) => { b.style.transform = `translate(${Math.sin(t * .11 + k) * 140}px, ${Math.cos(t * .09 + k * 2) * 90}px)`; });
+  $('#sky').style.opacity = t < S('close').s ? 0 : fade(t, S('close').s + .5, S('close').e + 2, 2.2);
+
+  // 1. hook
+  if (t < S('hook').e + .5) {
+    const h1 = V('hook1'), h2 = V('hook2'), h3 = V('hook3');
+    const n = Math.round(14000 * eo(seg(t, h1.s - .2, h1.s + 1.2)));
+    $('#n14').textContent = n.toLocaleString('en-US');
+    $('#n14').style.opacity = seg(t, h1.s - .4, h1.s);
+    ap($('#l14'), t, h2.s, .7, 20);
+    const up = eio(seg(t, h3.s - .3, h3.s + .6));
+    $('#hookWrap').style.transform = `translateY(${-170 * up}px) scale(${1 - .3 * up})`;
+    ap($('#almaty'), t, h3.s + .7, .7, 40);
+    ap($('#hSrc'), t, h2.s + 1.5, .8, 0);
+  }
+  // 2. problem
+  if (t > S('problem').s - 1 && t < S('problem').e + 1) {
+    const p = V('problem');
+    ap($('#pTitle'), t, p.s, .6, 20);
+    $$('#docs i').forEach((d, k) => { const a = p.s + .2 + (k % 15) * .05 + Math.floor(k / 15) * .14; const q = eo(seg(t, a, a + .3)); d.style.opacity = q; d.style.transform = `scale(${.6 + .4 * q})`; });
+    const dim = seg(t, p.s + p.d * .55, p.s + p.d * .55 + .6);
+    $('#docs').style.filter = `blur(${7 * dim}px)`; $('#docs').style.opacity = 1 - .65 * dim;
+    ap($('#pOne'), t, p.s + p.d * .62, .6, 30);
+  }
+  // 3. meet
+  if (t > S('meet').s - 1 && t < S('meet').e + 1) {
+    const m = V('meet'), split = m.s + 1.9;
+    const lp = eo(seg(t, m.s - .1, m.s + .7)), up = eio(seg(t, split, split + .7));
+    $('#logo').style.opacity = lp * (1 - up); $('#logo').style.transform = `scale(${.92 + .08 * lp - .1 * up}) translateY(${-60 * up}px)`;
+    $$('#cast .who').forEach((w, k) => { ap(w, t, split + .45 + k * .3, .6, 50); w.classList.toggle('on', t > S('meet').e - 1.1 && w.dataset.k === 'dana'); });
+  }
+  // 4. arman
+  if (t > S('arman').s - 1 && t < S('arman').e + 1) {
+    const a1 = V('arman1'), a2 = V('arman2'), a3 = V('arman3');
+    ap($('#aPhone'), t, S('arman').s + .2, .8, 60);
+    ap($('#aConcept'), t, S('arman').s + .8, .6, 10);
+    ap($('#pDrv'), t, TL.cue.push, .55, -160, a3.s);
+    ap($('#aCol1'), t, a2.s, .3, 0, a3.s);
+    ap($('#aBest'), t, a2.s + .2, .5, 30); ap($('#aWorst'), t, a2.s + 1.3, .5, 30);
+    ap($('#a7'), t, TL.cue.jam - .2, .6, 30);
+    ap($('#pJam'), t, TL.cue.jam, .55, -60, a3.s);
+    ap($('#aCol2'), t, a3.s + .1, .6, 30);
+    ap($('#pRide'), t, a3.s + a3.d * .45, .55, -160);
+  }
+  // 5. aliya
+  if (t > S('aliya').s - 1 && t < S('aliya').e + 1) {
+    const l1 = V('aliya1'), l2 = V('aliya2'), l3 = V('aliya3');
+    ap($('#wPhone'), t, S('aliya').s + .2, .8, 60);
+    const show = (el, at) => { el.style.display = t >= at ? (el.classList.contains('typing') ? 'flex' : 'block') : 'none'; };
+    show($('#w1'), TL.cue.wSent); $('#wTy').style.display = t >= TL.cue.wSent + .7 && t < TL.cue.wReply ? 'flex' : 'none';
+    $$('#wTy i').forEach((d, k) => { d.style.opacity = .35 + .65 * Math.abs(Math.sin(t * 5 + k)); });
+    show($('#w2'), TL.cue.wReply);
+    ap($('#wCol'), t, TL.cue.wSent, .4, 0, l2.s + .3);
+    ap($('#wQ'), t, TL.cue.wSent, .5, 30); ap($('#wA'), t, TL.cue.wReply, .5, 30);
+    // the call
+    const callOn = seg(t, l2.s + .4, l2.s + 1.0);
+    $('#wCall').style.opacity = callOn;
+    const ring = TL.cue.ring, pick = TL.cue.pick, hang = TL.cue.hang;
+    let st = 'WhatsApp voice call · Calling…';
+    if (t >= pick) { const s = Math.max(0, Math.floor(t - pick)); st = `WhatsApp voice call · 00:${String(s).padStart(2, '0')}`; }
+    if (t >= hang) st = 'Call ended';
+    $('#callSt').textContent = st;
+    const lines = TL.call; let cur = null;
+    for (const c of lines) if (t >= V(c.id).s - .15 && t < Ve(c.id) + .5) cur = c;
+    const speaking = cur && t < Ve(cur.id);
+    $$('#wave i').forEach((b, k) => { const h = speaking && cur.who === 'taza' ? 14 + 90 * Math.abs(Math.sin(t * 9 + k * .8) * Math.sin(t * 3.1 + k)) : speaking ? 10 + 30 * Math.abs(Math.sin(t * 8 + k)) : 8; b.style.height = h + 'px'; b.style.opacity = t >= pick && t < hang ? 1 : .25; });
+    const inCall = t >= pick - .2 && t < hang;
+    $('#sub').style.opacity = inCall && cur ? 1 : 0;
+    if (cur) {
+      $('#subWho').textContent = cur.who === 'taza' ? 'Taza Copilot' : 'Aliya';
+      $('#subLang').textContent = cur.lang.toUpperCase();
+      $('#subSay').textContent = cur.say; $('#subSay').className = 'say' + (cur.lang === 'en' ? '' : ' cy');
+      $('#subEn').textContent = cur.lang === 'en' ? '' : cur.sub;
+      const p = eo(seg(t, V(cur.id).s - .15, V(cur.id).s + .3)); $('#subSay').style.opacity = p; $('#subEn').style.opacity = p;
+    }
+    $('#langRow').style.opacity = inCall ? 1 : 0;
+    $$('#langRow span').forEach(s => s.classList.toggle('on', !!cur && cur.lang === s.dataset.l));
+    $('#reen').style.opacity = fade(t, l2.s + .5, l3.s + .5, .4);
+    ap($('#callEnd'), t, l3.s + .1, .6, 30);
+    ap($('#ringTxt'), t, l2.s + 1.0, .5, 20, pick - .1);
+  }
+  // 6. telegram
+  if (t > S('tg').s - 1 && t < S('tg').e + 1) {
+    const g = V('tg');
+    ap($('#tPhone'), t, S('tg').s + .2, .8, 60);
+    const msgs = $$('#tMsgs .m'); const at = [g.s + .2, g.s + g.d * .2, g.s + g.d * .28, g.s + g.d * .42, g.s + g.d * .52];
+    msgs.forEach((m, k) => { m.style.display = t >= at[k] ? 'block' : 'none'; });
+    $('#tKb').style.display = t >= g.s + g.d * .74 ? 'grid' : 'none';
+    $$('#tCol .tick').forEach((x, k) => ap(x, t, [g.s + .3, g.s + g.d * .22, g.s + g.d * .42, g.s + g.d * .74, g.s + g.d * .83, g.s + g.d * .9][k], .5, 0, 1e9, -40));
+  }
+  // 7. dana
+  if (t > S('dana').s - 1 && t < S('dana').e + 1) {
+    const d1 = V('dana1'), d2 = V('dana2'), d3 = V('dana3');
+    ap($('#dCol1'), t, d1.s + d1.d * .45, .5, 0, d2.s);
+    $$('#dCol1 .card').forEach((c, k) => ap(c, t, d1.s + d1.d * .45 + k * .5, .5, 30));
+    $$('#dCol2 .tick').forEach((x, k) => ap(x, t, [d2.s + d2.d * .45, d2.s + d2.d * .55, d2.s + d2.d * .78, d3.s + .2, d3.s + d3.d * .55, d3.s + d3.d * .75, V('voice').s + .3][k], .5, 0, 1e9, -40));
+    ap($('#dBr'), t, d2.s - .2, .7, 60);
+    ap($('#dBadge'), t, d2.s + .9, .45, -20, d2.s + d2.d * .7);
+    montage($('#dBr'), [
+      { n: 'answer', z0: 1.22, z1: 1.3, o: '35% 88%', w: 3.2 }, { n: 'quote', z0: 1.4, z1: 1.5, o: '38% 35%', w: 2.4 },
+      { n: 'compare_city', z0: 1.35, z1: 1.42, o: '22% 18%' }, { n: 'compare_dist', z0: 1.35, z1: 1.42, o: '22% 18%' }, { n: 'check', z0: 1.35, z1: 1.42, o: '62% 42%' }, { n: 'brief', z0: 1.3, z1: 1.38, o: '45% 22%' },
+      { n: 'map', z0: 1.1, z1: 1.18, o: '45% 50%' }, { n: 'schools', z0: 1.3, z1: 1.36, o: '30% 20%' }, { n: 'outdoor', z0: 1.3, z1: 1.36, o: '30% 15%' }, { n: 'widget', z0: 1.25, z1: 1.3, o: '45% 25%' },
+    ], t, d2.s, V('voice').s - .2, { hideLast: true });
+    montage($('#dBr'), [{ n: 'voice', z0: 1.2, z1: 1.3, o: '100% 100%' }], t, V('voice').s - .2, S('dana').e, { slideIn: true, z: 20 });
+  }
+  // 8. admin
+  if (t > S('admin').s - 1 && t < S('admin').e + 1) {
+    const a = V('admin');
+    ap($('#adBr'), t, S('admin').s + .1, .7, 60);
+    $$('#adCol .tick').forEach((x, k) => ap(x, t, [a.s + a.d * .3, a.s + a.d * .52, a.s + a.d * .68, a.s + a.d * .78][k], .5, 0, 1e9, -40));
+    montage($('#adBr'), [
+      { n: 'admin_form', z0: 1.35, z1: 1.42, o: '45% 30%' }, { n: 'admin_done', z0: 1.45, z1: 1.52, o: '45% 44%' },
+      { n: 'admin_lib', z0: 1.35, z1: 1.42, o: '35% 20%' }, { n: 'admin_src', z0: 1.35, z1: 1.42, o: '40% 35%' },
+    ], t, S('admin').s, S('admin').e);
+  }
+  // 9. dashboard
+  if (t > S('dash').s - 1 && t < S('dash').e + 1) {
+    const d = V('dash');
+    ap($('#dsBr'), t, S('dash').s + .1, .7, 60);
+    $$('#ctr > div').forEach((c, k) => {
+      const at = d.s + [d.d * .3, d.d * .62, d.d * .8, d.d * .9][k]; ap(c, t, at, .5, 30);
+      const b = c.querySelector('b'), n = +b.dataset.n, p = eo(seg(t, at, at + .9));
+      b.textContent = p >= 1 ? b.dataset.f : (n % 1 ? (n * p).toFixed(1) : Math.round(n * p));
+    });
+    montage($('#dsBr'), [{ n: 'dash_top', z0: 1.35, z1: 1.45, o: '35% 12%' }, { n: 'dash_eval', z0: 1.4, z1: 1.48, o: '30% 40%' }], t, S('dash').s, S('dash').e);
+  }
+  // 10. cost
+  if (t > S('cost').s - 1 && t < S('cost').e + 1) {
+    const c = V('cost');
+    ap($('#cBr'), t, S('cost').s + .1, .7, 60);
+    $$('#provs span').forEach((s, k) => { ap(s, t, c.s + .3 + k * .45, .4, 20); s.classList.toggle('on', k === 4 && t > c.s + c.d * .45); });
+    ap($('#cOl'), t, c.s + c.d * .5, .5, 30); ap($('#cPer'), t, c.s + c.d * .62, .5, 30); ap($('#cHost'), t, c.s + c.d * .8, .5, 30);
+    montage($('#cBr'), [{ n: 'ai', z0: 1.4, z1: 1.5, o: '25% 30%' }], t, S('cost').s, S('cost').e);
+  }
+  // 11-13
+  if (t > S('metric').s - 1 && t < S('metric').e + 1) {
+    const m = V('metric');
+    ap($('#mWrap h6'), t, S('metric').s + .2, .5, 10); ap($('#mWrap .l1'), t, m.s, .6, 30); ap($('#mWrap .l2'), t, m.s + m.d * .5, .6, 30);
+  }
+  if (t > S('close').s - 1 && t < S('close').e + 1) {
+    const c = V('close'); const ds = $$('#cWrap div');
+    ap(ds[0], t, c.s, .7, 30); ap(ds[1], t, c.s + c.d * .45, .7, 30);
+  }
+  if (t > S('thanks').s - 1) {
+    const th = V('thanks');
+    ap($('#ty h1'), t, S('thanks').s + .2, .7, 30);
+    $$('#qrs > div').forEach((q, k) => ap(q, t, th.s + 1.0 + k * .3, .6, 40));
+    ap($('#tryNow'), t, th.s + 2.2, .6, 20);
+    const a = ap($('#aimira'), t, th.s + th.d * .7, .7, 0);
+    $('#aimira').style.transform = `translateX(-50%) scale(${.9 + .1 * a})`;
+    ap($('#team'), t, th.s + 1.5, .8, 0);
+  }
+}
+</script>
+</body></html>

@@ -1,0 +1,140 @@
+{
+ "y_hook1": {
+  "id": "y_hook1",
+  "text": "[serious] Fourteen thousand premature deaths a year in Kazakhstan are linked to air pollution.",
+  "hash": "d5d1609c10",
+  "dur": 5.329
+ },
+ "y_hook2": {
+  "id": "y_hook2",
+  "text": "[quietly] Up to twenty-one hundred of them... in Almaty alone.",
+  "hash": "c06b986020",
+  "dur": 3.709
+ },
+ "y_intro": {
+  "id": "y_intro",
+  "text": "The answers that could protect people are buried in a hundred and fifty sources from A-A-I. Taza Copilot finds them in seconds. Meet three people.",
+  "hash": "a10fbeee46",
+  "dur": 10.109
+ },
+ "y_dana1": {
+  "id": "y_dana1",
+  "text": "On November second, a Tengrinews journalist sent A-A-I six questions. Answering them took the team about five hours: six pages, twenty-three sources.",
+  "hash": "ea1e16c82c",
+  "dur": 10.449
+ },
+ "y_dana2": {
+  "id": "y_dana2",
+  "text": "So we asked Taza the same six questions. Live, on the platform.",
+  "hash": "12937fa4e7",
+  "dur": 4.989
+ },
+ "y_aliya1": {
+  "id": "y_aliya1",
+  "text": "Aliya has two kids. She doesn't open websites. She texts Taza on WhatsApp, like a friend. In Russian, English, or Kazakh.",
+  "hash": "944349d7b8",
+  "dur": 8.438
+ },
+ "y_aliya2": {
+  "id": "y_aliya2",
+  "text": "And when her hands are full... she just calls.",
+  "hash": "b14a0cd759",
+  "dur": 3.004
+ },
+ "y_tg1": {
+  "id": "y_tg1",
+  "text": "On Telegram: a daily air card for the school, questions by voice, and rumours fact-checked.",
+  "hash": "6042dfcd57",
+  "dur": 6.113
+ },
+ "y_tg2": {
+  "id": "y_tg2",
+  "text": "Air near me, saved places, alerts, and inline in any chat.",
+  "hash": "03255ea559",
+  "dur": 4.598
+ },
+ "y_arman1": {
+  "id": "y_arman1",
+  "text": "Nine p.m. Arman is driving the evening rush for inDrive. Taza tells him the air right now, the worst hours, and the cleanest.",
+  "hash": "83d29cef0e",
+  "dur": 8.124
+ },
+ "y_arman2": {
+  "id": "y_arman2",
+  "text": "Stuck in traffic? Shut the windows. With them open, drivers breathe air seven times dirtier than pedestrians. [pause] A-A-I's research, page five.",
+  "hash": "c3debf3213",
+  "dur": 10.919
+ },
+ "y_arman3": {
+  "id": "y_arman3",
+  "text": "One call to Taza's partner API. For every driver and rider, in three languages.",
+  "hash": "55a4a510ac",
+  "dur": 6.034
+ },
+ "y_admin1": {
+  "id": "y_admin1",
+  "text": "Behind it all: the A-A-I team. One person, no code. Upload a report, and Taza quotes it seconds later, with a five-point summary for subscribers.",
+  "hash": "193fc52fdf",
+  "dur": 11.964
+ },
+ "y_admin2": {
+  "id": "y_admin2",
+  "text": "It checks air.org.kz every day, hides an outdated source in one click, and shows what nobody could answer yet.",
+  "hash": "8ebafdc589",
+  "dur": 7.811
+ },
+ "y_proof": {
+  "id": "y_proof",
+  "text": "Every answer is measured: forty-four out of forty-four correct. Any AI provider works, or a local model, where the AI cost is zero. Hosting: about seven dollars a month.",
+  "hash": "acffbebd35",
+  "dur": 13.244
+ },
+ "y_metric": {
+  "id": "y_metric",
+  "text": "[serious] From hours of reading reports... to a sourced answer in seconds.",
+  "hash": "10eac7f045",
+  "dur": 4.362
+ },
+ "y_thanks": {
+  "id": "y_thanks",
+  "text": "Thank you. Try it, right now. [pause] And now... over to Aimira.",
+  "hash": "8f2fcf23e4",
+  "dur": 6.609
+ },
+ "c4_en_q": {
+  "id": "c4_en_q",
+  "text": "Hi Taza! Can my kids walk to school this morning?",
+  "hash": "ff1fcdd9d6",
+  "dur": 3.082
+ },
+ "c4_en_a": {
+  "id": "c4_en_a",
+  "text": "Yes, the morning is one of the cleanest times today. Avoid eight to ten in the evening.",
+  "hash": "ef4749348d",
+  "dur": 5.329
+ },
+ "c4_ru_q": {
+  "id": "c4_ru_q",
+  "text": "А какая школа в Алматы с самым грязным воздухом?",
+  "hash": "474781aa64",
+  "dur": 3.004
+ },
+ "c4_ru_a": {
+  "id": "c4_ru_a",
+  "text": "По исследованию AAI — школа номер сто пятьдесят шесть, в Алатауском районе.",
+  "hash": "0d9450b09f",
+  "dur": 5.146
+ },
+ "c4_kk_q": {
+  "id": "c4_kk_q",
+  "text": "Ал 2025 жылы қай ауданда ауа ең лас болды?",
+  "hash": "f95be7166e",
+  "dur": 3.788
+ },
+ "c4_kk_a": {
+  "id": "c4_kk_a",
+  "text": "Түрксіб ауданы: орташа PM2.5 қырық алты бүтін сегіз микрограмм, Бостандықтан екі еседен астам жоғары.",
+  "hash": "370aaff90a",
+  "dur": 8.516
+ }
+}
