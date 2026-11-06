@@ -16,14 +16,14 @@ on that page**. If the research does not cover the question, it says so instead 
 
 > Metric: the time to a sourced answer goes from hours of reading reports to seconds.
 
-### ▶ Watch: the whole platform in under 2 minutes
+### ▶ Watch: Taza Copilot in 3:28
 
-[![Taza Copilot, the full video (1:51)](docs/video/taza-copilot-full.jpg)](docs/video/taza-copilot-full.mp4)
+[![Taza Copilot, the video (3:28)](docs/video/taza-copilot-video.jpg)](docs/video/taza-copilot-video.mp4)
 
-[`docs/video/taza-copilot-full.mp4`](docs/video/taza-copilot-full.mp4), 1:51 with a voice-over. Part 1 is the
-platform on real screenshots of the live site; part 2 is the Taza for inDrive concept. Made from
-[`video/full/`](video/full): `capture.mjs` (screenshots of the live site), `vo.mjs` (voice-over in Taza's voice),
-`build.mjs` (renders frame by frame and mixes the voice, a music bed that ducks under it, and effects).
+[`docs/video/taza-copilot-video.mp4`](docs/video/taza-copilot-video.mp4) · also on
+[Google Drive](https://tinyurl.com/Copilot-Video). A journalist, a mother and an inDrive driver ask Taza: the
+journalist's real questions answered live on the platform, the Telegram bot, Taza for inDrive, and a WhatsApp chat
+and call in English, Russian and Kazakh.
 
 ## What it does
 
