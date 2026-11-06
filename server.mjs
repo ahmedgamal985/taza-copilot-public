@@ -718,8 +718,12 @@ data: ${JSON.stringify(data)}
         const score = list.map(b => [...new Set(tokenize(b).filter(w => words.has(w)))].reduce((s, w) => s + idf(w), 0)
           + (/\d\s?(мкг|µg|μg|%|раз|times|есе|тыс|мың|thousand)/i.test(b) ? 2 : 0));
         const i = score.indexOf(Math.max(...score));
-        // best paragraph first, then the ones after it, then the one before it, kept in their original order
-        const order = [i, i + 1, i + 2, i - 1, i + 3, i - 2].filter(k => k >= 0 && k < list.length);
+        // the second-best paragraph somewhere else in the text: a summary line ("Turksib … 776 cigarettes") and the
+        // explanation further down often both match, and the figure asked about may be in either
+        const j = score.map((s, k) => [s, k]).filter(([, k]) => k < i - 1 || k > i + 2).sort((a, b) => b[0] - a[0])[0]?.[1];
+        // best paragraph first, the one after it, the second-best and the one after it, then the rest around the best,
+        // kept in their original order
+        const order = [i, i + 1, j, j + 1, i + 2, i - 1, i + 3, i - 2].filter(k => k != null && k >= 0 && k < list.length);
         const keep = new Set(); let len = 0;
         for (const k of order) { if (len && len + list[k].length > 2800) continue; keep.add(k); len += list[k].length; if (len > 2500) break; }
         const text = [...keep].sort((a, b) => a - b).map(k => list[k]).join(' ').slice(0, 2900);
@@ -742,7 +746,9 @@ data: ${JSON.stringify(data)}
       };
       const results = found.slice(0, k).map((r, i) => { const w = whole(r); return { n: i + 1, title: r.title, page: w.page, url: w.url,
         answer_to_question: w.section ? `${w.section.n}: ${w.section.q}` : undefined, published_online: r.url ? undefined : false, lang: r.lang, date: r.date || null,
-        text: w.text }; });
+        text: w.text }; })
+        // two sections of one report can now lead to the same best paragraph: the copy goes, and the numbering follows
+        .filter((r, i, all) => all.findIndex(x => x.text === r.text) === i).map((r, i) => ({ ...r, n: i + 1 }));
       // A passage that points to another publication Taza has (an AAI project page → its special project with The
       // Steppe, which holds the figures) brings that publication's best-matching passage too, so an assistant whose
       // search words missed it still gets the detailed answer (at most two added)
