@@ -61,6 +61,13 @@ check('HTML tags balanced', [d, rr, n].every(tags));
 // Untick the role: it goes away, the morning alert stays on
 queue.push(cb(8080, 'al:role:driver')); await wait(out.length + 1);
 check('driver unticked', kb(out.at(-1)).includes("🚗 I'm a driver") && kb(out.at(-1)).includes('✅ Morning alert: on'), kb(out.at(-1)).join(' | '));
+// First visit from a phone set to Russian: the welcome in Russian, then the language picker in all three languages
+out.length = 0;
+queue.push({ update_id: uid++, message: { message_id: ++mid, chat: { id: 6060, type: 'private' }, from: { id: 6060, is_bot: false, first_name: 'R', language_code: 'ru' }, date: 0, text: '/start' } });
+await wait(2);
+const first = out.filter(m => String(m.chat_id) === '6060');
+check('first /start: welcome in the phone\'s language (ru)', /русск|Просто напишите|вопрос/i.test(first[0]?.text || ''), (first[0]?.text || '').slice(0, 60));
+check('first /start: language picker asked in ru, kk and en', /Выберите язык/.test(first.at(-1)?.text || '') && /Тілді таңдаңыз/.test(first.at(-1)?.text || '') && /Choose your language/.test(first.at(-1)?.text || '') && kb(first.at(-1)).length === 3);
 console.log('\n--- driver alert ---\n' + d + '\n\n--- rider alert (ru) ---\n' + rr);
 console.log(`\n${ok}/${ok + bad} passed`);
 bot.stop?.(); mock.close(); process.exit(bad ? 1 : 0);

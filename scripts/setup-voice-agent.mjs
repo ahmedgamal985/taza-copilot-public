@@ -72,7 +72,7 @@ const TOOLS = [
   },
   {
     type: 'client', name: 'open_page', expects_response: false,
-    description: 'Open a page of the platform: ask (question page), map, schools (schools and kindergartens ranked by air now), history (the past questions and calls of this user, kept only in their browser), dashboard (accuracy dashboard, hours saved, unanswered questions), sources (all 100 reports and articles), about (about and privacy), widget (the one line of code that puts Taza on any website), ai (choose the AI model or use your own key), indrive (the Taza for inDrive concept: driver and rider phones and a short video). For Compare and Best time use compare_air and best_time.',
+    description: 'Open a page of the platform: ask (question page), map, schools (schools and kindergartens ranked by air now), history (the past questions and calls of this user, kept only in their browser), dashboard (accuracy dashboard, hours saved, unanswered questions), sources (all AAI reports, articles and projects, about 150), about (about and privacy), widget (the one line of code that puts Taza on any website), ai (choose the AI model or use your own key), indrive (the Taza for inDrive concept: driver and rider phones and a short video). For Compare and Best time use compare_air and best_time.',
     parameters: { type: 'object', required: ['page'], properties: {
       page: { type: 'string', enum: ['ask', 'map', 'schools', 'history', 'dashboard', 'sources', 'about', 'widget', 'ai', 'indrive'], description: 'Which page to open.' } } },
   },
@@ -92,7 +92,7 @@ How you work:
   open the windows today; open_page for the schools ranking (which schools have the dirtiest air now), the user's history, the
   dashboard, the list of reports, about and privacy, the website widget, choosing the AI, or the Taza for inDrive concept. Say what you are showing while you show it.
 - You can reach every part of the platform. If the user asks what Taza can do, or about a feature, explain it briefly and offer to
-  show it. The platform: sourced answers from 100 AAI reports and articles with exact quotes and pages; "Check a claim" (paste a
+  show it. The platform: sourced answers from about 150 AAI reports, articles and projects with exact quotes and pages; "Check a claim" (paste a
   statement, get supported or contradicted with the quote); the live air bar at the top; the live map of 150+ sensors with a 24-hour
   card each; Best time to go out today; Compare; schools and kindergartens ranked by air now; the accuracy dashboard; a one-page
   policy brief, share link, quote card and APA citation for any answer; history kept only in the user's browser, exportable to
@@ -112,8 +112,15 @@ How you work:
   groups, 70 to 140 unhealthy, above 140 very unhealthy.
 - After answering, you may offer one next step, like "Want me to show it on the map?".
 - Speak naturally and briefly, like a friendly expert. No lists, no markdown, no reading out links.
-- Languages: English, Russian and Kazakh. Always reply in the language the user is speaking; if they switch, switch with them.
-  Say numbers and units naturally in that language (for example "микрограммов на кубический метр").`;
+- Languages: English, Russian and Kazakh. Your first line asks which one the user prefers. Then reply in the language they
+  chose or are speaking; if they switch, or ask you to switch ("по-русски", "қазақша", "in English"), switch at once and keep
+  it. Never say you can only speak one language. Say numbers and units naturally in that language (for example "микрограммов
+  на кубический метр").
+- Kazakh: short, simple sentences and common words. If the user says they did not understand, offer to continue in Russian.
+- Never promise to check something later or follow up: answer now from your tools, or say clearly what they do not cover.`;
+
+// The opening line: hello in Russian, Kazakh and English, then the choice of language
+const OPENING = 'Здравствуйте! Сәлеметсіз бе! Hello! Это Taza, помощник Almaty Air Initiative по воздуху Алматы. По-русски, қазақша или in English?';
 
 const saved = existsSync(SAVE) ? JSON.parse(readFileSync(SAVE, 'utf8')) : {};
 const toolIds = {};
@@ -138,7 +145,8 @@ const agentBody = {
   platform_settings: { auth: { enable_auth: true } },
   conversation_config: {
     agent: {
-      first_message: "Hi, I'm Taza, Almaty's air assistant. Ask me anything about the air, or say: show me the map.",
+      // The user picks the language first (the same opening as the WhatsApp calls), in all three languages
+      first_message: OPENING,
       language: 'en',
       prompt: {
         prompt: PROMPT, llm: process.env.ELEVENLABS_LLM || 'claude-haiku-5-5', tool_ids: Object.values(toolIds),
@@ -148,10 +156,11 @@ const agentBody = {
       },
     },
     // eleven_v4_turbo is the real-time model whose language list includes Russian and Kazakh
-    tts: { voice_id: process.env.ELEVENLABS_VOICE_ID || 'hpp4J3VqNfWAUOO0d1Us', model_id: 'eleven_v4_turbo' },
+    // Aruzhan, a Kazakh voice (the same one the WhatsApp calls use): an English voice made Kazakh hard to follow
+    tts: { voice_id: process.env.ELEVENLABS_VOICE_ID || 'eXEr1iiK7vnX4qM1sNwu', model_id: 'eleven_v4_turbo' },
     language_presets: {
-      ru: { overrides: { agent: { first_message: 'Привет, я Таза, помощник по качеству воздуха в Алматы. Спросите меня о воздухе или скажите: покажи карту.' } } },
-      kk: { overrides: { agent: { first_message: 'Сәлеметсіз бе, мен Тазамын, Алматы ауасы бойынша көмекшімін. Ауа туралы сұраңыз немесе «картаны көрсет» деңіз.' } } },
+      ru: { overrides: { agent: { first_message: OPENING } } },
+      kk: { overrides: { agent: { first_message: OPENING } } },
     },
   },
 };
