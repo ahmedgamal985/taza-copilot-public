@@ -674,7 +674,12 @@ data: ${JSON.stringify(data)}
       if (q.length < 2) return send(req, res, 200, { found: 0, results: [], error: 'No search words were sent. Call taza_search_research again with the question in q, as keywords in English, Russian and Kazakh separated by |, for example: kebab houses air | шашлычные воздух | кәуапхана ауа.' });
       const lang = ['en', 'ru', 'kk'].includes(url.searchParams.get('lang')) ? url.searchParams.get('lang') : null;
       const k = Math.min(8, Math.max(1, Number.parseInt(url.searchParams.get('k'), 10) || 5));
-      const queries = q.split('|').map(s => s.trim()).filter(s => s.length > 1).slice(0, 4);
+      // An assistant often searches with the question itself ("сколько машин в Алматы"); AAI's reports say "registered
+      // vehicles" ("зарегистрировано автомобилей", "тіркелген автокөлік"), so a question about cars gets those words too
+      const CARS = /\b(cars?|vehicles?)\b|машин|автомобил|көлік/i;
+      const reportWords = s => !CARS.test(s) ? s
+        : /[әғқңөұүһі]/i.test(s) ? `${s} тіркелген автокөлік саны` : /[а-яё]/i.test(s) ? `${s} зарегистрировано автомобилей` : `${s} vehicles registered`;
+      const queries = q.split('|').map(s => s.trim()).filter(s => s.length > 1).slice(0, 4).map(reportWords);
       let found = search(index, queries, { limit: 12, maxPerDoc: 2, neighbors: true, fresh: SEARCH_OPTS.fresh });
       // The asker's language first, when the research exists in it
       if (lang) found = [...found.filter(r => r.lang === lang), ...found.filter(r => r.lang !== lang)];
