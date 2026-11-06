@@ -1,0 +1,21 @@
+node_modules/
+.env
+data/log.jsonl
+data/aai-cache.json
+data/tg-users.json
+data/shared.json
+data/tg-alerts.json
+data/tg-places.json
+data/tg-groups.json
+data/uploads/
+.wrangler/
+
+# Concept video: render output (the final MP4 lives in public/video)
+video/out/
+video/ask.raw
+
+# Full video: render output and screenshots (reproducible with video/full/capture.mjs; the final MP4 is in docs/video)
+video/full/out/
+video/full/shots/
+video/full/shots_v/
+video/full/*.png

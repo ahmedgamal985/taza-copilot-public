@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Taza Copilot</title>
+  <meta name="description" content="Ask Almaty Air Initiative's research anything. Get the exact quote, the page, and the link.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2730%27 fill=%27%23C1F11D%27/%3E%3Crect x=%2724%27 y=%2722%27 width=%2714%27 height=%2714%27 rx=%273%27 fill=%27%23141414%27/%3E%3Crect x=%2724%27 y=%2742%27 width=%2714%27 height=%2736%27 rx=%273%27 fill=%27%23141414%27/%3E%3Cpath d=%27M44 25a3 3 0 0 1 3-3h9a28 28 0 0 1 0 56h-9a3 3 0 0 1-3-3v-8a3 3 0 0 1 3-3h9a14 14 0 0 0 0-28h-9a3 3 0 0 1-3-3z%27 fill=%27%23141414%27/%3E%3C/svg%3E">
+  <meta name="theme-color" content="#141414">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Taza">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="stylesheet" href="vendor/leaflet.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="/">
+      <span class="logo" aria-hidden="true"></span>
+      <span class="brand-name">Taza Copilot<small>inDrive × AAI</small></span>
+    </a>
+    <span id="status" class="status"></span>
+    <button id="menuBtn" class="icon-btn" aria-label="Menu" data-i18n-aria="menu" aria-expanded="false">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </header>
+
+  <nav id="menu" class="menu" hidden>
+    <button id="tourMenu" type="button" data-i18n="tour_btn">▶ Guided tour</button>
+    <button data-view="map" data-i18n="m_map">Air now (map)</button>
+    <button data-view="ai" data-i18n="m_ai">AI model</button>
+    <button data-view="schools" data-i18n="m_schools">Schools</button>
+    <button data-view="compare" data-i18n="m_compare">Compare</button>
+    <button data-view="outdoor" data-i18n="m_outdoor">Best time to go out</button>
+    <button data-view="indrive" data-i18n="m_indrive">Taza for inDrive</button>
+    <button data-view="history" data-i18n="m_history">History</button>
+    <button data-view="dashboard" data-i18n="m_dash">Accuracy dashboard</button>
+    <button data-view="widget" data-i18n="m_widget">Widget for websites</button>
+    <button data-view="sources" data-i18n="m_sources">Sources</button>
+    <button data-view="about" data-i18n="m_about">About and privacy</button>
+    <button id="installBtn" class="menu-install" type="button" hidden data-i18n="pwa_install">📲 Install the app</button>
+    <p id="installHint" class="menu-hint" hidden data-i18n="pwa_ios"></p>
+    <a class="menu-link" href="admin.html">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+      <span data-i18n="m_admin">Admin: add research</span>
+    </a>
+    <a id="tgLink" class="menu-link" href="#" target="_blank" rel="noopener" hidden>
+      <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#29A9EB"/><path d="M5.6 11.7l10.9-4.2c.5-.2 1 .1.8.9l-1.9 8.8c-.1.6-.5.8-1 .5l-2.8-2.1-1.4 1.3c-.2.2-.3.3-.6.3l.2-2.9 5.3-4.8c.2-.2-.1-.3-.4-.1l-6.5 4.1-2.8-.9c-.6-.2-.6-.6.2-.9z" fill="#fff"/></svg>
+      <span data-i18n="m_telegram">Open in Telegram</span>
+    </a>
+    <a id="waLink" class="menu-link" href="https://wa.me/201509000921" target="_blank" rel="noopener">
+      <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#25D366"/><path d="M12 5.3a6.6 6.6 0 0 0-5.7 10l-.9 3.3 3.4-.9A6.6 6.6 0 1 0 12 5.3zm3.9 9.3c-.2.5-1 .9-1.4.9-.4.1-.8.1-1.3 0-.3-.1-.7-.2-1.2-.4a8.9 8.9 0 0 1-3.4-3c-.3-.4-.7-1.1-.7-1.9 0-.8.4-1.2.6-1.4.2-.2.4-.2.5-.2h.4c.1 0 .3 0 .4.3l.6 1.4c.1.1.1.3 0 .4l-.2.4-.3.3c-.1.1-.2.2-.1.4.1.2.6 1 1.3 1.6.9.8 1.6 1 1.8 1.1.2.1.4.1.5-.1l.6-.7c.1-.2.3-.2.5-.1l1.3.6c.2.1.3.1.4.2.1.1.1.6-.1 1.1z" fill="#fff"/></svg>
+      <span data-i18n="m_whatsapp">Chat on WhatsApp</span>
+    </a>
+    <div class="menu-lang" role="group" aria-label="Language">
+      <span class="menu-lang-label" data-i18n="m_lang">Language</span>
+      <div class="lang-switch">
+        <button data-lang="en" aria-pressed="true">English</button>
+        <button data-lang="ru" aria-pressed="false">Русский</button>
+        <button data-lang="kk" aria-pressed="false">Қазақша</button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Ask -->
+    <section id="view-ask" class="view">
+      <button id="livePill" class="live-pill" type="button" hidden></button>
+      <h1 data-i18n="ask_h1">Ask AAI's research anything</h1>
+      <p class="lead" data-i18n="ask_lead">Answers in seconds, with the exact quote, the page, and the link. English, Русский, Қазақша.</p>
+      <div id="savedLine" class="hero-stats" hidden></div>
+      <div class="hero-acts">
+        <button id="tourBtn" type="button" class="tour-start" data-i18n="tour_btn">▶ Guided tour</button>
+        <a id="waHome" class="wa-start" href="https://wa.me/201509000921" target="_blank" rel="noopener"><span data-i18n="wa_btn">WhatsApp</span></a>
+      </div>
+      <div class="mode-tabs" role="tablist">
+        <button type="button" role="tab" data-mode="answer" aria-selected="true">💬 <span data-i18n="mode_ask">Ask</span></button>
+        <button type="button" role="tab" data-mode="factcheck" aria-selected="false">🔎 <span data-i18n="mode_check">Check a claim</span></button>
+      </div>
+      <form id="askForm" class="ask">
+        <textarea id="q" rows="2" maxlength="500" data-i18n-ph="ask_ph" placeholder="e.g. How polluted is the air near schools in winter?" required></textarea>
+        <button type="submit" id="askBtn" data-i18n="ask_btn">Ask</button>
+      </form>
+      <div id="suggest" class="chips"></div>
+      <div id="result"></div>
+    </section>
+
+    <!-- Map -->
+    <section id="view-map" class="view" hidden>
+      <h1 data-i18n="map_h1">Air now in Almaty</h1>
+      <p class="lead" id="mapNote" data-i18n="map_lead">Live PM2.5 from AAI's sensor network.</p>
+      <div class="legend">
+        <span><i class="dot good"></i>0–15 <span data-i18n="cat_good">Good</span></span>
+        <span><i class="dot moderate"></i>15–35 <span data-i18n="cat_moderate">Moderate</span></span>
+        <span><i class="dot sensitive"></i>35–70 <span data-i18n="cat_sensitive">Unhealthy for sensitive groups</span></span>
+        <span><i class="dot unhealthy"></i>70–140 <span data-i18n="cat_unhealthy">Unhealthy</span></span>
+        <span><i class="dot very"></i>140+ <span data-i18n="cat_very">Very unhealthy</span></span>
+      </div>
+      <p class="muted small" data-i18n="scale_note">PM2.5 in µg/m³. Same scale as AAI's dashboard: the WHO 2021 daily guideline (15) and Kazakhstan's daily limit (35).</p>
+      <div id="map" class="map"></div>
+    </section>
+
+    <!-- AI model -->
+    <section id="view-ai" class="view" hidden>
+      <h1 data-i18n="ai_h1">AI model</h1>
+      <p class="lead" data-i18n="ai_lead">Pick the AI that writes the answers. The search and the exact quotes work the same with every provider.</p>
+      <div id="providerList" class="providers"></div>
+      <label class="field" for="keyInput" id="keyField"><span data-i18n="ai_key">Your own API key</span> <span class="muted" data-i18n="ai_optional">(optional)</span>
+        <input id="keyInput" type="password" data-i18n-ph="ai_key_ph" placeholder="Paste your key to use your own account" autocomplete="off" spellcheck="false">
+        <small id="keyHint" class="muted" data-i18n="ai_key_hint">Saved only in this browser. It is sent with your questions to make the request and is never stored on our server.</small>
+      </label>
+      <label class="field" for="modelInput"><span data-i18n="ai_model">Model</span>
+        <input id="modelInput" list="modelOptions" data-i18n-ph="ai_model_ph" placeholder="Model name" autocomplete="off" spellcheck="false">
+        <datalist id="modelOptions"></datalist>
+        <small id="modelHint" class="muted"></small>
+      </label>
+      <div id="localInfo" class="local-info" hidden>
+        <h2 data-i18n="local_h2">Run it locally with Ollama, for free</h2>
+        <p data-i18n-html="local_p"></p>
+        <table class="hw">
+          <thead><tr><th data-i18n="hw_size">Model size</th><th data-i18n="hw_pc">Computer it needs (roughly)</th><th data-i18n="hw_q">Speed and quality</th></tr></thead>
+          <tbody>
+            <tr><td>3–4B</td><td data-i18n="hw_r1a"></td><td data-i18n="hw_r1b"></td></tr>
+            <tr><td>7–9B</td><td data-i18n="hw_r2a"></td><td data-i18n="hw_r2b"></td></tr>
+            <tr><td>12–14B</td><td data-i18n="hw_r3a"></td><td data-i18n="hw_r3b"></td></tr>
+            <tr><td>27–32B</td><td data-i18n="hw_r4a"></td><td data-i18n="hw_r4b"></td></tr>
+          </tbody>
+        </table>
+        <p class="muted" data-i18n-html="local_note"></p>
+      </div>
+      <button id="saveAi" class="primary" type="button" data-i18n="ai_use">Use this model</button>
+      <span id="aiSaved" class="muted"></span>
+    </section>
+
+    <!-- Dashboard -->
+    <section id="view-dashboard" class="view" hidden>
+      <h1 data-i18n="d_h1">Accuracy dashboard</h1>
+      <p class="lead" data-i18n="d_lead">How the copilot is doing on real questions. For the AAI team.</p>
+      <p id="addResearch" hidden><a class="primary" href="admin.html" data-i18n="d_add">Add new research</a></p>
+      <div id="stats" class="stats"></div>
+      <div id="evalBox"></div>
+      <h2 data-i18n="d_unans">Questions without an answer</h2>
+      <p class="muted" data-i18n="d_unans_lead">These show what AAI's next research could cover.</p>
+      <ul id="unanswered" class="plain"></ul>
+      <div id="gapsBox" class="gaps" hidden>
+        <h2><span data-i18n="gp_h">Research gaps</span> <button id="gapsRefresh" type="button" class="act small-act" data-i18n="gp_refresh">Regroup</button></h2>
+        <p class="muted" data-i18n="gp_lead"></p>
+        <ol id="gapsList" class="gaps-list"></ol>
+      </div>
+    </section>
+
+    <!-- The chat widget for other websites: the one line to copy, and a live preview -->
+    <section id="view-widget" class="view" hidden>
+      <h1 data-i18n="wd_h1">Taza on any website</h1>
+      <p class="lead" data-i18n="wd_lead"></p>
+      <div class="wd-grid">
+        <div>
+          <h2 data-i18n="wd_step1">1. Choose the language</h2>
+          <div class="wd-langs" role="group">
+            <button type="button" class="act" data-wl="auto" aria-pressed="true" data-i18n="wd_auto">Same as the page</button>
+            <button type="button" class="act" data-wl="en" aria-pressed="false">English</button>
+            <button type="button" class="act" data-wl="ru" aria-pressed="false">Русский</button>
+            <button type="button" class="act" data-wl="kk" aria-pressed="false">Қазақша</button>
+          </div>
+          <h2 data-i18n="wd_step2">2. Paste this one line into the website</h2>
+          <pre class="snippet"><code id="wdCode"></code></pre>
+          <button id="wdCopy" type="button" class="act wd-copy" data-i18n="wd_copy">Copy</button>
+          <h2 data-i18n="wd_what">What visitors get</h2>
+          <ul class="wd-list">
+            <li data-i18n="wd_f1"></li><li data-i18n="wd_f2"></li><li data-i18n="wd_f3"></li><li data-i18n="wd_f4"></li><li data-i18n="wd_f5"></li>
+          </ul>
+          <p class="muted small" data-i18n="wd_safe"></p>
+        </div>
+        <div>
+          <p class="muted small" data-i18n="wd_try">Try it: tap the round button in the corner.</p>
+          <div id="wdSite" class="wd-site">
+            <div class="wd-bar"><i></i><i></i><i></i> <span>air.org.kz</span></div>
+            <div class="wd-fake"><h3>Almaty Air Initiative</h3><b style="width:80%"></b><b style="width:95%"></b><b style="width:60%"></b><b style="width:88%"></b><b style="width:70%"></b></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Schools and kindergartens ranked by air now -->
+    <section id="view-schools" class="view" hidden>
+      <h1 data-i18n="sc_h1">Air at schools and kindergartens now</h1>
+      <p class="lead" data-i18n="sc_lead"></p>
+      <div id="schoolsSummary" class="stats"></div>
+      <p class="sc-acts"><button id="scAsk" class="act" type="button" data-i18n="sc_ask">What does AAI research say about schools?</button>
+        <button id="scBest" class="act" type="button" data-i18n="od_link">🕐 Best time to go out today</button></p>
+      <ol id="schoolsList" class="school-list"></ol>
+    </section>
+
+    <!-- Best time to go out today -->
+    <section id="view-outdoor" class="view" hidden>
+      <h1 id="odTitle" data-i18n="od_h1">Best time to go out today</h1>
+      <p class="lead" data-i18n="od_lead">For a walk with the kids, a run, or airing the room.</p>
+      <div id="odOut" aria-live="polite"></div>
+    </section>
+
+    <!-- Taza for inDrive (concept): the morning air message for drivers and riders, live -->
+    <section id="view-indrive" class="view" hidden>
+      <p class="id-concept" data-i18n="id_concept">Concept for inDrive</p>
+      <h1 data-i18n="id_h1">Taza inside inDrive</h1>
+      <p class="lead" data-i18n="id_lead"></p>
+      <div class="mode-tabs" role="tablist" id="idRoles">
+        <button type="button" role="tab" data-role="driver" aria-selected="true">🚗 <span data-i18n="id_driver">Driver</span></button>
+        <button type="button" role="tab" data-role="rider" aria-selected="false">🧍 <span data-i18n="id_rider">Rider</span></button>
+        <button type="button" role="tab" data-role="video" aria-selected="false">▶ <span data-i18n="id_video">How it works</span></button>
+      </div>
+      <div id="idVideo" class="id-video" hidden>
+        <video controls playsinline preload="none" poster="video/taza-indrive.jpg" aria-label="Taza inside inDrive: how it works">
+          <source src="video/taza-indrive.mp4" type="video/mp4">
+        </video>
+        <p class="muted small" data-i18n="id_video_note"></p>
+      </div>
+      <div class="id-grid">
+        <div id="idPhone" class="id-phone" aria-live="polite"></div>
+        <div class="id-side">
+          <h2 data-i18n="id_feat_h">What's inside the app</h2>
+          <ol class="id-how"><li data-i18n="id_f1"></li><li data-i18n="id_f2"></li><li data-i18n="id_f3"></li><li data-i18n="id_f4"></li><li data-i18n="id_f5"></li><li data-i18n="id_f6"></li><li data-i18n="id_f7"></li></ol>
+          <h2 data-i18n="id_why_h">Why not just "take a car"?</h2>
+          <p data-i18n="id_why"></p>
+          <blockquote id="idQuote" class="id-quote"></blockquote>
+          <p class="muted small"><a id="idSrc" href="#" target="_blank" rel="noopener"></a></p>
+          <h2 data-i18n="id_how_h">How inDrive plugs it in</h2>
+          <ol class="id-how"><li data-i18n="id_how1"></li><li data-i18n="id_how2"></li><li data-i18n="id_how3"></li></ol>
+          <pre class="snippet"><code id="idCode"></code></pre>
+          <p class="muted small" data-i18n="id_tg"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Compare: two districts, two years, or Almaty against another city -->
+    <section id="view-compare" class="view" hidden>
+      <h1 data-i18n="cp_h1">Compare the air</h1>
+      <p class="lead" data-i18n="cp_lead">Two districts, two years, or Almaty against another city, side by side. Daily PM2.5 from AAI's sensors, only on the days both sides have data.</p>
+      <div class="mode-tabs" role="tablist" id="cpTabs">
+        <button type="button" role="tab" data-cp="districts" aria-selected="true" data-i18n="cp_districts">Two districts</button>
+        <button type="button" role="tab" data-cp="years" aria-selected="false" data-i18n="cp_years">Two years</button>
+        <button type="button" role="tab" data-cp="cities" aria-selected="false" data-i18n="cp_cities">Another city</button>
+      </div>
+      <div class="cp-pick">
+        <select id="cpA" aria-label="A"></select>
+        <span class="cp-vs" data-i18n="cp_vs">vs</span>
+        <select id="cpB" aria-label="B"></select>
+        <select id="cpYear" data-i18n-aria="cp_year" aria-label="Year"></select>
+      </div>
+      <div id="cpOut" aria-live="polite"></div>
+    </section>
+
+    <!-- History (kept in this browser only) -->
+    <section id="view-history" class="view" hidden>
+      <h1 data-i18n="h_h1">Your history</h1>
+      <p class="lead" data-i18n="h_lead"></p>
+      <div class="history-tools no-print">
+        <button id="hExport" class="act" type="button" data-i18n="h_export">Export (Markdown)</button>
+        <button id="hPrint" class="act" type="button" data-i18n="h_print">Print or save as PDF</button>
+        <button id="hClear" class="act danger-act" type="button" data-i18n="h_clear">Clear history</button>
+      </div>
+      <div id="historyList" class="history-list"></div>
+    </section>
+
+    <!-- Sources -->
+    <section id="view-sources" class="view" hidden>
+      <h1 data-i18n="src_h1">Sources</h1>
+      <p class="lead" data-i18n="src_lead">The AAI reports and articles the copilot reads. Every answer links back to one of these.</p>
+      <ul id="sourceList" class="sources-list"></ul>
+    </section>
+
+    <!-- About -->
+    <section id="view-about" class="view" hidden>
+      <h1 data-i18n="about_h1">About Taza Copilot</h1>
+      <p data-i18n="about_p1"></p>
+      <p data-i18n="about_p2"></p>
+      <p class="muted" data-i18n="about_p3"></p>
+    </section>
+  </main>
+  <footer class="site-foot"><span><span class="id-mini" aria-hidden="true"></span><span data-i18n="foot_built">Built by team Smog Hunters for the inDrive Hackathon 2026</span></span><span data-i18n="foot_data">Research and sensor data: Almaty Air Initiative</span></footer>
+
+  <!-- Sensor details (opened from the map or by the voice agent) -->
+  <div id="stationSheet" class="sheet" hidden>
+    <div class="sheet-backdrop" data-close></div>
+    <div class="sheet-panel" role="dialog" aria-modal="true" aria-labelledby="stName">
+      <button class="sheet-close" data-close aria-label="Close" data-i18n-aria="close">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <div id="stationBody"></div>
+    </div>
+  </div>
+
+  <script src="i18n.js"></script>
+  <script src="print.js"></script>
+  <script src="app.js"></script>
+  <script src="tour.js"></script>
+  <script type="module" src="voice.js"></script>
+</body>
+</html>

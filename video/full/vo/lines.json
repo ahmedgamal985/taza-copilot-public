@@ -1,0 +1,98 @@
+{
+ "hook": {
+  "id": "hook",
+  "text": "A journalist sends Almaty Air Initiative five questions. Answering takes hours: three pages, twenty-three sources.",
+  "hash": "b78220ec83",
+  "dur": 8.202
+ },
+ "title": {
+  "id": "title",
+  "text": "Taza Copilot answers in seconds, in English, Russian or Kazakh.",
+  "hash": "e24bf13225",
+  "dur": 4.911
+ },
+ "answer": {
+  "id": "answer",
+  "text": "Every answer comes from a hundred and four AAI sources, with the exact quote, the page, and a link.",
+  "hash": "36dd1be6c9",
+  "dur": 6.766
+ },
+ "differ": {
+  "id": "differ",
+  "text": "When sources disagree, it shows both. And it checks any claim from the news.",
+  "hash": "e4b519336c",
+  "dur": 5.068
+ },
+ "live": {
+  "id": "live",
+  "text": "Live data from a hundred and fifty sensors: the map, the best time to go out, and comparisons with other cities.",
+  "hash": "ed7c32757f",
+  "dur": 7.079
+ },
+ "schools": {
+  "id": "schools",
+  "text": "Schools ranked by the air right now. A policy brief, a quote card or a citation from any answer.",
+  "hash": "45e1623be4",
+  "dur": 7.549
+ },
+ "accuracy": {
+  "id": "accuracy",
+  "text": "Accuracy is measured: forty-four out of forty-four, including real questions journalists sent AAI.",
+  "hash": "018243f277",
+  "dur": 7.079
+ },
+ "admin": {
+  "id": "admin",
+  "text": "The AAI team uploads a new report, and Taza quotes it seconds later.",
+  "hash": "f21b12efb0",
+  "dur": 5.068
+ },
+ "voice": {
+  "id": "voice",
+  "text": "Talk to it: the voice agent answers and drives the page. A guided tour explains the rest.",
+  "hash": "e623b355a6",
+  "dur": 5.799
+ },
+ "channels": {
+  "id": "channels",
+  "text": "It is everywhere: Telegram alerts, WhatsApp chat and calls, a website widget, and a phone app.",
+  "hash": "1ec8d0cfa0",
+  "dur": 6.922
+ },
+ "trust": {
+  "id": "trust",
+  "text": "History stays in your browser, any AI model works, keys stay on the server, and it costs about seven dollars a month.",
+  "hash": "6e804f8c35",
+  "dur": 7.706
+ },
+ "part2": {
+  "id": "part2",
+  "text": "And inside inDrive.",
+  "hash": "0e4fa33969",
+  "dur": 1.646
+ },
+ "driver": {
+  "id": "driver",
+  "text": "Drivers get a morning push on bad-air days, and a reminder to close the windows in traffic jams.",
+  "hash": "e7b78d7a13",
+  "dur": 5.878
+ },
+ "rider": {
+  "id": "rider",
+  "text": "Riders see the air at their pickup point. Drivers find a cleaner spot for a break.",
+  "hash": "65d8f8d6a6",
+  "dur": 4.989
+ },
+ "api": {
+  "id": "api",
+  "text": "All from one API call, with no personal data.",
+  "hash": "9edc84252f",
+  "dur": 3.553
+ },
+ "outro": {
+  "id": "outro",
+  "text": "Answers in seconds instead of hours. Ready for Almaty today, and Kathmandu and Lahore next.",
+  "hash": "f0ade2b396",
+  "dur": 6.687
+ }
+}

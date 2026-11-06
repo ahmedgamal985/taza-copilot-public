@@ -1,0 +1,38 @@
+// Cloudflare deployment: a Worker in front of one always-on container running the whole platform.
+// Secrets are never here: they are set with `wrangler secret put` (see README, "Deploy on Cloudflare").
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "taza-copilot",
+  "main": "cloudflare/worker.js",
+  "compatibility_date": "2026-10-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  // The site's own address (HTTPS certificate issued by Cloudflare automatically)
+  "routes": [
+    { "pattern": "taza-copilot.online", "custom_domain": true },
+    { "pattern": "www.taza-copilot.online", "custom_domain": true }
+  ],
+  "observability": { "enabled": true },
+
+  "containers": [
+    {
+      "class_name": "TazaContainer", "image": "./Dockerfile", "instance_type": "basic", "max_instances": 1,
+      // Close to the users (Kazakhstan, Europe, Middle East) and to the AAI API in Almaty
+      "constraints": { "regions": ["EEUR", "WEUR", "ME"] }
+    }
+  ],
+  "durable_objects": {
+    "bindings": [{ "name": "TAZA", "class_name": "TazaContainer" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["TazaContainer"] }],
+
+  // The container's data (question log, shared answers, bot choices, uploaded research)
+  "r2_buckets": [{ "binding": "DATA", "bucket_name": "taza-copilot-data" }],
+
+  // Keep the container (Telegram bot, morning alerts) running
+  "triggers": { "crons": ["*/5 * * * *"] },
+
+  "vars": {
+    "PUBLIC_URL": "https://taza-copilot.online"
+  }
+}

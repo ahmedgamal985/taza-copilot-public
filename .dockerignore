@@ -1,0 +1,24 @@
+# Never put secrets or private data in the image
+.env
+.env.*
+.git
+.github
+node_modules
+cloudflare
+wrangler.jsonc
+.wrangler
+data/log.jsonl
+data/shared.json
+data/tg-users.json
+data/tg-alerts.json
+data/tg-places.json
+data/tg-groups.json
+data/aai-cache.json
+data/uploads
+docs
+scripts/test-*.mjs
+scripts/smoke-test.mjs
+scripts/eval.mjs
+
+# Concept video source and render output (only public/video/ ships)
+video/

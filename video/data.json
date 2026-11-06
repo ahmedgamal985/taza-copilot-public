@@ -1,0 +1,1202 @@
+{
+ "at": "2026-11-05T13:44:12.205Z",
+ "city": {
+  "pm25": 62.7,
+  "category": "sensitive",
+  "sensors": 156,
+  "updated": "2026-11-05T13:32:24.944266+00:00"
+ },
+ "districts": [
+  {
+   "district": "Zhetysu",
+   "pm25": 81,
+   "category": "unhealthy",
+   "sensors": 12
+  },
+  {
+   "district": "Alatau",
+   "pm25": 73.3,
+   "category": "unhealthy",
+   "sensors": 22
+  },
+  {
+   "district": "Turksib",
+   "pm25": 68.3,
+   "category": "sensitive",
+   "sensors": 26
+  },
+  {
+   "district": "Nauryzbay",
+   "pm25": 52.6,
+   "category": "sensitive",
+   "sensors": 12
+  },
+  {
+   "district": "Auezov",
+   "pm25": 46.6,
+   "category": "sensitive",
+   "sensors": 11
+  },
+  {
+   "district": "Bostandyk",
+   "pm25": 45.7,
+   "category": "sensitive",
+   "sensors": 21
+  },
+  {
+   "district": "Medeu",
+   "pm25": 45.5,
+   "category": "sensitive",
+   "sensors": 22
+  },
+  {
+   "district": "Almaly",
+   "pm25": 45.5,
+   "category": "sensitive",
+   "sensors": 10
+  }
+ ],
+ "plan": {
+  "best": {
+   "from": 9,
+   "to": 11,
+   "pm25": 24.8
+  },
+  "worst": {
+   "from": 20,
+   "to": 22,
+   "pm25": 65
+  },
+  "hours": [
+   {
+    "h": 0,
+    "pm25": 59.3,
+    "kind": "actual",
+    "category": "sensitive"
+   },
+   {
+    "h": 1,
+    "pm25": 52.3,
+    "kind": "actual",
+    "category": "sensitive"
+   },
+   {
+    "h": 2,
+    "pm25": 45.8,
+    "kind": "actual",
+    "category": "sensitive"
+   },
+   {
+    "h": 3,
+    "pm25": 43.8,
+    "kind": "actual",
+    "category": "sensitive"
+   },
+   {
+    "h": 4,
+    "pm25": 42,
+    "kind": "actual",
+    "category": "sensitive"
+   },
+   {
+    "h": 5,
+    "pm25": 31.3,
+    "kind": "actual",
+    "category": "moderate"
+   },
+   {
+    "h": 6,
+    "pm25": 27.5,
+    "kind": "actual",
+    "category": "moderate"
+   },
+   {
+    "h": 7,
+    "pm25": 26.6,
+    "kind": "actual",
+    "category": "moderate"
+   },
+   {
+    "h": 8,
+    "pm25": 28.5,
+    "kind": "actual",
+    "category": "moderate"
+   },
+   {
+    "h": 9,
+    "pm25": 24.6,
+    "kind": "actual",
+    "category": "moderate"
+   },
+   {
+    "h": 10,
+    "pm25": 24.9,
+    "kind": "actual",
+    "category": "moderate"
+   },
+   {
+    "h": 11,
+    "pm25": 25.5,
+    "kind": "actual",
+    "category": "moderate"
+   },
+   {
+    "h": 12,
+    "pm25": 27.1,
+    "kind": "actual",
+    "category": "moderate"
+   },
+   {
+    "h": 13,
+    "pm25": 28.5,
+    "kind": "actual",
+    "category": "moderate"
+   },
+   {
+    "h": 14,
+    "pm25": 31.3,
+    "kind": "actual",
+    "category": "moderate"
+   },
+   {
+    "h": 15,
+    "pm25": 34.2,
+    "kind": "actual",
+    "category": "moderate"
+   },
+   {
+    "h": 16,
+    "pm25": 39.2,
+    "kind": "actual",
+    "category": "sensitive"
+   },
+   {
+    "h": 17,
+    "pm25": 47.3,
+    "kind": "actual",
+    "category": "sensitive"
+   },
+   {
+    "h": 18,
+    "pm25": 56.2,
+    "kind": "actual",
+    "category": "sensitive"
+   },
+   {
+    "h": 19,
+    "pm25": 63.8,
+    "kind": "estimate",
+    "category": "sensitive"
+   },
+   {
+    "h": 20,
+    "pm25": 65.5,
+    "kind": "estimate",
+    "category": "sensitive"
+   },
+   {
+    "h": 21,
+    "pm25": 64.5,
+    "kind": "estimate",
+    "category": "sensitive"
+   },
+   {
+    "h": 22,
+    "pm25": 59.8,
+    "kind": "estimate",
+    "category": "sensitive"
+   },
+   {
+    "h": 23,
+    "pm25": 54.6,
+    "kind": "estimate",
+    "category": "sensitive"
+   }
+  ]
+ },
+ "stations": [
+  {
+   "lat": 43.2937,
+   "lng": 76.9154,
+   "pm25": 48.2,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2255,
+   "lng": 76.8685,
+   "pm25": 41.1,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.3454,
+   "lng": 76.9588,
+   "pm25": 102.6,
+   "c": "unhealthy"
+  },
+  {
+   "lat": 43.3575,
+   "lng": 76.9354,
+   "pm25": 73,
+   "c": "unhealthy"
+  },
+  {
+   "lat": 43.2355,
+   "lng": 76.9113,
+   "pm25": 42.2,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.3611,
+   "lng": 76.9966,
+   "pm25": 59,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2607,
+   "lng": 76.8858,
+   "pm25": 45.5,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2811,
+   "lng": 76.8806,
+   "pm25": 77,
+   "c": "unhealthy"
+  },
+  {
+   "lat": 43.2209,
+   "lng": 76.8362,
+   "pm25": 46,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2509,
+   "lng": 76.8338,
+   "pm25": 49.5,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.3224,
+   "lng": 76.8863,
+   "pm25": 199.6,
+   "c": "very"
+  },
+  {
+   "lat": 43.2197,
+   "lng": 76.8015,
+   "pm25": 49.9,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.3118,
+   "lng": 76.9557,
+   "pm25": 75.2,
+   "c": "unhealthy"
+  },
+  {
+   "lat": 43.222106,
+   "lng": 76.954069,
+   "pm25": 37.8,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2604,
+   "lng": 76.8725,
+   "pm25": 67.4,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.3105,
+   "lng": 76.8742,
+   "pm25": 76.4,
+   "c": "unhealthy"
+  },
+  {
+   "lat": 43.3695,
+   "lng": 76.9869,
+   "pm25": 63.8,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.3115,
+   "lng": 76.9015,
+   "pm25": 48.2,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.3364,
+   "lng": 76.9775,
+   "pm25": 65.9,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2718,
+   "lng": 76.8449,
+   "pm25": 60,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.21574,
+   "lng": 76.791652,
+   "pm25": 53.5,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2499,
+   "lng": 76.8143,
+   "pm25": 66.3,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.3382,
+   "lng": 76.8995,
+   "pm25": 71.2,
+   "c": "unhealthy"
+  },
+  {
+   "lat": 43.3144,
+   "lng": 76.9657,
+   "pm25": 63.5,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.281,
+   "lng": 76.824,
+   "pm25": 80.5,
+   "c": "unhealthy"
+  },
+  {
+   "lat": 43.2465,
+   "lng": 76.7918,
+   "pm25": 72.3,
+   "c": "unhealthy"
+  },
+  {
+   "lat": 43.1573,
+   "lng": 76.9017,
+   "pm25": 35.1,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.373,
+   "lng": 76.9431,
+   "pm25": 44.7,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.3183,
+   "lng": 76.9783,
+   "pm25": 38.2,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.198,
+   "lng": 76.7905,
+   "pm25": 49.2,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.3046,
+   "lng": 76.853,
+   "pm25": 70,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.3253,
+   "lng": 76.9676,
+   "pm25": 75.4,
+   "c": "unhealthy"
+  },
+  {
+   "lat": 43.2373,
+   "lng": 76.8333,
+   "pm25": 45,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.3439,
+   "lng": 77.0072,
+   "pm25": 64,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.1919,
+   "lng": 76.9681,
+   "pm25": 59.6,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2019,
+   "lng": 76.8766,
+   "pm25": 45.6,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2337,
+   "lng": 76.8642,
+   "pm25": 39.8,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.3299,
+   "lng": 76.9477,
+   "pm25": 75.9,
+   "c": "unhealthy"
+  },
+  {
+   "lat": 43.2169,
+   "lng": 76.8901,
+   "pm25": 109.6,
+   "c": "unhealthy"
+  },
+  {
+   "lat": 43.1658,
+   "lng": 76.8962,
+   "pm25": 47,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.234698,
+   "lng": 76.853667,
+   "pm25": 45.1,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.3549,
+   "lng": 76.9524,
+   "pm25": 124.1,
+   "c": "unhealthy"
+  },
+  {
+   "lat": 43.219879,
+   "lng": 76.859159,
+   "pm25": 40.1,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2886,
+   "lng": 76.9765,
+   "pm25": 41.7,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.241181,
+   "lng": 76.933831,
+   "pm25": 47.4,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.3238,
+   "lng": 76.9111,
+   "pm25": 67.5,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.3958,
+   "lng": 76.9865,
+   "pm25": 54.8,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.334989,
+   "lng": 76.960453,
+   "pm25": 56.2,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.3615,
+   "lng": 77.1367,
+   "pm25": 72.4,
+   "c": "unhealthy"
+  },
+  {
+   "lat": 43.2267,
+   "lng": 76.9217,
+   "pm25": 42.4,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2213,
+   "lng": 76.7846,
+   "pm25": 48.8,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2167,
+   "lng": 76.7743,
+   "pm25": 56.9,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2049,
+   "lng": 76.8999,
+   "pm25": 35.1,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.222398,
+   "lng": 76.678183,
+   "pm25": 57.3,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2734,
+   "lng": 76.939,
+   "pm25": 126.7,
+   "c": "unhealthy"
+  },
+  {
+   "lat": 43.2639,
+   "lng": 76.8193,
+   "pm25": 81,
+   "c": "unhealthy"
+  },
+  {
+   "lat": 43.2267,
+   "lng": 76.9492,
+   "pm25": 38.6,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.201,
+   "lng": 76.9136,
+   "pm25": 33.9,
+   "c": "moderate"
+  },
+  {
+   "lat": 43.1759,
+   "lng": 76.8726,
+   "pm25": 35.4,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.375693,
+   "lng": 77.00559,
+   "pm25": 48.5,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.3503,
+   "lng": 76.9888,
+   "pm25": 63.2,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.3148,
+   "lng": 77.0216,
+   "pm25": 62.1,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2427,
+   "lng": 76.8175,
+   "pm25": 63.7,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2636,
+   "lng": 76.8336,
+   "pm25": 65.4,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.3615,
+   "lng": 76.9653,
+   "pm25": 84.7,
+   "c": "unhealthy"
+  },
+  {
+   "lat": 43.1952,
+   "lng": 76.8645,
+   "pm25": 41.4,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.3049,
+   "lng": 76.9187,
+   "pm25": 49.6,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.3179,
+   "lng": 76.9374,
+   "pm25": 106.7,
+   "c": "unhealthy"
+  },
+  {
+   "lat": 43.30818,
+   "lng": 76.881712,
+   "pm25": 82.9,
+   "c": "unhealthy"
+  },
+  {
+   "lat": 43.474545,
+   "lng": 76.807185,
+   "pm25": 340.1,
+   "c": "very"
+  },
+  {
+   "lat": 43.231494,
+   "lng": 76.934146,
+   "pm25": 38.3,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2939,
+   "lng": 76.9449,
+   "pm25": 47.7,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.3461,
+   "lng": 76.971271,
+   "pm25": 67.7,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.3121,
+   "lng": 77.098,
+   "pm25": 65.1,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.3711,
+   "lng": 76.7114,
+   "pm25": 80.9,
+   "c": "unhealthy"
+  },
+  {
+   "lat": 43.2487,
+   "lng": 76.887,
+   "pm25": 44.2,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.274,
+   "lng": 76.9108,
+   "pm25": 64.1,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.3247,
+   "lng": 76.8394,
+   "pm25": 37,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.22568,
+   "lng": 76.914106,
+   "pm25": 31,
+   "c": "moderate"
+  },
+  {
+   "lat": 43.3216,
+   "lng": 76.9538,
+   "pm25": 73.6,
+   "c": "unhealthy"
+  },
+  {
+   "lat": 43.2239,
+   "lng": 76.8291,
+   "pm25": 103.3,
+   "c": "unhealthy"
+  },
+  {
+   "lat": 43.2885,
+   "lng": 77.004,
+   "pm25": 42.3,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2777,
+   "lng": 77.0055,
+   "pm25": 41.6,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.1885,
+   "lng": 76.9304,
+   "pm25": 41.6,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.168,
+   "lng": 76.9163,
+   "pm25": 22.3,
+   "c": "moderate"
+  },
+  {
+   "lat": 43.2497,
+   "lng": 76.9458,
+   "pm25": 45.7,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.3516,
+   "lng": 77.0573,
+   "pm25": 90.1,
+   "c": "unhealthy"
+  },
+  {
+   "lat": 43.383170386230546,
+   "lng": 76.98219747156817,
+   "pm25": 36,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2421,
+   "lng": 76.7622,
+   "pm25": 85.2,
+   "c": "unhealthy"
+  },
+  {
+   "lat": 43.4012,
+   "lng": 76.7513,
+   "pm25": 48.7,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.243766,
+   "lng": 76.907936,
+   "pm25": 45.9,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.473873,
+   "lng": 76.969312,
+   "pm25": 42,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.174919,
+   "lng": 76.788939,
+   "pm25": 105.1,
+   "c": "unhealthy"
+  },
+  {
+   "lat": 43.3251,
+   "lng": 76.9866,
+   "pm25": 53.6,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2227,
+   "lng": 76.8467,
+   "pm25": 42.7,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2735,
+   "lng": 76.8904,
+   "pm25": 53.6,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2662,
+   "lng": 76.986,
+   "pm25": 49.4,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2362,
+   "lng": 76.9652,
+   "pm25": 43.9,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.4877,
+   "lng": 77.0611,
+   "pm25": 26,
+   "c": "moderate"
+  },
+  {
+   "lat": 43.25005,
+   "lng": 76.9179,
+   "pm25": 42.6,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.450782,
+   "lng": 76.943029,
+   "pm25": 58,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2018,
+   "lng": 76.9368,
+   "pm25": 43.3,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.1793,
+   "lng": 76.7701,
+   "pm25": 49.7,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.3363,
+   "lng": 76.9932,
+   "pm25": 102.5,
+   "c": "unhealthy"
+  },
+  {
+   "lat": 43.283021,
+   "lng": 76.972195,
+   "pm25": 62.8,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2114,
+   "lng": 76.8434,
+   "pm25": 41.8,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2618,
+   "lng": 76.9186,
+   "pm25": 43,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.1642,
+   "lng": 77.0494,
+   "pm25": 16.6,
+   "c": "moderate"
+  },
+  {
+   "lat": 43.2634,
+   "lng": 76.9319,
+   "pm25": 49.1,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.214577,
+   "lng": 76.871985,
+   "pm25": 24.4,
+   "c": "moderate"
+  },
+  {
+   "lat": 43.1868,
+   "lng": 76.8599,
+   "pm25": 57.3,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.1934,
+   "lng": 76.8186,
+   "pm25": 58.6,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2103,
+   "lng": 76.9083,
+   "pm25": 39.6,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2035,
+   "lng": 76.8869,
+   "pm25": 38.3,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2645,
+   "lng": 76.9727,
+   "pm25": 44.4,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2397,
+   "lng": 76.9241,
+   "pm25": 45,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.4143,
+   "lng": 77.0315,
+   "pm25": 93.1,
+   "c": "unhealthy"
+  },
+  {
+   "lat": 43.3838,
+   "lng": 77.1163,
+   "pm25": 67.5,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2221,
+   "lng": 76.8994,
+   "pm25": 42.5,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.1944,
+   "lng": 76.8876,
+   "pm25": 49.8,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2536,
+   "lng": 76.9283,
+   "pm25": 47.3,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.198404,
+   "lng": 76.82976,
+   "pm25": 61.9,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2298,
+   "lng": 76.814,
+   "pm25": 55.2,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.1833,
+   "lng": 76.8416,
+   "pm25": 63.6,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.345594,
+   "lng": 76.907689,
+   "pm25": 70.4,
+   "c": "unhealthy"
+  },
+  {
+   "lat": 43.1952,
+   "lng": 76.6209,
+   "pm25": 74.6,
+   "c": "unhealthy"
+  },
+  {
+   "lat": 43.1933,
+   "lng": 76.9035,
+   "pm25": 59.9,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.3782,
+   "lng": 76.8364,
+   "pm25": 155.7,
+   "c": "very"
+  },
+  {
+   "lat": 43.2537,
+   "lng": 76.9064,
+   "pm25": 46.4,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.3322,
+   "lng": 76.6498,
+   "pm25": 121,
+   "c": "unhealthy"
+  },
+  {
+   "lat": 43.302668,
+   "lng": 77.183563,
+   "pm25": 65.5,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.263037,
+   "lng": 76.957877,
+   "pm25": 48.1,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2714,
+   "lng": 76.9568,
+   "pm25": 54.4,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.24293,
+   "lng": 76.957006,
+   "pm25": 43.6,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2414,
+   "lng": 76.8608,
+   "pm25": 42,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2466,
+   "lng": 76.8681,
+   "pm25": 42.7,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.3038,
+   "lng": 76.837,
+   "pm25": 50.7,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2358,
+   "lng": 76.9518,
+   "pm25": 37.1,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2706,
+   "lng": 76.8612,
+   "pm25": 53.5,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2904,
+   "lng": 76.8507,
+   "pm25": 133.4,
+   "c": "unhealthy"
+  },
+  {
+   "lat": 43.267044,
+   "lng": 76.897757,
+   "pm25": 62.9,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.374,
+   "lng": 76.6266,
+   "pm25": 108.4,
+   "c": "unhealthy"
+  },
+  {
+   "lat": 43.2456,
+   "lng": 76.8348,
+   "pm25": 47.5,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2747,
+   "lng": 76.9808,
+   "pm25": 47.8,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2851,
+   "lng": 76.9481,
+   "pm25": 88,
+   "c": "unhealthy"
+  },
+  {
+   "lat": 43.3167,
+   "lng": 76.9266,
+   "pm25": 76.1,
+   "c": "unhealthy"
+  },
+  {
+   "lat": 43.358233,
+   "lng": 76.97941,
+   "pm25": 70.5,
+   "c": "unhealthy"
+  },
+  {
+   "lat": 43.2938,
+   "lng": 77.2347,
+   "pm25": 93.4,
+   "c": "unhealthy"
+  },
+  {
+   "lat": 43.3175,
+   "lng": 77.2293,
+   "pm25": 90.5,
+   "c": "unhealthy"
+  },
+  {
+   "lat": 43.1729,
+   "lng": 76.8154,
+   "pm25": 22.3,
+   "c": "moderate"
+  },
+  {
+   "lat": 43.4134,
+   "lng": 76.914,
+   "pm25": 213.2,
+   "c": "very"
+  },
+  {
+   "lat": 43.2406,
+   "lng": 76.8824,
+   "pm25": 47.8,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.3054,
+   "lng": 76.9312,
+   "pm25": 54.7,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2083,
+   "lng": 76.96651,
+   "pm25": 36.4,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.2374,
+   "lng": 76.8995,
+   "pm25": 49.6,
+   "c": "sensitive"
+  },
+  {
+   "lat": 43.3177,
+   "lng": 76.9839,
+   "pm25": 60.8,
+   "c": "sensitive"
+  }
+ ],
+ "rider": {
+  "title": "⚠️ Polluted air today · 62.7 µg/m³",
+  "body": "Wait for your car indoors, not by a busy road, and ask the driver to close the windows. Cleanest hours: 09:00–11:00.",
+  "tips": [
+   "Wait indoors until your car is close: the app shows when it arrives.",
+   "Ask the driver to close the windows and switch to recirculation.",
+   "Children, older people and people with asthma: avoid walks along busy roads, especially at 20:00–22:00.",
+   "If you must be outside for long, an N95/FFP2 mask helps."
+  ],
+  "pickup": {
+   "sensor": "Samal-1",
+   "pm25": 37.1,
+   "category": "sensitive",
+   "distance_km": 0.7,
+   "wait_inside": true,
+   "text": "Air at your pickup: 37.1 µg/m³, unhealthy for sensitive groups. Wait inside until your car is close."
+  }
+ },
+ "driver": {
+  "title": "⚠️ Polluted air today · 62.7 µg/m³",
+  "body": "In traffic jams, keep the windows closed and use recirculation: with open windows you breathe air 7× dirtier than pedestrians at intersections (AAI). Dirtiest hours: 20:00–22:00.",
+  "tips": [
+   "In traffic jams, close the windows and switch to recirculation. AAI: in a jam the air inside a car is 40% dirtier than in moving traffic, and with open windows 7× dirtier than for pedestrians at intersections.",
+   "Check the cabin air filter: a clogged one lets more fine dust in.",
+   "Take your breaks away from big roads, especially at 20:00–22:00."
+  ],
+  "jam": {
+   "title": "Traffic jam: close the windows",
+   "body": "Switch to recirculation. In a jam the air inside a car is 40% dirtier than in moving traffic, and 7× dirtier with open windows than for pedestrians (AAI, p. 5)."
+  },
+  "break_spot": {
+   "sensor": "Narxoz University",
+   "pm25": 24.4,
+   "category": "moderate",
+   "distance_km": 2.2,
+   "lat": 43.214577,
+   "lng": 76.871985,
+   "text": "Cleaner place for a break: near Narxoz University, 24.4 µg/m³, 2.2 km away."
+  }
+ },
+ "send_push": true,
+ "ask": {
+  "q": "How polluted is the air inside a car stuck in traffic in Almaty?",
+  "a": "According to AAI's research, air inside a car stuck in traffic is 40% more polluted than under free-flowing conditions, and drivers and passengers with open windows in jams breathe air seven times more polluted than pedestrians standing at intersections.",
+  "source": "Not the Quantity, but the Quality: How the Structure of Almaty’s Vehicle Fleet Affects Air Quality",
+  "ms": 3915
+ }
+}

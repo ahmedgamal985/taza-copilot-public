@@ -1,0 +1,13 @@
+{
+  "agent_id": "agent_9501m6mqwan4er19h846g1zvj3ng",
+  "tools": {
+    "ask_research": "tool_4601m6mqvx4pethrpnvw8gaa4npd",
+    "show_map": "tool_2801m6mqvxkje23r5p5c8rfkny91",
+    "show_station": "tool_0901m6mt1gzfe3hsjn0fgtk7jjfd",
+    "open_source": "tool_0701m6mqvy28egcrm2pmy6h3zxzy",
+    "compare_air": "tool_6901m6nwtpazer9s9ayq561t5mv1",
+    "best_time": "tool_1001m6nwtpmxevbayntyhj7cdqhh",
+    "open_page": "tool_8301m6mqwafff1d9rp2y32sg72ky"
+  },
+  "updated": "2026-11-05T14:59:48.550Z"
+}

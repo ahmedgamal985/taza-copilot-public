@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Taza inside inDrive: concept video</title>
+<!-- Rendered frame by frame by video/render.mjs (renderFrame(i) at 30 fps): no CSS animation, so every render is identical -->
+<style>
+@font-face { font-family: P; font-weight: 300; src: url(fonts/poppins-latin-300-normal.woff2); }
+@font-face { font-family: P; font-weight: 400; src: url(fonts/poppins-latin-400-normal.woff2); }
+@font-face { font-family: P; font-weight: 500; src: url(fonts/poppins-latin-500-normal.woff2); }
+@font-face { font-family: P; font-weight: 600; src: url(fonts/poppins-latin-600-normal.woff2); }
+@font-face { font-family: P; font-weight: 700; src: url(fonts/poppins-latin-700-normal.woff2); }
+:root { --lime: #C1F11D; --ink: #141414; --app: #1C1C1E; --card: #2A2A2C; --line: #3A3A3C; --muted: #9A9AA0;
+  --good: #3BB273; --moderate: #F2C94C; --sensitive: #F2994A; --unhealthy: #EB5757; --very: #9B51E0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1920px; height: 1080px; overflow: hidden; background: #000; font-family: P, sans-serif; color: #F4F4F4; }
+#stage { position: absolute; inset: 0; overflow: hidden; background: #0D0F0C; }
+#glow { position: absolute; inset: -200px; background: radial-gradient(900px 700px at 30% 55%, rgba(193,241,29,.13), transparent 70%), radial-gradient(800px 600px at 85% 20%, rgba(91,108,240,.10), transparent 70%); }
+.abs { position: absolute; }
+.layer { position: absolute; inset: 0; }
+
+/* Intro: Almaty skyline in smog, the number now */
+#intro { opacity: 0; }
+#sky { position: absolute; inset: 0; background: linear-gradient(#3B3A33 0%, #6D6656 55%, #8A7F66 70%, #2A2823 100%); }
+#mountains, #city { position: absolute; left: 0; bottom: 0; width: 1920px; }
+#smog { position: absolute; inset: 0; background: linear-gradient(rgba(150,140,115,.0), rgba(165,152,120,.55) 60%, rgba(120,110,90,.6)); }
+#introText { position: absolute; left: 140px; top: 210px; }
+#introText .kick { font-size: 34px; font-weight: 500; color: #F2E8D0; letter-spacing: .02em; }
+#introText .big { font-size: 230px; font-weight: 700; line-height: 1; letter-spacing: -6px; color: #fff; margin-top: 10px; }
+#introText .big small { font-size: 60px; font-weight: 500; letter-spacing: 0; margin-left: 14px; color: #F2E8D0; }
+#introText .cat { margin-top: 18px; font-size: 40px; font-weight: 600; color: #FFD8A8; }
+#introText .meta { margin-top: 14px; font-size: 24px; color: #E5DBC2; opacity: .85; }
+
+/* Brand lockup */
+#brand { opacity: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.lock { display: flex; align-items: center; gap: 34px; font-size: 96px; font-weight: 700; letter-spacing: -2px; }
+.idm { width: 132px; height: 132px; border-radius: 38px; background: var(--lime); position: relative; flex: none; }
+.idm i { position: absolute; background: var(--ink); border-radius: 5px; }
+.lock .x { color: var(--lime); font-weight: 400; }
+#brand p { margin-top: 34px; font-size: 38px; color: #CFCFCF; max-width: 1300px; line-height: 1.4; }
+
+/* Phone */
+#phone { position: absolute; left: 250px; top: 70px; width: 470px; height: 940px; border-radius: 70px; background: #050505; padding: 14px;
+  box-shadow: 0 50px 120px rgba(0,0,0,.6), inset 0 0 0 2px #2b2b2b; opacity: 0; }
+#screen { position: relative; width: 100%; height: 100%; border-radius: 56px; overflow: hidden; background: var(--app); }
+#notch { position: absolute; left: 50%; top: 12px; width: 124px; height: 36px; margin-left: -62px; background: #000; border-radius: 20px; z-index: 50; }
+.status { position: absolute; left: 0; right: 0; top: 0; height: 58px; padding: 18px 34px 0 42px; display: flex; justify-content: space-between; font-size: 19px; font-weight: 600; z-index: 40; }
+.status .ic { display: flex; gap: 7px; align-items: center; }
+.scr { position: absolute; inset: 0; opacity: 0; }
+
+/* Lock screen */
+.lockbg { position: absolute; inset: 0; background: linear-gradient(170deg, #2B3B5C 0%, #6E7EA0 45%, #C9B79A 78%, #8D7B62 100%); }
+.lockclock { position: absolute; left: 0; right: 0; top: 112px; text-align: center; }
+.lockclock .d { font-size: 21px; font-weight: 500; opacity: .9; }
+.lockclock .t { font-size: 104px; font-weight: 600; line-height: 1.05; letter-spacing: -2px; }
+.push { position: absolute; left: 14px; right: 14px; top: 330px; border-radius: 26px; padding: 15px 17px; background: rgba(245,245,245,.93); color: #141414; box-shadow: 0 12px 30px rgba(0,0,0,.25); }
+.push .top { display: flex; align-items: center; gap: 9px; font-size: 15px; color: #444; margin-bottom: 4px; }
+.push .top b { color: #141414; } .push .top .when { margin-left: auto; }
+.push .ti { font-size: 17.5px; font-weight: 600; line-height: 1.3; }
+.push p { font-size: 15.5px; line-height: 1.38; margin-top: 3px; color: #222; }
+.appic { width: 26px; height: 26px; border-radius: 7px; background: var(--lime); position: relative; flex: none; }
+.appic i { position: absolute; background: var(--ink); border-radius: 1.5px; }
+
+/* inDrive driver screen */
+.drv .bar { position: absolute; left: 0; right: 0; top: 64px; height: 92px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; }
+.circ { width: 64px; height: 64px; border-radius: 50%; background: #2C2C2E; display: grid; place-items: center; box-shadow: 0 2px 10px rgba(0,0,0,.4); }
+.toggle { width: 250px; height: 58px; border-radius: 30px; border: 2px solid var(--lime); position: relative; }
+.toggle b { position: absolute; right: 4px; top: 4px; bottom: 4px; width: 128px; border-radius: 26px; background: var(--lime); color: #141414; display: grid; place-items: center; font-size: 21px; font-weight: 600; }
+.tban { position: absolute; left: 0; right: 0; top: 160px; padding: 15px 22px; background: #F7D6B3; color: #2B1E10; display: flex; gap: 14px; align-items: center; }
+.tban .dot { width: 34px; height: 34px; border-radius: 50%; background: var(--sensitive); flex: none; display: grid; place-items: center; color: #fff; font-weight: 700; font-size: 15px; }
+.tban b { display: block; font-size: 18px; font-weight: 600; line-height: 1.25; }
+.tban span { font-size: 14.5px; line-height: 1.35; display: block; color: #4A3826; }
+.req { position: absolute; left: 0; right: 0; padding: 20px 22px 20px 22px; background: #000; border-bottom: 1px solid #2a2a2a; display: flex; gap: 18px; }
+.av { width: 76px; text-align: center; flex: none; font-size: 14.5px; color: #ddd; }
+.av i { display: block; width: 66px; height: 66px; margin: 0 auto 6px; border-radius: 50%; background: radial-gradient(circle at 40% 35%, #5a5a5a, #2e2e2e); }
+.av em { font-style: normal; color: #bbb; font-size: 13.5px; display: block; }
+.req .km { color: #9a9a9a; font-size: 19px; }
+.req .pr { font-size: 33px; font-weight: 700; letter-spacing: -.5px; }
+.req .pr span { font-size: 19px; color: #D9A8FF; font-weight: 500; margin-left: 8px; }
+.req .ad { font-size: 17.5px; font-weight: 600; line-height: 1.3; }
+.req .ad2 { font-size: 16px; color: #ddd; line-height: 1.35; }
+.nav { position: absolute; left: 18px; right: 18px; bottom: 26px; height: 92px; border-radius: 46px; background: #2C2C2E; display: flex; align-items: center; justify-content: space-around; font-size: 13.5px; color: #eee; }
+.nav div { text-align: center; } .nav svg { display: block; margin: 0 auto 4px; }
+.nav .on { background: #1A1A1C; border-radius: 40px; padding: 10px 18px; }
+.toast { position: absolute; left: 14px; right: 14px; bottom: 140px; border-radius: 24px; padding: 18px 20px; background: #101010; border: 1.5px solid var(--lime); box-shadow: 0 16px 40px rgba(0,0,0,.6); }
+.toast b { display: block; color: var(--lime); font-size: 19px; margin-bottom: 6px; }
+.toast p { font-size: 15.5px; line-height: 1.42; color: #EDEDED; }
+.toast small { display: block; margin-top: 8px; color: #9a9a9a; font-size: 13px; }
+
+/* Maps (driver break, rider pickup) */
+.map { position: absolute; left: 0; top: 0; width: 100%; overflow: hidden; background: #1B2433; }
+.map svg { position: absolute; left: 0; top: 0; }
+.map::after { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 120px; background: linear-gradient(rgba(14,18,26,.95), rgba(14,18,26,0)); }
+.mcard { position: absolute; left: 14px; right: 14px; bottom: 24px; border-radius: 28px; background: #232325; padding: 20px 20px 18px; box-shadow: 0 -8px 30px rgba(0,0,0,.4); }
+.mcard .tag { font-size: 14px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--lime); }
+.mcard b { display: block; font-size: 22px; margin: 6px 0 4px; }
+.mcard p { font-size: 16px; color: #ccc; line-height: 1.4; }
+.mcard .go { margin-top: 14px; height: 58px; border-radius: 16px; background: var(--lime); color: #141414; display: grid; place-items: center; font-weight: 600; font-size: 19px; }
+.pin { position: absolute; transform: translate(-50%, -100%); }
+.bubble { position: absolute; transform: translate(-50%, -100%); background: #141414; color: #fff; border-radius: 14px; padding: 8px 14px; font-size: 14px; white-space: nowrap; box-shadow: 0 6px 18px rgba(0,0,0,.4); }
+.bubble span { color: #aaa; display: block; font-size: 13px; }
+
+/* Rider home */
+.rsheet { position: absolute; left: 0; right: 0; top: 380px; border-radius: 30px 30px 0 0; background: var(--app); padding: 12px 16px 0; }
+.grab { width: 56px; height: 6px; border-radius: 3px; background: #4a4a4a; margin: 0 auto 14px; }
+.chip { position: absolute; left: 14px; right: 14px; top: 300px; border-radius: 18px; padding: 12px 16px; background: rgba(20,20,20,.92); border-left: 6px solid var(--sensitive); font-size: 15px; line-height: 1.4; box-shadow: 0 10px 26px rgba(0,0,0,.5); }
+.chip b { color: #FFC08A; }
+.airtoday { border-radius: 24px; background: #F4F6EE; color: #141414; padding: 16px 18px; margin-bottom: 14px; border-left: 7px solid var(--sensitive); }
+.airtoday .tag { font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #4B6E00; }
+.airtoday b { display: block; font-size: 20px; margin: 4px 0 10px; }
+.hours { display: flex; gap: 3px; height: 54px; align-items: flex-end; }
+.hours i { flex: 1; border-radius: 3px 3px 0 0; opacity: .85; }
+.hours i.best { outline: 2px solid #141414; outline-offset: 1px; opacity: 1; }
+.hlab { display: flex; justify-content: space-between; font-size: 12px; color: #666; margin-top: 4px; }
+.airtoday p { font-size: 15px; margin-top: 8px; color: #333; }
+.tiles { width: 100%; border-radius: 22px; display: block; margin-bottom: 14px; }
+.search { border-radius: 22px; background: #2C2C2E; padding: 0 0 6px; margin-bottom: 14px; }
+.search .q { height: 70px; border-radius: 20px; background: #3A3A3C; display: flex; align-items: center; gap: 14px; padding: 0 20px; font-size: 22px; font-weight: 500; }
+.rec { display: flex; gap: 16px; align-items: center; padding: 14px 20px 6px; }
+.rec b { display: block; font-size: 18px; font-weight: 500; } .rec span { font-size: 15px; color: #999; }
+
+/* Ask Taza chat */
+.chat { background: #F2F3EE; color: #141414; }
+.chead { position: absolute; left: 0; right: 0; top: 0; height: 150px; background: var(--ink); color: #fff; display: flex; align-items: flex-end; gap: 14px; padding: 0 22px 18px; }
+.chead b { font-size: 22px; display: block; } .chead span { font-size: 14.5px; color: #bbb; }
+.cbody { position: absolute; left: 0; right: 0; top: 150px; bottom: 0; padding: 22px 18px; }
+.ub { margin-left: auto; max-width: 82%; background: var(--ink); color: #fff; border-radius: 22px 22px 6px 22px; padding: 14px 18px; font-size: 17px; line-height: 1.4; width: fit-content; }
+.ab { margin-top: 18px; max-width: 94%; background: #fff; border-radius: 22px 22px 22px 6px; padding: 16px 18px; font-size: 16.5px; line-height: 1.5; box-shadow: 0 4px 14px rgba(0,0,0,.06); }
+.ab sup { color: #4B6E00; font-weight: 700; }
+.srcc { margin-top: 12px; border-left: 4px solid var(--lime); background: #F4F6EE; border-radius: 10px; padding: 10px 12px; font-size: 13.5px; color: #333; line-height: 1.4; }
+.srcc b { color: #141414; }
+.ms { margin-top: 10px; font-size: 13.5px; color: #4B6E00; font-weight: 600; }
+
+/* Right-hand copy */
+#copy { position: absolute; left: 830px; top: 250px; width: 980px; opacity: 0; }
+#kick { font-size: 26px; font-weight: 600; color: var(--lime); letter-spacing: .03em; text-transform: uppercase; }
+#title { font-size: 76px; font-weight: 700; line-height: 1.08; letter-spacing: -2px; margin-top: 18px; }
+#sub { font-size: 32px; line-height: 1.45; color: #D2D2D2; margin-top: 26px; max-width: 920px; }
+#src { font-size: 21px; color: #8E8E8E; margin-top: 26px; display: flex; gap: 12px; align-items: center; }
+#src i { width: 6px; height: 34px; background: var(--lime); border-radius: 3px; }
+#dots { position: absolute; left: 830px; top: 160px; display: flex; gap: 12px; opacity: 0; }
+#dots i { width: 46px; height: 8px; border-radius: 4px; background: #3a3a3a; }
+#dots i.on { background: var(--lime); }
+#codecard { position: absolute; left: 830px; top: 470px; width: 960px; border-radius: 26px; background: #161816; border: 1px solid #2f332a; padding: 26px 30px; font-family: Consolas, monospace; font-size: 21px; line-height: 1.55; opacity: 0; color: #DADADA; white-space: pre; }
+#codecard .k { color: #C1F11D; } #codecard .s { color: #FFC08A; } #codecard .c { color: #7b8577; }
+#pills { position: absolute; left: 830px; top: 860px; display: flex; gap: 16px; opacity: 0; }
+#pills span { border: 1.5px solid #3c4236; border-radius: 40px; padding: 12px 24px; font-size: 22px; color: #E6E6E6; }
+#concept { position: absolute; right: 44px; top: 34px; font-size: 18px; font-weight: 600; color: #141414; background: var(--lime); padding: 7px 16px; border-radius: 30px; opacity: 0; letter-spacing: .04em; }
+#credit { position: absolute; left: 0; right: 0; bottom: 30px; text-align: center; font-size: 18px; color: #7a7a7a; opacity: 0; }
+
+/* Outro */
+#outro { opacity: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+#outro h2 { font-size: 68px; font-weight: 700; letter-spacing: -1.5px; margin-top: 40px; }
+#outro p { font-size: 32px; color: #CFCFCF; margin-top: 18px; }
+#outro .cities { display: flex; gap: 18px; margin-top: 34px; }
+#outro .cities span { border-radius: 40px; padding: 12px 26px; font-size: 26px; border: 1.5px solid #3c4236; }
+#outro .cities span.on { background: var(--lime); color: #141414; border-color: var(--lime); font-weight: 600; }
+#outro .url { margin-top: 44px; font-size: 30px; color: var(--lime); font-weight: 600; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="glow"></div>
+
+  <div id="intro" class="layer">
+    <div id="sky"></div>
+    <svg id="mountains" height="560" viewBox="0 0 1920 560" preserveAspectRatio="none"></svg>
+    <svg id="city" height="330" viewBox="0 0 1920 330" preserveAspectRatio="none"></svg>
+    <div id="smog"></div>
+    <div id="introText">
+      <div class="kick">ALMATY · 7:45 A.M.</div>
+      <div class="big"><span id="num">0</span><small>µg/m³ PM2.5</small></div>
+      <div class="cat" id="introCat"></div>
+      <div class="meta" id="introMeta"></div>
+    </div>
+  </div>
+
+  <div id="brand" class="layer">
+    <div class="lock"><div class="idm"><i style="left:32px;top:29px;width:18px;height:18px"></i><i style="left:32px;top:55px;width:18px;height:48px"></i><path></path><i id="dshape"></i></div>Taza <span class="x">×</span> inDrive</div>
+    <p>AAI’s research and live air sensors, inside the app Almaty already opens every morning.</p>
+  </div>
+
+  <div id="phone"><div id="screen">
+    <div id="notch"></div>
+    <div class="status" id="status"><span>7:45</span><span class="ic">
+      <svg width="22" height="14" viewBox="0 0 22 14"><rect x="0" y="9" width="4" height="5" rx="1" fill="#fff"/><rect x="6" y="6" width="4" height="8" rx="1" fill="#fff"/><rect x="12" y="3" width="4" height="11" rx="1" fill="#fff"/><rect x="18" y="0" width="4" height="14" rx="1" fill="#fff" opacity=".4"/></svg>
+      <svg width="20" height="14" viewBox="0 0 20 14"><path d="M10 13.5l3-3.5a4.3 4.3 0 0 0-6 0zM4 7.3a8.6 8.6 0 0 1 12 0l-1.8 2a6 6 0 0 0-8.4 0zM.6 3.9a13.5 13.5 0 0 1 18.8 0l-1.8 2A10.9 10.9 0 0 0 2.4 5.9z" fill="#fff"/></svg>
+      <svg width="30" height="14" viewBox="0 0 30 14"><rect x=".5" y=".5" width="25" height="13" rx="4" fill="none" stroke="#fff" opacity=".5"/><rect x="2.5" y="2.5" width="19" height="9" rx="2.5" fill="#fff"/><rect x="27" y="4.5" width="2" height="5" rx="1" fill="#fff" opacity=".5"/></svg>
+    </span></div>
+
+    <div id="sLock" class="scr">
+      <div class="lockbg"></div>
+      <div class="lockclock"><div class="d">Thursday, 5 November</div><div class="t">7:45</div></div>
+      <div class="push" id="push"><div class="top"><span class="appic" id="pic1"></span><b>inDrive</b><span class="when">now</span></div>
+        <div class="ti" id="pushT"></div><p id="pushB"></p></div>
+    </div>
+
+    <div id="sDrv" class="scr drv">
+      <div class="bar"><div class="circ"><svg width="28" height="20"><rect y="1" width="28" height="3" rx="1.5" fill="#fff"/><rect y="9" width="28" height="3" rx="1.5" fill="#fff"/><rect y="17" width="28" height="3" rx="1.5" fill="#fff"/></svg></div>
+        <div class="toggle"><b>Online</b></div>
+        <div class="circ"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5l2 2.6 3.2-.5.9 3.1 3 1.3-1.2 3 1.2 3-3 1.3-.9 3.1-3.2-.5-2 2.6-2-2.6-3.2.5-.9-3.1-3-1.3 1.2-3-1.2-3 3-1.3.9-3.1 3.2.5z"/></svg></div></div>
+      <div class="tban"><div class="dot" id="banV"></div><div><b id="banT"></b><span id="banS"></span></div></div>
+      <div class="req" style="top:252px"><div class="av"><i></i>Aigerim<em>★ 4.9 (112)</em><em>3 min.</em></div>
+        <div><div class="km">~0.8 km</div><div class="pr">₸1 900</div><div class="ad">Mega Alma-Ata (Rozybakiev St 247A)</div><div class="ad2">Esentai Mall (Al-Farabi Ave 77/8)</div></div></div>
+      <div class="req" style="top:448px"><div class="av"><i></i>Nurlan<em>★ 5.0 (37)</em><em>1 min.</em></div>
+        <div><div class="km">~2.4 km</div><div class="pr">₸2 600<span>⌃ Fair price</span></div><div class="ad">Almaty-1 Railway Station</div><div class="ad2">Kok-Tobe (Omarov St)</div></div></div>
+      <div class="nav">
+        <div class="on"><svg width="30" height="24"><circle cx="3" cy="4" r="2.4" fill="#fff"/><circle cx="3" cy="12" r="2.4" fill="#fff"/><circle cx="3" cy="20" r="2.4" fill="#fff"/><rect x="9" y="2.6" width="20" height="2.8" rx="1.4" fill="#fff"/><rect x="9" y="10.6" width="20" height="2.8" rx="1.4" fill="#fff"/><rect x="9" y="18.6" width="20" height="2.8" rx="1.4" fill="#fff"/></svg>Ride requests</div>
+        <div><svg width="24" height="28" viewBox="0 0 24 28"><path d="M14 1L3 16h8l-2 11 12-16h-8z" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"/></svg>Demand</div>
+        <div><svg width="26" height="26"><rect x="2" y="2" width="9" height="11" rx="2.5" fill="none" stroke="#fff" stroke-width="2"/><rect x="15" y="2" width="9" height="6" rx="2.5" fill="none" stroke="#fff" stroke-width="2"/><rect x="2" y="17" width="9" height="7" rx="2.5" fill="none" stroke="#fff" stroke-width="2"/><rect x="15" y="12" width="9" height="12" rx="2.5" fill="none" stroke="#fff" stroke-width="2"/></svg>Performance</div>
+        <div><svg width="28" height="24"><rect x="2" y="4" width="24" height="18" rx="3" fill="none" stroke="#fff" stroke-width="2"/><path d="M2 9h18M20 13h6v5h-6z" fill="none" stroke="#fff" stroke-width="2"/></svg>Wallet</div>
+      </div>
+      <div class="toast" id="toast"><b>🚦 Traffic jam: close the windows</b><p id="jamB"></p><small>Taza × AAI · shown when the app sees the car stuck in traffic</small></div>
+    </div>
+
+    <div id="sMap" class="scr">
+      <div class="map" id="dmap" style="height:912px"></div>
+      <div class="mcard" id="brkCard"><div class="tag">Cleaner place for a break</div><b id="brkT"></b><p id="brkP"></p><div class="go">Navigate · 6 min</div></div>
+    </div>
+
+    <div id="sRide" class="scr">
+      <div class="map" id="rmap" style="height:420px"></div>
+      <div class="chip" id="chip"></div>
+      <div class="rsheet" id="rsheet">
+        <div class="grab"></div>
+        <div class="airtoday" id="airToday"><div class="tag">Air today · Taza × AAI</div><b id="atT"></b><div class="hours" id="hours"></div>
+          <div class="hlab"><span>06</span><span>10</span><span>14</span><span>18</span><span>22</span></div><p id="atP"></p></div>
+        <img class="tiles" src="assets/tiles.png" alt="">
+        <div class="search"><div class="q"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><circle cx="10.5" cy="10.5" r="7"/><path d="M16 16l5 5"/></svg>Where to &amp; for how much?</div>
+          <div class="rec"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2"><circle cx="12" cy="12" r="9.5"/><path d="M12 7v5l3 2"/></svg><div><b>Mega Alma-Ata</b><span>Rozybakiev St 247A</span></div></div>
+          <div class="rec"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2"><circle cx="12" cy="12" r="9.5"/><path d="M12 7v5l3 2"/></svg><div><b>Esentai Mall</b><span>Al-Farabi Ave 77/8</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="sChat" class="scr chat">
+      <div class="chead"><span class="appic" style="width:44px;height:44px;border-radius:12px" id="pic2"></span><div><b>Ask Taza</b><span>AAI research and live air data</span></div></div>
+      <div class="cbody"><div class="ub" id="ub"></div>
+        <div class="ab" id="ab"><span id="abT"></span><sup id="abS">[1]</sup>
+          <div class="srcc" id="srcc"><b>📄 AAI · <span id="srcT"></span></b>, page 5</div>
+          <div class="ms" id="ms"></div></div></div>
+    </div>
+  </div></div>
+
+  <div id="dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div id="copy"><div id="kick"></div><div id="title"></div><div id="sub"></div><div id="src"></div></div>
+  <div id="codecard"></div>
+  <div id="pills"><span>One request</span><span>English · Русский · Қазақша</span><span>No personal data</span></div>
+  <div id="concept">CONCEPT</div>
+  <div id="credit">Concept by team Smog Hunters · inDrive Hackathon 2026 · Data: Almaty Air Initiative</div>
+
+  <div id="outro" class="layer">
+    <div class="lock" style="font-size:84px"><div class="idm" id="idm2"></div>Taza <span class="x">×</span> inDrive</div>
+    <h2>Cleaner air decisions, every morning.</h2>
+    <p>7 features · one API call · built on AAI’s research and live sensors</p>
+    <div class="cities"><span class="on">Almaty</span><span>Kathmandu</span><span>Bishkek</span><span>Tashkent</span><span>Lahore</span></div>
+    <div class="url">taza-copilot.online</div>
+  </div>
+</div>
+
+<script>
+// ---------- helpers ----------
+const $ = s => document.querySelector(s);
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const seg = (t, a, b) => clamp((t - a) / (b - a));
+const eo = x => 1 - Math.pow(1 - x, 3);                 // ease out
+const eio = x => (x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+const back = x => { const c = 1.5; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const show = (el, o, y = 0, s = 1) => { el.style.opacity = o; el.style.transform = `translateY(${y}px) scale(${s})`; };
+// in at a, out at b (fade + slide)
+const inout = (t, a, b, d = .45) => Math.min(eo(seg(t, a, a + d)), 1 - seg(t, b - d, b));
+const CAT = { good: 'Good', moderate: 'Moderate', sensitive: 'Unhealthy for sensitive groups', unhealthy: 'Unhealthy', very: 'Very unhealthy' };
+const COL = { good: '#3BB273', moderate: '#F2C94C', sensitive: '#F2994A', unhealthy: '#EB5757', very: '#9B51E0' };
+const hh = h => `${String(h).padStart(2, '0')}:00`;
+
+// The inDrive mark (iD), drawn like the site's favicon
+function idMark(el, size) {
+  const k = size / 100;
+  el.style.width = el.style.height = size + 'px'; el.style.borderRadius = 30 * k + 'px';
+  el.innerHTML = `<svg width="${size}" height="${size}" viewBox="0 0 100 100" style="position:absolute;left:0;top:0"><rect x="24" y="22" width="14" height="14" rx="3" fill="#141414"/><rect x="24" y="42" width="14" height="36" rx="3" fill="#141414"/><path d="M44 25a3 3 0 0 1 3-3h9a28 28 0 0 1 0 56h-9a3 3 0 0 1-3-3v-8a3 3 0 0 1 3-3h9a14 14 0 0 0 0-28h-9a3 3 0 0 1-3-3z" fill="#141414"/></svg>`;
+}
+
+// ---------- Almaty map (main streets, river, parks, mountains, AAI sensors) ----------
+const STREETS = {
+  major: [
+    [[43.2705, 76.80], [43.2712, 76.99]],                                           // Raiymbek Ave
+    [[43.2400, 76.82], [43.2398, 76.958]],                                          // Abay Ave
+    [[43.2125, 76.835], [43.2105, 76.875], [43.2145, 76.905], [43.2185, 76.93], [43.2190, 76.957], [43.2140, 76.99]], // Al-Farabi Ave
+    [[43.2765, 76.9565], [43.2400, 76.9575], [43.2190, 76.957], [43.2000, 76.962]], // Dostyk Ave
+    [[43.3000, 76.9310], [43.2250, 76.9300]],                                       // Seifullin Ave
+    [[43.2700, 76.8885], [43.1950, 76.8890]],                                       // Rozybakiev St
+    [[43.2750, 76.8420], [43.2000, 76.8440]],                                       // Sain St
+  ],
+  minor: [
+    [[43.2560, 76.83], [43.2560, 76.957]], [[43.2310, 76.85], [43.2310, 76.958]], [[43.2245, 76.865], [43.2245, 76.935]],
+    [[43.2480, 76.84], [43.2480, 76.957]], [[43.2620, 76.84], [43.2620, 76.957]], [[43.2350, 76.84], [43.2350, 76.957]],
+    [[43.2720, 76.9470], [43.2260, 76.9465]], [[43.2740, 76.9400], [43.2390, 76.9400]], [[43.2700, 76.9180], [43.2150, 76.9180]],
+    [[43.2600, 76.9050], [43.2000, 76.9050]], [[43.2650, 76.8730], [43.1950, 76.8730]], [[43.2800, 76.8200], [43.2000, 76.8200]],
+    [[43.2600, 76.8580], [43.2050, 76.8580]], [[43.2280, 76.84], [43.2280, 76.93]], [[43.2050, 76.86], [43.2050, 76.96]],
+  ],
+  river: [[43.1950, 76.9255], [43.2100, 76.9270], [43.2250, 76.9245], [43.2400, 76.9275], [43.2560, 76.9250], [43.2750, 76.9285], [43.2950, 76.9260]],
+  parks: [[43.2260, 76.9120, 43.2190, 76.9220], [43.2620, 76.9650, 43.2540, 76.9800], [43.2400, 76.9435, 43.2370, 76.9475]],
+  labels: [['Abay Ave', 43.2410, 76.880, 0], ['Al-Farabi Ave', 43.2150, 76.902, 8], ['Dostyk Ave', 43.252, 76.9585, -90], ['Rozybakiev St', 43.232, 76.8873, -90],
+    ['Raiymbek Ave', 43.2722, 76.880, 0], ['Seifullin Ave', 43.262, 76.9297, -90], ['Sain St', 43.235, 76.8407, -90],
+    ['BOSTANDYQ', 43.2215, 76.885, 0, 1], ['ALMALY', 43.2525, 76.905, 0, 1], ['MEDEU', 43.2440, 76.972, 0, 1], ['AUEZOV', 43.2330, 76.852, 0, 1]],
+};
+function mapSvg(el, view, extra = '') {
+  const W = el.clientWidth || 442, H = el.clientHeight, k = view.k, c = Math.cos(view.lat * Math.PI / 180);
+  const P = (lat, lng) => [W / 2 + (lng - view.lng) * k * c, H / 2 + (view.lat - lat) * k];
+  const line = (pts, cls) => `<polyline points="${pts.map(p => P(p[0], p[1]).join(',')).join(' ')}" class="${cls}"/>`;
+  const [, mY] = P(43.198, view.lng);
+  let s = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}"><defs><linearGradient id="mt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1B2433" stop-opacity="0"/><stop offset="1" stop-color="#26303F"/></linearGradient></defs>
+    <style>.mj{fill:none;stroke:#3E4B66;stroke-width:${Math.max(3, k / 1200)};stroke-linecap:round;stroke-linejoin:round}.mn{fill:none;stroke:#2C3850;stroke-width:${Math.max(1.6, k / 2600)}}.rv{fill:none;stroke:#0F3554;stroke-width:${Math.max(3, k / 1400)};stroke-linejoin:round}.lb{fill:#8B9AB8;font:500 ${Math.max(11, k / 520)}px P}.ds{fill:#6B7A98;font:600 ${Math.max(11, k / 560)}px P;letter-spacing:.12em}</style>
+    <rect width="${W}" height="${H}" fill="#1B2433"/><rect x="0" y="${mY}" width="${W}" height="${Math.max(0, H - mY)}" fill="url(#mt)"/>`;
+  for (const p of STREETS.parks) { const [x1, y1] = P(p[0], p[1]), [x2, y2] = P(p[2], p[3]); s += `<rect x="${x1}" y="${y1}" width="${x2 - x1}" height="${y2 - y1}" rx="6" fill="#1D3A33"/>`; }
+  s += line(STREETS.river, 'rv');
+  for (const r of STREETS.minor) s += line(r, 'mn');
+  for (const r of STREETS.major) s += line(r, 'mj');
+  for (const [txt, lat, lng, rot, dist] of STREETS.labels) { const [x, y] = P(lat, lng); s += `<text x="${x}" y="${y}" class="${dist ? 'ds' : 'lb'}" text-anchor="middle" transform="rotate(${rot} ${x} ${y})">${txt}</text>`; }
+  for (const st of view.stations || []) {
+    const [x, y] = P(st.lat, st.lng); if (x < -10 || y < -10 || x > W + 10 || y > H + 10) continue;
+    s += `<circle cx="${x}" cy="${y}" r="${view.dot || 7}" fill="${COL[st.c] || '#888'}" stroke="#1B2433" stroke-width="2" opacity=".95"/>`;
+  }
+  el.innerHTML = s + extra(P) + '</svg>';
+  return P;
+}
+
+// ---------- the timeline (seconds); scenes and the sound cues the mixer reads ----------
+let T = { intro: [0, 6.2], brand: [6.2, 11], drvPush: [11, 20], jam: [20, 31], brk: [31, 41], rdPush: [41, 49.5], pickup: [49.5, 57.5], today: [57.5, 65.5], ask: [65.5, 76], api: [76, 84], outro: [84, 92] };
+let TOTAL = 92, SPEED = 1, NUMBERS = true, PHONE_OUT_AT_API = false;
+const o = x => x * SPEED;
+const COPY = {
+  drvPush: [1, 'For drivers', 'Morning push on bad-air days', 'Sent between 7 and 10 a.m., only when Almaty’s air is above Kazakhstan’s daily limit of 35 µg/m³.', ''],
+  jam: [2, 'For drivers', 'A reminder in traffic jams', 'In a jam the air inside a car is 40% dirtier than in moving traffic, and 7× dirtier with open windows than for pedestrians.', 'AAI · Not the Quantity, but the Quality · page 5'],
+  brk: [3, 'For drivers', 'A cleaner place for a break', '', 'Ranked from the nearest AAI sensors · the location is used once, never stored'],
+  rdPush: [4, 'For riders', 'Morning push for riders', 'Wait inside, not by a busy road, and ask the driver to close the windows.', ''],
+  pickup: [5, 'For riders', 'Air at the pickup point', '', 'From the nearest of {n} AAI sensors · the location is used once, never stored'],
+  today: [6, 'For everyone', '“Air today” on the home screen', '', 'Every day · live AAI data, refreshed every 5 minutes'],
+  ask: [7, 'For everyone', 'Ask Taza', 'Sourced answers from 100 AAI reports and articles, in English, Russian and Kazakh.', 'A real answer from Taza, with the exact quote and page'],
+};
+const CUES = []; // [time, sound] for audio.mjs
+function cue(t, s) { CUES.push([+t.toFixed(2), s]); }
+
+let D = null;
+function init(data, opts = {}) {
+  D = data;
+  if (opts.timeline) { T = { ...T, ...opts.timeline }; TOTAL = opts.total; SPEED = opts.speed || 1; NUMBERS = opts.numbers !== false; PHONE_OUT_AT_API = Boolean(opts.phoneOutAtApi); }
+  const c = D.city;
+  $('#introCat').textContent = `${CAT[c.category]} · ${(c.pm25 / 15).toFixed(1)}× the WHO daily guideline`;
+  $('#introMeta').textContent = `Live AAI data · ${c.sensors} sensors · 5 November 2026`;
+  idMark($('#brand .idm'), 132); idMark($('#idm2'), 120); idMark($('#pic1'), 26); idMark($('#pic2'), 44);
+  // skyline and mountains
+  let m = '<path d="M0 560 L0 300 ';
+  for (let x = 0; x <= 1920; x += 40) { const y = 230 + 120 * Math.sin(x / 260) + 70 * Math.sin(x / 97 + 1) + (x > 800 && x < 1300 ? -90 * Math.sin((x - 800) / 500 * Math.PI) : 0); m += `L${x} ${y.toFixed(0)} `; }
+  $('#mountains').innerHTML = m + 'L1920 560 Z" fill="#4E5160"/><path d="M0 560 L0 420 ' + Array.from({ length: 49 }, (_, i) => `L${i * 40} ${(380 + 50 * Math.sin(i / 3.1) + 25 * Math.sin(i * 1.7)).toFixed(0)}`).join(' ') + ' L1920 560 Z" fill="#3E414D"/>';
+  let b = ''; let x = 0, seed = 7; const rnd = () => (seed = (seed * 9301 + 49297) % 233280) / 233280;
+  while (x < 1920) { const w = 40 + rnd() * 90, h = 60 + rnd() * 220; b += `<rect x="${x}" y="${330 - h}" width="${w}" height="${h}" fill="#26272B"/>`; x += w + 4; }
+  $('#city').innerHTML = b;
+  // texts from today's real data
+  const dr = D.driver, rd = D.rider;
+  $('#banV').textContent = Math.round(c.pm25); $('#banT').textContent = `Air today: ${c.pm25} µg/m³`; $('#banS').textContent = `${CAT[c.category]} · Taza × AAI`;
+  $('#jamB').textContent = dr.jam.body;
+  $('#brkT').textContent = `Near ${dr.break_spot.sensor} · ${dr.break_spot.pm25} µg/m³`;
+  // The air where the driver waits now (nearest sensor to Mega Alma-Ata), to compare with the cleaner spot
+  const nearHere = D.stations.map(s => ({ ...s, d: Math.hypot(s.lat - 43.2017, (s.lng - 76.8919) * .73) })).sort((a, b) => a.d - b.d)[0];
+  $('#brkP').textContent = `${dr.break_spot.distance_km} km away · where you are now: ${nearHere.pm25} µg/m³`;
+  COPY.brk[3] = `${dr.break_spot.sensor}: ${dr.break_spot.pm25} µg/m³, ${dr.break_spot.distance_km} km away. Taza picks the cleanest sensor within 3 km.`;
+  COPY.pickup[3] = `The nearest sensor to Abay Ave 52 reads ${rd.pickup.pm25} µg/m³, so Taza tells the rider to wait inside, not by a busy road.`;
+  COPY.pickup[4] = COPY.pickup[4].replace('{n}', c.sensors);
+  COPY.today[3] = `${D.rider.title.replace(/^\S+\s/, '')}. Cleanest hours: ${hh(D.plan.best.from)}–${hh(D.plan.best.to)}, dirtiest: ${hh(D.plan.worst.from)}–${hh(D.plan.worst.to)}.`;
+  $('#chip').innerHTML = `📍 <b>Air at your pickup: ${rd.pickup.pm25} µg/m³</b><br>${CAT[rd.pickup.category]}. ${rd.pickup.text.split('. ').pop()} Your car is 4 min away.`;
+  $('#atT').textContent = D.rider.title.replace(/^\S+\s/, '');
+  $('#atP').textContent = `Cleanest: ${hh(D.plan.best.from)}–${hh(D.plan.best.to)} · Dirtiest: ${hh(D.plan.worst.from)}–${hh(D.plan.worst.to)}`;
+  $('#hours').innerHTML = D.plan.hours.slice(6, 23).map(h => `<i class="${h.h >= D.plan.best.from && h.h < D.plan.best.to ? 'best' : ''}" style="height:${Math.max(8, Math.min(100, h.pm25 / 80 * 100))}%;background:${COL[h.category] || '#999'}"></i>`).join('');
+  $('#srcT').textContent = 'Not the Quantity, but the Quality';
+  $('#ms').textContent = `Answered in ${(D.ask.ms / 1000).toFixed(1)} s · exact quote and page`;
+  $('#codecard').innerHTML = `<span class="c"># the app asks once in the morning, and at the pickup point</span>
+<span class="k">GET</span> /api/partner/brief?lang=ru&amp;role=driver&amp;lat=43.20&amp;lng=76.89
+
+{ <span class="s">"send_push"</span>: true,
+  <span class="s">"driver"</span>: { <span class="s">"title"</span>: "⚠️ Сегодня грязный воздух · ${c.pm25} мкг/м³",
+              <span class="s">"jam"</span>: {…}, <span class="s">"break_spot"</span>: {…} },
+  <span class="s">"rider"</span>:  { <span class="s">"pickup"</span>: {…}, <span class="s">"tips"</span>: […] },
+  <span class="s">"ask_url"</span>: "https://taza-copilot.online/?lang=ru" }`;
+  // maps
+  const here = { lat: 43.2017, lng: 76.8919 }, spot = dr.break_spot;
+  mapSvg($('#dmap'), { lat: (here.lat + spot.lat) / 2 - .006, lng: (here.lng + spot.lng) / 2 - .002, k: 11000, stations: D.stations, dot: 9 }, P => {
+    const [x1, y1] = P(here.lat, here.lng), [x2, y2] = P(spot.lat, spot.lng);
+    return `<path id="route" d="M${x1} ${y1} L${x1} ${(y1 + y2) / 2 + 30} L${x2} ${(y1 + y2) / 2 + 30} L${x2} ${y2}" fill="none" stroke="#C1F11D" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1 16"/>
+      <circle cx="${x1}" cy="${y1}" r="16" fill="#4C8DFF" stroke="#fff" stroke-width="5"/><circle id="pulse" cx="${x1}" cy="${y1}" r="16" fill="none" stroke="#4C8DFF" stroke-width="3"/>
+      <g transform="translate(${x2} ${y2})"><circle r="26" fill="#C1F11D"/><text y="9" text-anchor="middle" font-size="26">🌳</text></g>
+      <rect x="${x1 - 92}" y="${y1 + 26}" width="184" height="34" rx="10" fill="#141414"/><text x="${x1}" y="${y1 + 49}" text-anchor="middle" style="font:500 15px P;fill:#fff">You · Mega Alma-Ata</text>`;
+  });
+  const pick = { lat: 43.2398, lng: 76.9455 };
+  mapSvg($('#rmap'), { lat: pick.lat + .0035, lng: pick.lng - .001, k: 12000, stations: D.stations, dot: 8 }, P => {
+    const [x, y] = P(pick.lat, pick.lng);
+    return `<g transform="translate(${x} ${y})"><path d="M0 0 L0 -26" stroke="#fff" stroke-width="4"/><rect x="-26" y="-78" width="52" height="54" rx="14" fill="#fff"/><circle cy="-58" r="7" fill="#141414"/><path d="M-11 -32 q11 -18 22 0" fill="#141414"/></g>
+      <g transform="translate(${x} ${y - 92})"><rect x="-112" y="-56" width="224" height="56" rx="14" fill="#141414"/><text y="-34" text-anchor="middle" style="font:400 14px P;fill:#aaa">Pickup point</text><text y="-13" text-anchor="middle" style="font:500 17px P;fill:#fff">Abay Ave 52 ›</text></g>`;
+  });
+  // sound cues
+  cue(.2, 'riser'); cue(1.2, 'boom'); cue(5.7, 'whoosh'); cue(6.4, 'logo'); cue(10.7, 'whoosh');
+  cue(12.6, 'chime'); cue(20.2, 'whoosh'); cue(24.0, 'alert'); cue(30.8, 'whoosh'); cue(33.0, 'pop'); cue(36.0, 'pop');
+  cue(40.8, 'whoosh'); cue(42.6, 'chime'); cue(49.3, 'whoosh'); cue(51.4, 'pop'); cue(57.3, 'whoosh'); cue(59.0, 'pop');
+  cue(65.3, 'whoosh'); for (let i = 0; i < 16; i++) cue(66.6 + i * .09, 'tick'); cue(69.2, 'pop'); cue(72.6, 'pop');
+  cue(75.8, 'whoosh'); cue(77.2, 'pop'); cue(83.6, 'riser2'); cue(84.6, 'logo'); cue(88.5, 'bell');
+  window.CUES = CUES; window.TOTAL = TOTAL;
+}
+
+// ---------- one frame ----------
+let lastScene = '';
+function renderFrame(i) {
+  const t = i / 30;
+  // Intro: the number counts up in the smog
+  const ti = inout(t, 0, T.intro[1], .6);
+  $('#intro').style.opacity = ti;
+  $('#num').textContent = (D.city.pm25 * eo(seg(t, .6, 2.6))).toFixed(1);
+  show($('#introText'), eo(seg(t, .3, 1.2)), 30 * (1 - eo(seg(t, .3, 1.2))));
+  $('#smog').style.opacity = .55 + .45 * seg(t, 0, 5);
+  $('#mountains').style.transform = `translateY(${10 - 10 * seg(t, 0, 6)}px)`;
+  // Brand
+  const tb = inout(t, T.brand[0], T.brand[1], .6);
+  show($('#brand'), tb, 0, .94 + .06 * eo(seg(t, T.brand[0], T.brand[0] + 1.2)));
+  // Phone in from the left after the brand, out before the API card ends
+  const pin = eo(seg(t, T.drvPush[0] - .2, T.drvPush[0] + .8)), pout = PHONE_OUT_AT_API ? seg(t, T.api[0], T.api[0] + .5) : seg(t, T.api[1] - .7, T.api[1]);
+  show($('#phone'), Math.min(pin, 1 - pout), 80 * (1 - pin));
+  $('#concept').style.opacity = Math.min(pin, 1 - seg(t, T.outro[0], T.outro[0] + .5));
+  $('#credit').style.opacity = Math.min(seg(t, T.drvPush[0], T.drvPush[0] + 1), 1 - seg(t, T.outro[0] - .5, T.outro[0])) * .9;
+  // Screens inside the phone
+  const scr = { sLock: 0, sDrv: 0, sMap: 0, sRide: 0, sChat: 0 };
+  const dur = .5;
+  scr.sLock = Math.max(inout(t, T.drvPush[0], T.drvPush[1], dur), inout(t, T.rdPush[0], T.rdPush[1], dur));
+  scr.sDrv = inout(t, T.jam[0], T.jam[1], dur);
+  scr.sMap = inout(t, T.brk[0], T.brk[1], dur);
+  scr.sRide = inout(t, T.pickup[0], T.today[1], dur);
+  scr.sChat = inout(t, T.ask[0], T.api[1], dur);
+  for (const [id, o] of Object.entries(scr)) { const el = document.getElementById(id); el.style.opacity = o; el.style.transform = `translateX(${(1 - o) * 40}px)`; }
+  $('#status').style.color = scr.sChat > .5 ? '#fff' : '#fff';
+  // Lock screen push (driver, then rider)
+  const isRider = t >= T.rdPush[0] - .5;
+  const m = isRider ? D.rider : D.driver;
+  $('#pushT').textContent = m.title; $('#pushB').textContent = m.body;
+  const p0 = isRider ? T.rdPush[0] : T.drvPush[0];
+  const pd = back(seg(t, p0 + o(1.4), p0 + o(2.1)));
+  show($('#push'), seg(t, p0 + o(1.4), p0 + o(1.7)), -120 * (1 - pd));
+  // Driver app: the jam toast slides up
+  const jt = back(seg(t, T.jam[0] + o(3.6), T.jam[0] + o(4.3)));
+  show($('#toast'), seg(t, T.jam[0] + o(3.6), T.jam[0] + o(3.9)), 260 * (1 - jt));
+  // Break map: route draws, card rises
+  const route = document.getElementById('route');
+  if (route) route.style.strokeDashoffset = -t * 40;
+  const pulse = document.getElementById('pulse');
+  if (pulse) { const ph = (t * .8) % 1; pulse.setAttribute('r', 16 + ph * 30); pulse.setAttribute('opacity', 1 - ph); }
+  if (route) route.style.opacity = seg(t, T.brk[0] + o(1.6), T.brk[0] + o(2.2));
+  const bc = back(seg(t, T.brk[0] + o(4.6), T.brk[0] + o(5.3)));
+  show($('#brkCard'), seg(t, T.brk[0] + o(4.6), T.brk[0] + o(4.9)), 300 * (1 - bc));
+  // Rider home: pickup chip pops, then the sheet scrolls to the "Air today" card
+  const cp = back(seg(t, T.pickup[0] + o(1.8), T.pickup[0] + o(2.4)));
+  show($('#chip'), seg(t, T.pickup[0] + o(1.8), T.pickup[0] + o(2.1)), -20 * (1 - cp), .92 + .08 * cp);
+  const sc = eio(seg(t, T.today[0] - .3, T.today[0] + 1.2));
+  $('#rsheet').style.transform = `translateY(${-300 * sc}px)`;
+  $('#chip').style.opacity = Math.min(+$('#chip').style.opacity, 1 - sc);
+  // Ask Taza: the question types, the answer streams in word by word
+  const q = D.ask.q, a = D.ask.a;
+  const qn = Math.round(q.length * seg(t, T.ask[0] + 1.1, T.ask[0] + 2.6));
+  $('#ub').textContent = q.slice(0, qn) || ' ';
+  $('#ub').style.opacity = qn ? 1 : 0;
+  const words = a.split(' '), an = Math.round(words.length * seg(t, T.ask[0] + 3.7, T.ask[0] + 6.8));
+  $('#abT').textContent = words.slice(0, an).join(' ');
+  $('#ab').style.opacity = seg(t, T.ask[0] + 3.5, T.ask[0] + 3.8);
+  $('#abS').style.opacity = an >= words.length ? 1 : 0;
+  show($('#srcc'), seg(t, T.ask[0] + 7, T.ask[0] + 7.4), 10 * (1 - seg(t, T.ask[0] + 7, T.ask[0] + 7.4))); $('#srcc').style.display = t > T.ask[0] + 7 ? 'block' : 'none'; $('#ms').style.display = t > T.ask[0] + 7.3 ? 'block' : 'none';
+  $('#ms').style.opacity = seg(t, T.ask[0] + 7.3, T.ask[0] + 7.7);
+  // Right-hand copy for each feature
+  const key = Object.keys(COPY).find(k => t >= T[k][0] && t < T[k][1]);
+  if (key) {
+    const [n, kick, title, sub, src] = COPY[key];
+    if (key !== lastScene) {
+      $('#kick').textContent = NUMBERS ? `${n} / 7 · ${kick}` : kick; $('#title').textContent = title; $('#sub').textContent = sub;
+      $('#src').innerHTML = src ? `<i></i>${src}` : '';
+      document.querySelectorAll('#dots i').forEach((d, k) => d.classList.toggle('on', k < n));
+      $('#dots').style.display = NUMBERS ? 'flex' : 'none';
+      lastScene = key;
+    }
+    const o = inout(t, T[key][0] + .25, T[key][1], .55);
+    show($('#copy'), o, 26 * (1 - eo(seg(t, T[key][0] + .25, T[key][0] + .8))));
+  } else show($('#copy'), 0);
+  $('#dots').style.opacity = Math.min(seg(t, T.drvPush[0], T.drvPush[0] + .6), 1 - seg(t, T.ask[1] - .4, T.ask[1]));
+  // API card
+  const ta = inout(t, T.api[0] + .2, T.api[1], .5);
+  if (t >= T.api[0] && t < T.api[1]) {
+    $('#kick').textContent = 'For inDrive’s developers'; $('#title').textContent = 'One request. Seven features.'; $('#sub').textContent = ''; $('#src').innerHTML = '';
+    show($('#copy'), ta, 0); $('#copy').style.top = '220px'; lastScene = 'api';
+  } else $('#copy').style.top = '250px';
+  show($('#codecard'), ta, 30 * (1 - eo(seg(t, T.api[0] + .4, T.api[0] + 1.2))));
+  show($('#pills'), inout(t, T.api[0] + 1.6, T.api[1], .5), 0);
+  // Outro
+  show($('#outro'), eo(seg(t, T.outro[0], T.outro[0] + 1)), 0, .95 + .05 * eo(seg(t, T.outro[0], T.outro[0] + 1.4)));
+  document.querySelectorAll('#outro .cities span').forEach((s, k) => { s.style.opacity = seg(t, T.outro[0] + 1.6 + k * .25, T.outro[0] + 2 + k * .25); });
+}
+window.renderFrame = renderFrame; window.init = init;
+</script>
+</body>
+</html>

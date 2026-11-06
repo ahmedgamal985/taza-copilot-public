@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en" class="tw-html">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Taza Copilot</title>
+  <link rel="stylesheet" href="vendor/leaflet.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="tw-page">
+  <!-- Round button: its colour and number are the air in Almaty right now -->
+  <button id="twLauncher" class="tw-launcher" type="button" data-i18n-aria="tw_open" aria-label="Ask Taza about Almaty's air">
+    <svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H11l-4.2 3.6c-.5.4-1.3.1-1.3-.6V16A2.5 2.5 0 0 1 4 13.5z" fill="#fff"/><path d="M8 11c1.6-2.6 6.4-2.6 8 0" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>
+    <span id="twBadge" class="tw-badge" hidden></span>
+  </button>
+
+  <!-- A short note above the button (bad air today, or the first visit) -->
+  <div id="twNudge" class="tw-nudge" role="status" hidden>
+    <button id="twNudgeClose" class="tw-x" type="button" aria-label="Close">×</button>
+    <p id="twNudgeText"></p>
+    <button id="twNudgeGo" class="tw-link" type="button"></button>
+  </div>
+
+  <!-- The chat -->
+  <section id="twPanel" class="tw-panel" hidden aria-label="Taza Copilot chat">
+    <header class="tw-head">
+      <span class="logo" aria-hidden="true"></span>
+      <div class="tw-title"><b>Taza Copilot</b><span data-i18n="tw_sub">AAI research and live air data</span></div>
+      <button id="twNew" class="tw-icon" type="button" data-i18n-aria="tw_new" title="New chat" aria-label="New chat">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+      </button>
+      <button id="twMin" class="tw-icon" type="button" data-i18n-aria="tw_min" title="Minimise" aria-label="Minimise">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+    </header>
+    <div id="twAir" class="tw-air"></div>
+    <nav class="tw-tabs" role="tablist">
+      <button type="button" role="tab" data-tab="chat" aria-selected="true">💬 <span data-i18n="tw_tab_chat">Chat</span></button>
+      <button type="button" role="tab" data-tab="map" aria-selected="false">🗺 <span data-i18n="tw_tab_map">Map</span></button>
+      <button type="button" role="tab" data-tab="schools" aria-selected="false">🏫 <span data-i18n="tw_tab_schools">Schools</span></button>
+    </nav>
+    <div id="twLog" class="tw-log" aria-live="polite"></div>
+    <div id="twMapView" class="tw-view" hidden>
+      <div id="twMap" class="tw-map"></div>
+      <p id="twMapNote" class="tw-note"></p>
+    </div>
+    <div id="twStation" class="tw-view tw-scroll" hidden></div>
+    <div id="twSchools" class="tw-view tw-scroll" hidden></div>
+    <div id="twVoice" class="tw-voice" hidden><span class="pulse"></span><span id="twVoiceState"></span></div>
+    <form id="twForm" class="tw-compose">
+      <button id="twMic" class="tw-mic" type="button" data-i18n-aria="tw_mic" aria-label="Talk to Taza">
+        <svg class="mic" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+        <svg class="stop" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>
+      </button>
+      <input id="twQ" type="text" maxlength="500" autocomplete="off" data-i18n-ph="tw_ph" aria-label="Your question">
+      <button id="twSend" class="tw-send" type="submit" data-i18n-aria="ask_btn" aria-label="Ask">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3.4 20.4l17.5-7.5c.8-.4.8-1.5 0-1.8L3.4 3.6c-.7-.3-1.4.3-1.2 1l1.9 6.4 8.4 1-8.4 1-1.9 6.4c-.2.7.5 1.3 1.2 1z"/></svg>
+      </button>
+    </form>
+    <footer class="tw-foot"><span data-i18n="tw_foot">Answers quote AAI's reports, with the page.</span> <a id="twFull" href="/" target="_blank" rel="noopener" data-i18n="tw_full">Open Taza ↗</a></footer>
+  </section>
+
+  <script src="i18n.js"></script>
+  <script src="widget-frame.js"></script>
+</body>
+</html>

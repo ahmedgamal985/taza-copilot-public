@@ -1,0 +1,26 @@
+{
+  "name": "taza-copilot",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AQI Data Copilot for Almaty Air Initiative: sourced answers from AAI research and live sensor data.",
+  "type": "module",
+  "scripts": {
+    "index": "node scripts/build-index.mjs",
+    "start": "node --env-file-if-exists=../.env --env-file-if-exists=.env server.mjs",
+    "vendor": "node scripts/vendor.mjs",
+    "test": "node scripts/smoke-test.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.5.0",
+    "@elevenlabs/client": "^1.29.0",
+    "leaflet": "^1.9.4",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@cloudflare/containers": "^0.3.7",
+    "wrangler": "^4.157.0"
+  }
+}

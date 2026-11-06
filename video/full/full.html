@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Taza Copilot: the full platform</title>
+<!-- Part 1 (the platform) and the outro of the full video. Rendered frame by frame by video/full/build.mjs;
+     every scene's start and end come from the voice-over durations, so picture and voice stay in step. -->
+<style>
+@font-face { font-family: P; font-weight: 400; src: url(../fonts/poppins-latin-400-normal.woff2); }
+@font-face { font-family: P; font-weight: 500; src: url(../fonts/poppins-latin-500-normal.woff2); }
+@font-face { font-family: P; font-weight: 600; src: url(../fonts/poppins-latin-600-normal.woff2); }
+@font-face { font-family: P; font-weight: 700; src: url(../fonts/poppins-latin-700-normal.woff2); }
+:root { --lime: #C1F11D; --ink: #141414; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1920px; height: 1080px; overflow: hidden; background: #000; font-family: P, sans-serif; color: #F4F4F4; }
+#stage { position: absolute; inset: 0; overflow: hidden; background: #0D0F0C; }
+#glow { position: absolute; inset: -200px; background: radial-gradient(900px 700px at 30% 55%, rgba(193,241,29,.12), transparent 70%), radial-gradient(800px 600px at 85% 20%, rgba(91,108,240,.10), transparent 70%); }
+.layer { position: absolute; inset: 0; opacity: 0; }
+.idm { position: relative; flex: none; background: var(--lime); }
+
+/* the browser window holding the real screenshots */
+#win { position: absolute; left: 80px; top: 170px; width: 1100px; height: 732px; border-radius: 22px; overflow: hidden; background: #1a1c19;
+  box-shadow: 0 40px 100px rgba(0,0,0,.6), 0 0 0 1px #2c3029; opacity: 0; }
+#win .bar { height: 44px; background: #20231f; display: flex; align-items: center; gap: 9px; padding: 0 18px; }
+#win .bar i { width: 13px; height: 13px; border-radius: 50%; background: #3b3f38; }
+#win .bar span { margin-left: 16px; font-size: 16px; color: #9aa094; background: #151714; padding: 5px 16px; border-radius: 8px; }
+#view { position: absolute; left: 0; right: 0; top: 44px; bottom: 0; overflow: hidden; }
+#view img { position: absolute; left: 0; top: 0; width: 100%; opacity: 0; transform-origin: 50% 30%; }
+
+/* the copy on the right */
+#copy { position: absolute; left: 1240px; top: 200px; width: 620px; opacity: 0; }
+#kick { font-size: 22px; font-weight: 600; color: var(--lime); letter-spacing: .04em; text-transform: uppercase; }
+#title { font-size: 54px; font-weight: 700; line-height: 1.1; letter-spacing: -1.5px; margin-top: 14px; }
+#chips { margin-top: 30px; display: flex; flex-direction: column; gap: 12px; }
+#chips span { align-self: flex-start; font-size: 22px; padding: 10px 20px; border-radius: 40px; border: 1.5px solid #3c4236; background: rgba(255,255,255,.03); opacity: 0; }
+#chips span b { color: var(--lime); font-weight: 600; }
+#prog { position: absolute; left: 1240px; top: 140px; display: flex; gap: 8px; opacity: 0; }
+#prog i { width: 34px; height: 6px; border-radius: 3px; background: #333; }
+#prog i.on { background: var(--lime); }
+#credit { position: absolute; left: 0; right: 0; bottom: 26px; text-align: center; font-size: 17px; color: #757575; opacity: 0; }
+#concept { position: absolute; right: 44px; top: 34px; font-size: 17px; font-weight: 600; color: #141414; background: var(--lime); padding: 7px 16px; border-radius: 30px; opacity: 0; }
+
+/* hook: the journalist's questions, and what answering them cost */
+#hook .mail { position: absolute; left: 120px; top: 190px; width: 900px; border-radius: 22px; background: #F4F4EF; color: #141414; padding: 30px 34px; box-shadow: 0 30px 80px rgba(0,0,0,.5); }
+#hook .mail .h { font-size: 18px; color: #555; border-bottom: 1px solid #ddd; padding-bottom: 14px; margin-bottom: 14px; }
+#hook .mail .h b { color: #141414; }
+#hook .mail li { list-style: none; font-size: 24px; line-height: 1.4; padding: 9px 0; border-bottom: 1px dashed #ddd; opacity: 0; }
+#hook .mail li:last-child { border: 0; }
+#hook .cost { position: absolute; left: 1120px; top: 230px; }
+#hook .cost div { font-size: 40px; font-weight: 600; margin-bottom: 26px; opacity: 0; }
+#hook .cost div b { font-size: 96px; color: var(--lime); font-weight: 700; display: block; line-height: 1; letter-spacing: -2px; }
+#hook .src { position: absolute; left: 120px; bottom: 80px; font-size: 18px; color: #8a8a8a; }
+
+/* title */
+#brand { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.lock { display: flex; align-items: center; gap: 32px; font-size: 104px; font-weight: 700; letter-spacing: -2px; }
+#brand p { margin-top: 26px; font-size: 36px; color: #CFCFCF; }
+#brand .langs { margin-top: 28px; display: flex; gap: 14px; }
+#brand .langs span { font-size: 26px; padding: 10px 26px; border-radius: 40px; border: 1.5px solid #3c4236; }
+
+/* channels: four tiles */
+#tiles { position: absolute; left: 80px; top: 150px; width: 1100px; height: 780px; opacity: 0; }
+.tile { position: absolute; border-radius: 22px; overflow: hidden; background: #1b1d1a; box-shadow: 0 24px 60px rgba(0,0,0,.5); opacity: 0; }
+.tile .cap { position: absolute; left: 14px; top: 12px; font-size: 16px; font-weight: 600; background: rgba(0,0,0,.65); padding: 5px 12px; border-radius: 20px; z-index: 2; }
+.chat { position: absolute; inset: 0; display: flex; flex-direction: column; }
+.chat .hd { height: 64px; display: flex; align-items: center; gap: 12px; padding: 0 18px; color: #fff; font-weight: 600; font-size: 19px; }
+.chat .hd small { display: block; font-weight: 400; font-size: 13px; opacity: .8; }
+.chat .bd { flex: 1; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+.bub { max-width: 82%; padding: 10px 14px; border-radius: 14px; font-size: 15.5px; line-height: 1.38; opacity: 0; }
+.bub.me { align-self: flex-end; }
+.tg .hd { background: #2B5278; } .tg .bd { background: #0E1621; } .tg .bub { background: #182533; color: #e6ecf2; } .tg .bub.me { background: #2B5278; }
+.wa .hd { background: #1F2C34; } .wa .bd { background: #0B141A; } .wa .bub { background: #202C33; color: #e9edef; } .wa .bub.me { background: #005C4B; }
+.call { align-self: center; margin-top: 4px; background: #25D366; color: #06261a; font-weight: 600; padding: 9px 18px; border-radius: 30px; font-size: 15px; opacity: 0; }
+.tile img { width: 100%; display: block; }
+.phone { position: absolute; border-radius: 40px; background: #050505; padding: 10px; box-shadow: 0 24px 60px rgba(0,0,0,.5); opacity: 0; }
+.phone img { width: 100%; border-radius: 32px; display: block; }
+
+/* trust: three small windows */
+.mini { position: absolute; border-radius: 16px; overflow: hidden; background: #1a1c19; box-shadow: 0 20px 50px rgba(0,0,0,.5); opacity: 0; }
+.mini .bar { height: 30px; background: #20231f; } .mini img { width: 100%; display: block; }
+
+/* outro */
+#outro { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+#outro h2 { font-size: 74px; font-weight: 700; letter-spacing: -1.5px; margin-top: 36px; }
+#outro .stats { display: flex; gap: 46px; margin-top: 34px; }
+#outro .stats div { font-size: 22px; color: #bcbcbc; } #outro .stats b { display: block; font-size: 52px; color: var(--lime); }
+#outro .cities { display: flex; gap: 16px; margin-top: 36px; }
+#outro .cities span { border-radius: 40px; padding: 10px 24px; font-size: 24px; border: 1.5px solid #3c4236; }
+#outro .cities span.on { background: var(--lime); color: #141414; border-color: var(--lime); font-weight: 600; }
+#outro .url { margin-top: 36px; font-size: 30px; color: var(--lime); font-weight: 600; }
+#outro .team { margin-top: 12px; font-size: 20px; color: #8a8a8a; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="glow"></div>
+
+  <div id="hook" class="layer">
+    <div class="mail">
+      <div class="h"><b>To:</b> Almaty Air Initiative &nbsp;·&nbsp; <b>From:</b> a Tengrinews journalist &nbsp;·&nbsp; 5 questions</div>
+      <ul>
+        <li>1. How serious is Almaty's air pollution now? Is it getting worse?</li>
+        <li>2. What are the main sources: cars, power plants, private houses?</li>
+        <li>3. What is happening with Almaty's coal power plants?</li>
+        <li>4. Why does smog get worse when it gets cold?</li>
+        <li>5. Is the low emission zone working? What should come first?</li>
+      </ul>
+    </div>
+    <div class="cost"><div><b>3</b>pages of answers</div><div><b>23</b>sources checked</div><div><b>hours</b>of expert work</div></div>
+    <div class="src">AAI's real written answer to Tengrinews, 2 November 2026</div>
+  </div>
+
+  <div id="brand" class="layer">
+    <div class="lock"><div class="idm" id="idm1"></div>Taza Copilot</div>
+    <p>AAI's research and live air data, answered in seconds</p>
+    <div class="langs"><span>English</span><span>Русский</span><span>Қазақша</span></div>
+  </div>
+
+  <div id="win"><div class="bar"><i></i><i></i><i></i><span>taza-copilot.online</span></div><div id="view"></div></div>
+
+  <div id="tiles">
+    <div class="tile" id="tTg" style="left:0;top:0;width:430px;height:470px"><div class="chat tg"><div class="hd">✈️ <div>Taza Copilot<small>@SmogHuntersBot · Telegram</small></div></div>
+      <div class="bd"><div class="bub">🟠 <b>Air alert for Almaty</b> · 07:30<br>PM2.5 is 58.2 µg/m³: unhealthy for sensitive groups.</div>
+        <div class="bub me">↪ Forwarded: “Almaty's air got 50% cleaner in 2025”</div>
+        <div class="bub">❌ <b>Contradicted by AAI's research</b><br>AAI recorded a 30% rise in 2025, with the quote and page.</div>
+        <div class="bub">⭐ My places · 🏫 Parent groups · 🔍 Inline</div></div></div></div>
+    <div class="tile" id="tWa" style="left:0;top:490px;width:430px;height:290px"><div class="chat wa"><div class="hd">🟢 <div>Taza Copilot<small>WhatsApp · chat and calls</small></div></div>
+      <div class="bd"><div class="bub me">Какой сейчас воздух в Алматы?</div><div class="bub">Сейчас 68,2 мкг/м³. Самый грязный район: Алатау, 103 мкг/м³.</div><div class="call">📞 Call Taza: the voice agent answers</div></div></div></div>
+    <div class="tile" id="tWg" style="left:450px;top:0;width:650px;height:430px"><span class="cap">🧩 Widget for any website</span><img id="imgWidget" alt=""></div>
+    <div class="phone" id="tPh" style="left:560px;top:450px;width:190px"><img id="imgMhome" alt=""></div>
+    <div class="phone" id="tPh2" style="left:790px;top:450px;width:190px"><img id="imgMmap" alt=""></div>
+  </div>
+
+  <div class="mini" id="mHist" style="left:80px;top:190px;width:640px"><div class="bar"></div><img id="imgHist" alt=""></div>
+  <div class="mini" id="mAi" style="left:540px;top:380px;width:640px"><div class="bar"></div><img id="imgAi" alt=""></div>
+  <div class="mini" id="mSrc" style="left:150px;top:560px;width:560px"><div class="bar"></div><img id="imgSrc" alt=""></div>
+
+  <div id="prog"></div>
+  <div id="copy"><div id="kick"></div><div id="title"></div><div id="chips"></div></div>
+  <div id="concept">LIVE PLATFORM · taza-copilot.online</div>
+  <div id="credit">Team Smog Hunters · inDrive Hackathon 2026 · track AAI-03 · data: Almaty Air Initiative</div>
+
+  <div id="outro" class="layer">
+    <div class="lock" style="font-size:88px"><div class="idm" id="idm2"></div>Taza Copilot</div>
+    <h2>Answers in seconds instead of hours.</h2>
+    <div class="stats"><div><b>104</b>AAI sources</div><div><b id="oSens">156</b>live sensors</div><div><b>44/44</b>accuracy test</div><div><b>~3 s</b>per answer</div><div><b>3</b>languages</div></div>
+    <div class="cities"><span class="on">Almaty</span><span>Kathmandu</span><span>Lahore</span><span>Bishkek</span><span>Tashkent</span></div>
+    <div class="url">taza-copilot.online</div>
+    <div class="team">Team Smog Hunters · inDrive Hackathon 2026 · AAI-03 AQI Data Copilot</div>
+  </div>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const seg = (t, a, b) => clamp((t - a) / (b - a));
+const eo = x => 1 - Math.pow(1 - x, 3);
+const inout = (t, a, b, d = .45) => Math.min(eo(seg(t, a, a + d)), 1 - seg(t, b - d, b));
+const show = (el, o, y = 0, s = 1) => { el.style.opacity = o; el.style.transform = `translateY(${y}px) scale(${s})`; };
+function idMark(el, size) {
+  el.style.width = el.style.height = size + 'px'; el.style.borderRadius = size * .3 + 'px';
+  el.innerHTML = `<svg width="${size}" height="${size}" viewBox="0 0 100 100" style="position:absolute;left:0;top:0"><rect x="24" y="22" width="14" height="14" rx="3" fill="#141414"/><rect x="24" y="42" width="14" height="36" rx="3" fill="#141414"/><path d="M44 25a3 3 0 0 1 3-3h9a28 28 0 0 1 0 56h-9a3 3 0 0 1-3-3v-8a3 3 0 0 1 3-3h9a14 14 0 0 0 0-28h-9a3 3 0 0 1-3-3z" fill="#141414"/></svg>`;
+}
+
+// What each scene shows: screenshots in the window (shown one after another, slowly zooming), the copy and its chips
+const SCENES = {
+  answer: { kick: 'Sourced answers', title: 'The exact quote, the page and a link, in seconds', shots: ['answer', 'quote'],
+    chips: ['<b>104</b> AAI reports, articles and media answers', 'The <b>exact sentence</b> from the report', 'The <b>page</b>, and a link that opens on it', 'About <b>3 seconds</b> per answer', 'Says <b>"not covered"</b> instead of guessing'] },
+  differ: { kick: 'Honest by design', title: 'When sources disagree, both are shown', shots: ['differ', 'check'],
+    chips: ['⚖ <b>Both figures</b>, each with its source', '📊 Numbers become <b>charts</b>', '🔎 <b>Check a claim</b>: supported or contradicted'] },
+  live: { kick: 'Live AAI data', title: 'The air right now, from 150+ sensors', shots: ['map', 'station', 'outdoor', 'compare'],
+    chips: ['🗺 <b>Live map</b>, every sensor coloured', '📈 Each sensor\'s <b>last 24 hours</b> and advice', '🕐 <b>Best time to go out</b> today', '🆚 <b>Compare</b> districts, years, Almaty vs Kathmandu'] },
+  schools: { kick: 'For decision makers', title: 'Where to act first, and a brief to act on', shots: ['schools', 'brief'],
+    chips: ['🏫 <b>Schools and kindergartens</b> ranked by air now', '📄 One-page <b>policy brief</b> from any answer', '🖼 <b>Quote card</b>, 🔗 share link, <b>APA</b> citation'] },
+  accuracy: { kick: 'Measured, not promised', title: 'Accuracy you can check', shots: ['dashboard_top', 'dashboard'],
+    chips: ['✅ <b>44 / 44</b> test questions', '🗞 Incl. <b>real questions</b> journalists sent AAI', '⏱ Median <b>3.3 s</b>, hours of reading saved', '🧭 <b>Research gaps</b> for the AAI team'] },
+  admin: { kick: 'For the AAI team', title: 'New research, citable in seconds', shots: ['admin'],
+    chips: ['📤 Upload a <b>PDF</b>, no rebuild', '🌍 5-point <b>summary in 3 languages</b>', '🔒 Protected key, <b>lockout</b> after 5 tries'] },
+  voice: { kick: 'Talk to it', title: 'A voice agent that drives the page', shots: ['voice', 'tour'],
+    chips: ['🎙 <b>Voice agent</b> in English, Russian, Kazakh', '🖱 Opens the map, a sensor, a quote, <b>any page</b>', '▶ A <b>guided tour</b> of every feature'] },
+  channels: { kick: 'Where people already are', title: 'Telegram, WhatsApp, any website, your phone', tiles: true,
+    chips: ['✈️ <b>Telegram</b>: alerts, post fact-checks, places, groups', '🟢 <b>WhatsApp</b>: chat, and <b>calls</b> with the voice agent', '🧩 <b>Widget</b>: one line on any website', '📲 <b>Installable app</b>, opens offline'] },
+  trust: { kick: 'Private, safe, cheap', title: 'Built to be handed to AAI tomorrow', minis: true,
+    chips: ['🕘 <b>History</b> stays in your browser', '🤖 <b>Any AI model</b>: Claude, OpenAI, local Ollama', '🔐 Keys on the server, <b>no trackers</b>', '💸 About <b>$7 a month</b> to run'] },
+};
+const ORDER = ['answer', 'differ', 'live', 'schools', 'accuracy', 'admin', 'voice', 'channels', 'trust'];
+let TL = null, imgs = {};
+
+function init(timeline, data) {
+  TL = timeline;
+  idMark($('#idm1'), 124); idMark($('#idm2'), 106);
+  if (data?.sensors) $('#oSens').textContent = data.sensors;
+  const names = new Set(ORDER.flatMap(k => SCENES[k].shots || []));
+  for (const n of names) { const im = document.createElement('img'); im.src = `shots_v/${n}.png`; $('#view').appendChild(im); imgs[n] = im; }
+  $('#imgWidget').src = 'shots_v/widget_open.png'; $('#imgMhome').src = 'shots_v/m_home.png'; $('#imgMmap').src = 'shots_v/m_map.png';
+  $('#imgHist').src = 'shots_v/history.png'; $('#imgAi').src = 'shots_v/ai.png'; $('#imgSrc').src = 'shots_v/sources.png';
+  $('#prog').innerHTML = ORDER.map(() => '<i></i>').join('');
+}
+const at = id => TL.scenes.find(s => s.id === id);
+let lastKey = '';
+
+function renderFrame(i) {
+  const t = i / 30;
+  // hook
+  const hk = at('hook');
+  $('#hook').style.opacity = inout(t, hk.start, hk.end, .5);
+  document.querySelectorAll('#hook li').forEach((li, k) => { const a = hk.start + .5 + k * .55; show(li, seg(t, a, a + .35), 12 * (1 - eo(seg(t, a, a + .35)))); });
+  document.querySelectorAll('#hook .cost div').forEach((d, k) => { const a = hk.start + 4.0 + k * .9; show(d, seg(t, a, a + .4), 0, .9 + .1 * eo(seg(t, a, a + .4))); });
+  // title
+  const ti = at('title');
+  show($('#brand'), inout(t, ti.start, ti.end, .5), 0, .95 + .05 * eo(seg(t, ti.start, ti.start + 1.2)));
+  // feature scenes
+  const key = ORDER.find(k => { const s = at(k); return t >= s.start && t < s.end; });
+  const first = at(ORDER[0]), lastS = at(ORDER.at(-1));
+  const winOn = key && !SCENES[key].tiles && !SCENES[key].minis ? inout(t, at(key).start, at(key).end, .4) : 0;
+  $('#win').style.opacity = winOn; $('#win').style.transform = `translateY(${(1 - winOn) * 20}px)`;
+  for (const im of Object.values(imgs)) { im.style.opacity = 0; im.style.display = "none"; }
+  if (key && SCENES[key].shots) {
+    const s = at(key), list = SCENES[key].shots, per = (s.end - s.start) / list.length;
+    list.forEach((n, k) => {
+      const a = s.start + k * per, b = a + per;
+      const o = k === 0 ? 1 - seg(t, b - .3, b) : Math.min(seg(t, a - .1, a + .3), k === list.length - 1 ? 1 : 1 - seg(t, b - .3, b));
+      const z = 1 + .07 * seg(t, a, b + .3);
+      if (t >= a - .2 && t < b + .1) { imgs[n].style.display = "block"; imgs[n].style.opacity = o; imgs[n].style.transform = `scale(${z})`; }
+    });
+  }
+  // channels tiles
+  const ch = at('channels'), chOn = inout(t, ch.start, ch.end, .4);
+  $('#tiles').style.opacity = chOn;
+  [['#tTg', 0], ['#tWa', .5], ['#tWg', 1.0], ['#tPh', 1.5], ['#tPh2', 1.8]].forEach(([s, d]) => { const a = ch.start + .2 + d; show($(s), seg(t, a, a + .4), 24 * (1 - eo(seg(t, a, a + .4)))); });
+  document.querySelectorAll('#tiles .bub').forEach((b, k) => { const a = ch.start + .5 + k * .45; show(b, seg(t, a, a + .3), 8 * (1 - seg(t, a, a + .3))); });
+  const call = $('#tiles .call'); show(call, seg(t, ch.start + 3.2, ch.start + 3.6), 0, .9 + .1 * eo(seg(t, ch.start + 3.2, ch.start + 3.6)));
+  // trust minis
+  const tr = at('trust');
+  [['#mHist', 0], ['#mAi', .5], ['#mSrc', 1.0]].forEach(([s, d]) => { const a = tr.start + .2 + d; show($(s), Math.min(seg(t, a, a + .4), 1 - seg(t, tr.end - .4, tr.end)), 20 * (1 - eo(seg(t, a, a + .4)))); });
+  // copy + chips
+  if (key) {
+    const sc = SCENES[key], s = at(key);
+    if (key !== lastKey) {
+      $('#kick').textContent = sc.kick; $('#title').textContent = sc.title;
+      $('#chips').innerHTML = sc.chips.map(c => `<span>${c}</span>`).join('');
+      document.querySelectorAll('#prog i').forEach((d, k) => d.classList.toggle('on', k <= ORDER.indexOf(key)));
+      lastKey = key;
+    }
+    show($('#copy'), inout(t, s.start + .15, s.end, .4), 20 * (1 - eo(seg(t, s.start + .15, s.start + .6))));
+    const n = sc.chips.length, span = Math.min(.7, (s.end - s.start - 1.6) / n);
+    document.querySelectorAll('#chips span').forEach((c, k) => { const a = s.start + .6 + k * span; show(c, seg(t, a, a + .3), 10 * (1 - eo(seg(t, a, a + .3)))); });
+  } else show($('#copy'), 0);
+  const featOn = Math.min(seg(t, first.start, first.start + .5), 1 - seg(t, lastS.end - .5, lastS.end));
+  $('#prog').style.opacity = featOn; $('#credit').style.opacity = featOn * .9; $('#concept').style.opacity = featOn;
+  // outro
+  const ou = at('outro');
+  show($('#outro'), eo(seg(t, ou.start, ou.start + .9)), 0, .96 + .04 * eo(seg(t, ou.start, ou.start + 1.3)));
+  document.querySelectorAll('#outro .cities span').forEach((s, k) => { s.style.opacity = seg(t, ou.start + 1.4 + k * .2, ou.start + 1.7 + k * .2); });
+}
+window.init = init; window.renderFrame = renderFrame;
+</script>
+</body>
+</html>

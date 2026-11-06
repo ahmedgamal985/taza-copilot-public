@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Taza Copilot widget</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2730%27 fill=%27%23C1F11D%27/%3E%3Crect x=%2724%27 y=%2722%27 width=%2714%27 height=%2714%27 rx=%273%27 fill=%27%23141414%27/%3E%3Crect x=%2724%27 y=%2742%27 width=%2714%27 height=%2736%27 rx=%273%27 fill=%27%23141414%27/%3E%3Cpath d=%27M44 25a3 3 0 0 1 3-3h9a28 28 0 0 1 0 56h-9a3 3 0 0 1-3-3v-8a3 3 0 0 1 3-3h9a14 14 0 0 0 0-28h-9a3 3 0 0 1-3-3z%27 fill=%27%23141414%27/%3E%3C/svg%3E">
+  <meta name="theme-color" content="#141414">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="/"><span class="logo" aria-hidden="true"></span>
+      <span class="brand-name">Taza Copilot<small>inDrive × AAI</small></span></a>
+  </header>
+  <main class="admin">
+    <h1>Taza on any website</h1>
+    <p class="lead">One line of code adds a round button in the corner of the page. Its colour and number are the air in
+      Almaty right now; tapping it opens a chat with AAI's research, with exact quotes and page links. This page shows the
+      real widget, as a website visitor would see it (look at the bottom-right corner).</p>
+    <pre class="snippet"><code id="snippet"></code></pre>
+    <p class="muted small">Options: <code>data-lang="en"</code>, <code>"ru"</code> or <code>"kk"</code> (default: the page's own language),
+      <code>data-position="left"</code>. To allow only your site to embed it, set <code>WIDGET_ORIGINS=https://air.org.kz</code> on the server.</p>
+  </main>
+  <script src="widget-demo.js"></script>
+  <script src="widget.js"></script>
+</body>
+</html>

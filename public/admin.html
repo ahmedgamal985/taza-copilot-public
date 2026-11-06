@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Add research · Taza Copilot</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2730%27 fill=%27%23C1F11D%27/%3E%3Crect x=%2724%27 y=%2722%27 width=%2714%27 height=%2714%27 rx=%273%27 fill=%27%23141414%27/%3E%3Crect x=%2724%27 y=%2742%27 width=%2714%27 height=%2736%27 rx=%273%27 fill=%27%23141414%27/%3E%3Cpath d=%27M44 25a3 3 0 0 1 3-3h9a28 28 0 0 1 0 56h-9a3 3 0 0 1-3-3v-8a3 3 0 0 1 3-3h9a14 14 0 0 0 0-28h-9a3 3 0 0 1-3-3z%27 fill=%27%23141414%27/%3E%3C/svg%3E">
+  <meta name="theme-color" content="#141414">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="/">
+      <span class="logo" aria-hidden="true"></span>
+      <span class="brand-name">Taza Copilot<small>inDrive × AAI</small></span>
+    </a>
+    <div class="lang-switch small-switch" role="group" aria-label="Language">
+      <button data-lang="en" aria-pressed="true">EN</button>
+      <button data-lang="ru" aria-pressed="false">RU</button>
+      <button data-lang="kk" aria-pressed="false">KK</button>
+    </div>
+  </header>
+
+  <main class="admin">
+    <h1 data-i18n="adm_h1">Add research</h1>
+    <p class="lead" data-i18n="adm_lead"></p>
+
+    <form id="signin" class="card-form" hidden>
+      <label for="token" data-i18n="adm_token">Admin token</label>
+      <input id="token" type="password" autocomplete="off" required minlength="8" maxlength="200">
+      <small class="muted" data-i18n="adm_token_hint"></small>
+      <button class="primary" type="submit" data-i18n="adm_signin">Open</button>
+      <p id="signinMsg" class="error" role="alert"></p>
+    </form>
+
+    <div id="panel" hidden>
+      <form id="upload" class="card-form">
+        <label for="file" data-i18n="adm_file">PDF file</label>
+        <input id="file" type="file" accept="application/pdf,.pdf" required>
+        <label for="title" data-i18n="adm_title">Title</label>
+        <input id="title" type="text" required minlength="3" maxlength="200" data-i18n-ph="adm_title_ph">
+        <div class="row2">
+          <div>
+            <label for="lang" data-i18n="adm_lang">Language</label>
+            <select id="lang" required>
+              <option value="en">English</option>
+              <option value="ru">Русский</option>
+              <option value="kk">Қазақша</option>
+            </select>
+          </div>
+          <div>
+            <label for="date" data-i18n="adm_date">Publication date</label>
+            <input id="date" type="date" required>
+          </div>
+        </div>
+        <label for="link" data-i18n="adm_url">Public link (optional)</label>
+        <input id="link" type="url" maxlength="500" data-i18n-ph="adm_url_ph">
+        <small class="muted" data-i18n="adm_url_hint"></small>
+        <label class="check"><input id="notify" type="checkbox" checked> <span data-i18n="adm_notify">Send a 5-point summary to Telegram subscribers of new research</span></label>
+        <button id="uploadBtn" class="primary" type="submit" data-i18n="adm_upload">Add to the copilot</button>
+        <p id="uploadMsg" role="status"></p>
+      </form>
+
+      <h2 data-i18n="adm_list">Research added here</h2>
+      <ul id="docs" class="plain admin-docs"></ul>
+      <button id="signout" class="link-btn" type="button" data-i18n="adm_signout">Sign out</button>
+    </div>
+  </main>
+
+  <script src="i18n.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

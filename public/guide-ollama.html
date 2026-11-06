@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2730%27 fill=%27%23C1F11D%27/%3E%3Crect x=%2724%27 y=%2722%27 width=%2714%27 height=%2714%27 rx=%273%27 fill=%27%23141414%27/%3E%3Crect x=%2724%27 y=%2742%27 width=%2714%27 height=%2736%27 rx=%273%27 fill=%27%23141414%27/%3E%3Cpath d=%27M44 25a3 3 0 0 1 3-3h9a28 28 0 0 1 0 56h-9a3 3 0 0 1-3-3v-8a3 3 0 0 1 3-3h9a14 14 0 0 0 0-28h-9a3 3 0 0 1-3-3z%27 fill=%27%23141414%27/%3E%3C/svg%3E">
+  <meta name="theme-color" content="#141414">
+  <title>Run Taza locally</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    pre { background: var(--quote); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; overflow-x: auto; font-size: 14px; }
+    code { font-family: ui-monospace, Consolas, monospace; }
+    .free { background: var(--accent-soft); border: 1px solid var(--accent); border-radius: var(--radius); padding: 12px 16px; }
+    h2 { margin-top: 32px; }
+  </style>
+</head>
+<body>
+  <header class="top"><a class="brand" href="/"><span class="logo" aria-hidden="true"></span>
+      <span class="brand-name">Taza Copilot<small>inDrive × AAI</small></span></a></header>
+  <main>
+    <h1>Run Taza Copilot locally with Ollama</h1>
+    <p class="free"><b>Zero cost per question.</b> With Ollama the AI model runs on your own computer or on AAI's own server. No API bills, no keys, and no question ever leaves the machine (the page itself still loads map tiles from OpenStreetMap). All it needs is a computer strong enough for the model you pick.</p>
+    <p>The search over AAI's research and the exact quotes work the same as with the cloud providers: Taza finds the passages, the local model writes the answer, and every quote on screen is the original sentence from the report.</p>
+
+    <h2>1. Check your computer</h2>
+    <table class="hw">
+      <thead><tr><th>Model size</th><th>Computer it needs (roughly)</th><th>What to expect</th></tr></thead>
+      <tbody>
+        <tr><td>3–4B</td><td>8 GB RAM, no graphics card needed</td><td>Fast but basic. Fine for testing.</td></tr>
+        <tr><td>7–9B</td><td>16 GB RAM, or a graphics card with 8 GB</td><td>Good answers in English and Russian.</td></tr>
+        <tr><td>12–14B</td><td>Graphics card with 12–16 GB</td><td>Better reasoning and better Kazakh.</td></tr>
+        <tr><td>27–32B</td><td>Graphics card with 24 GB, or a Mac with 32 GB+</td><td>Close to cloud quality.</td></tr>
+      </tbody>
+    </table>
+    <p class="muted">Rough figures for the usual 4-bit models. Without a graphics card everything still works, just slower: a laptop can take a minute or more per answer with a 7–9B model.</p>
+
+    <h2>2. Install Ollama</h2>
+    <p><b>Windows / macOS:</b> download the installer from <a href="https://ollama.com/download" target="_blank" rel="noopener">ollama.com/download</a> and run it. Ollama then runs in the background.</p>
+    <p><b>Linux:</b></p>
+    <pre><code>curl -fsSL https://ollama.com/install.sh | sh</code></pre>
+    <p>Check it works:</p>
+    <pre><code>ollama --version</code></pre>
+
+    <h2>3. Download a model</h2>
+    <p>Pick a model that handles several languages well. Browse <a href="https://ollama.com/library" target="_blank" rel="noopener">ollama.com/library</a> for the current list. For example:</p>
+    <pre><code>ollama pull qwen3:8b</code></pre>
+    <p>or, on a stronger machine:</p>
+    <pre><code>ollama pull gemma3:12b</code></pre>
+    <p class="muted">Model names change over time, so check the library for the newest ones. <code>ollama list</code> shows what you have installed.</p>
+
+    <h2>4. Connect Taza Copilot</h2>
+    <p>In the <code>.env</code> file, set:</p>
+    <pre><code>OLLAMA_URL=http://localhost:11434
+OLLAMA_MODEL=qwen3:8b</code></pre>
+    <p>Restart the platform (<code>npm start</code>), open the menu, choose <b>AI model</b>, select <b>Ollama (local, free)</b> and press <b>Use this model</b>. Answers now show "free (local)".</p>
+
+    <h2>5. Ollama on another machine</h2>
+    <p>On AAI's GPU server, set the environment variable <code>OLLAMA_HOST=0.0.0.0</code> before starting Ollama, then point Taza at it:</p>
+    <pre><code>OLLAMA_URL=http://&lt;server-ip&gt;:11434</code></pre>
+    <p class="muted">Keep that port on a private network or behind a firewall: Ollama has no password of its own.</p>
+
+    <h2>Troubleshooting</h2>
+    <ul>
+      <li><b>"Ollama is not running on this server"</b>: start the Ollama app, or run <code>ollama serve</code>.</li>
+      <li><b>"No models installed yet"</b>: run <code>ollama pull &lt;model&gt;</code>.</li>
+      <li><b>Answers are slow</b>: use a smaller model, or a machine with a graphics card.</li>
+      <li><b>Weak answers in Kazakh</b>: small models struggle with Kazakh; use a 12B+ model or a cloud provider.</li>
+    </ul>
+    <p><a href="/">← Back to Taza Copilot</a></p>
+  </main>
+</body>
+</html>
