@@ -728,14 +728,19 @@ data: ${JSON.stringify(data)}
       // An article (no pages) is searched as a whole for its best paragraph: the figure asked about is
       // often in another part of it ("Turksib … 776 cigarettes" in the key findings; CHP-2's 37.1 → 2.7 in the answer
       // to another question). A media answer then says which question that paragraph answers.
+      // A report (PDF) is searched across its pages too, and the page and link then point to the page of that paragraph
+      // (Turksib's 776 cigarettes are on page 2 of the 2025 report, while page 3 matched the search)
       const whole = r => {
-        if (r.page || r.kind !== 'article') return { text: pick(r.blocks), section: r.section };
+        if (!(r.kind === 'article' || (r.kind === 'report' && r.page))) return { text: pick(r.blocks), section: r.section, page: r.page ?? null, url: r.url || null };
         const parts = index.items.filter(it => it.chunk.doc === r.doc).map(it => it.chunk);
         const owner = parts.flatMap(c => c.blocks.map(() => c));
         const { text, best } = pick(parts.flatMap(c => c.blocks), true);
-        return { text, section: owner[best]?.section ?? r.section };
+        const at = owner[best] || r;
+        const page = r.page ? at.page ?? r.page : null;
+        const url = r.url && page ? r.url.replace(/#page=\d+$/, '') + `#page=${page}` : r.url || null;
+        return { text, section: at.section ?? r.section, page, url };
       };
-      const results = found.slice(0, k).map((r, i) => { const w = whole(r); return { n: i + 1, title: r.title, page: r.page ?? null, url: r.url || null,
+      const results = found.slice(0, k).map((r, i) => { const w = whole(r); return { n: i + 1, title: r.title, page: w.page, url: w.url,
         answer_to_question: w.section ? `${w.section.n}: ${w.section.q}` : undefined, published_online: r.url ? undefined : false, lang: r.lang, date: r.date || null,
         text: w.text }; });
       // A passage that points to another publication Taza has (an AAI project page → its special project with The
