@@ -23,6 +23,8 @@
     async hello() { window.taza.show('ask'); await point($('#view-ask h1')); },
     async ask() {
       document.querySelector('[data-mode="answer"]')?.click();
+      // the suggested questions under the box ("…or tap one of the suggested questions"), shown, not tapped
+      const chip = await waitFor('#suggest .chip', 4000); if (chip) { await point($('#suggest')); await sleep(2500); }
       await point($('#q'), { click: true });
       await typeInto($('#q'), t('tour_q'));
       await point($('#askBtn'), { click: true });
@@ -67,6 +69,7 @@
     async share() {
       window.taza.show('ask', true);
       const brief = await waitFor('#result [data-act="brief"]'); if (brief) await point(brief);
+      const link = $('#result [data-act="share"]'); if (link) { await sleep(1800); await point(link); }
       const card = $('#result [data-card]'); if (card) { await sleep(2000); await point(card); }
       const cite = $('#result [data-cite]'); if (cite) { await sleep(1800); await point(cite); }
       const up = $('#result [data-act="up"]'); if (up) { await sleep(1800); await point(up); }

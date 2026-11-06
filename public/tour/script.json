@@ -25,7 +25,7 @@
   ],
   "en": [
     "Hi, I'm Taza, the AI copilot of Almaty Air Initiative. In the next few minutes, I'll show you everything I can do.",
-    "AAI has published more than a hundred reports and articles. Instead of reading them for hours, just ask. I search all of them, in English, Russian and Kazakh, and answer in seconds.",
+    "AAI has published more than a hundred reports and articles. Instead of reading them for hours, just ask, or tap one of the suggested questions. I search all of them, in English, Russian and Kazakh, and answer in seconds.",
     "Every sentence comes with the exact quote, the report and the page. One tap opens the original. When two sources disagree, I show both figures and where each one comes from, and numbers by district or month become a small chart. And if the research doesn't cover something, I say so instead of guessing.",
     "Journalists and officials can paste any claim and check it. This one says the air got fifty percent cleaner. AAI's own data says the opposite.",
     "The bar at the top shows the air in Almaty right now and the worst district, refreshed every five minutes. I also answer from live data: today versus yesterday, the dirtiest hours of the day, and any date in AAI's archive.",
@@ -49,7 +49,7 @@
   ],
   "ru": [
     "Привет, я Taza, ИИ-помощник Almaty Air Initiative. За следующие несколько минут я покажу всё, что умею.",
-    "AAI опубликовала больше ста отчётов и статей. Не нужно читать их часами, просто спросите. Я ищу по всем сразу, на русском, казахском и английском, и отвечаю за секунды.",
+    "AAI опубликовала больше ста отчётов и статей. Не нужно читать их часами, просто спросите или нажмите на один из готовых вопросов. Я ищу по всем сразу, на русском, казахском и английском, и отвечаю за секунды.",
     "К каждому предложению есть точная цитата, отчёт и страница. Одно нажатие открывает оригинал. Если два источника расходятся, я показываю обе цифры и откуда каждая, а цифры по районам или месяцам превращаются в небольшой график. А если исследования этого не охватывают, я так и скажу, а не буду гадать.",
     "Журналисты и чиновники могут вставить любое утверждение и проверить его. Здесь сказано, что воздух стал чище на пятьдесят процентов. Данные AAI говорят обратное.",
     "Полоса вверху показывает воздух в Алматы прямо сейчас и самый загрязнённый район, она обновляется каждые пять минут. Я отвечаю и по живым данным: сегодня по сравнению со вчера, самые грязные часы дня и любая дата в архиве AAI.",
@@ -73,7 +73,7 @@
   ],
   "kk": [
     "Сәлем, мен Taza, Almaty Air Initiative-тің жасанды интеллект көмекшісімін. Келесі бірнеше минутта не істей алатынымның бәрін көрсетемін.",
-    "AAI жүзден астам есеп пен мақала жариялады. Оларды сағаттап оқудың қажеті жоқ, жай ғана сұраңыз. Мен барлығынан қазақ, орыс және ағылшын тілдерінде іздеп, бірнеше секундта жауап беремін.",
+    "AAI жүзден астам есеп пен мақала жариялады. Оларды сағаттап оқудың қажеті жоқ, жай ғана сұраңыз немесе дайын сұрақтардың бірін басыңыз. Мен барлығынан қазақ, орыс және ағылшын тілдерінде іздеп, бірнеше секундта жауап беремін.",
     "Әр сөйлемнің нақты дәйексөзі, есебі және беті бар. Бір басу түпнұсқаны ашады. Екі дереккөз сәйкес келмесе, екі санды да және әрқайсысы қайдан алынғанын көрсетемін, ал аудандар мен айлар бойынша сандар шағын диаграммаға айналады. Ал зерттеулерде жауап болмаса, болжамай, солай айтамын.",
     "Журналистер мен шенеуніктер кез келген мәлімдемені қойып, тексере алады. Мұнда ауа елу пайызға тазарды делінген. AAI деректері керісінше дейді.",
     "Жоғарыдағы жолақ Алматыдағы қазіргі ауаны және ең ластанған ауданды көрсетеді, ол әр бес минут сайын жаңарады. Мен тірі деректер бойынша да жауап беремін: бүгінді кешемен салыстыру, күннің ең лас сағаттары және AAI мұрағатындағы кез келген күн.",
@@ -97,7 +97,7 @@
   ],
   "audio": {
     "en-hello": "835fa538f5",
-    "en-ask": "7f1b353435",
+    "en-ask": "cbf42ec91e",
     "en-sources": "3ba1bbfccc",
     "en-check": "7afedd7feb",
     "en-live": "728f19ff94",
@@ -116,7 +116,7 @@
     "en-app": "b30adf3b11",
     "en-you": "99dc289d3b",
     "ru-hello": "f1bcd36597",
-    "ru-ask": "bf81eff349",
+    "ru-ask": "5e5f7d45b1",
     "ru-sources": "2100520560",
     "ru-check": "06510ae801",
     "ru-live": "9226e02ce8",
@@ -135,7 +135,7 @@
     "ru-app": "624eeb97a1",
     "ru-you": "af70bca67f",
     "kk-hello": "62b98f9658",
-    "kk-ask": "1c2d202e84",
+    "kk-ask": "431796bc89",
     "kk-sources": "000e13b9da",
     "kk-check": "fdcaeda3e6",
     "kk-live": "19f747ffc6",
