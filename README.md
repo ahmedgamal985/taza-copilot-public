@@ -148,6 +148,7 @@ platform on real screenshots of the live site; part 2 is the Taza for inDrive co
   `node --env-file=../.env scripts/test-telegram.mjs` (bot + alerts),
   `node --env-file=../.env scripts/eval.mjs` (accuracy, 44 questions),
   `node scripts/test-answer-text.mjs` (offline, free: how answer text and citation marks are put together),
+  `node scripts/search-test.mjs` (offline, free: does the search reach the passage that answers each mentor question),
   `node --env-file=../.env scripts/mentor-test.mjs en,ru,kk` (the mentors' 75 test questions in each language; flags answers
   with no source, in the wrong language or saying "not covered" for reading).
 
