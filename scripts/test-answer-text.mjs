@@ -107,6 +107,36 @@ const CASES = [
     not: [/counted\.\s+accumulates/], must: [/423/],
   },
   {
+    name: 'a pasted source sentence with the one figure just given goes (15.4% twice)',
+    content: [T('Да, по данным Минздрава, за последние пять лет заболеваемость системы кровообращения у детей в Алматы выросла на 15,4%. '),
+      T('За последние 5 лет у детей зафиксирован рост заболеваний системы кровообращения на 15,4%.', cite('За последние 5 лет у детей зафиксирован рост заболеваний системы кровообращения на 15,4%.', 1)),
+      T(' Для взрослых такого показателя нет.')],
+    must: [/\[1\]/, /Для взрослых/], count: [/15,4/, 1],
+  },
+  {
+    name: 'a two-word leftover of a removed quote goes, its mark joins the sentence before ("В отоплении[2].")',
+    content: [T('Число машин упало на 93%.', cite('упало на 93%')), T(' Это говорит о важности коммуникации. '),
+      T('В отоплении', cite('В отоплении город перешёл на газ.', 1)), T('. При этом эффект был близок к нулю.', cite('эффект был близок к нулю', 0, 2))],
+    not: [/В отоплении/], must: [/коммуникации\.\[2\]/, /близок к нулю/],
+  },
+  {
+    name: 'a joining word is not left alone before a citation ("субсидий[3], а[4].")',
+    content: [T('Основным инструментом стала замена оборудования за счёт субсидий', cite('замена оборудования за счёт субсидий')), T(', а '),
+      T('субсидии покрывали до 100% стоимости котла', cite('субсидии покрывали до 100% стоимости котла', 1)), T('.')],
+    not: [/,\s*а\s*\[/, /\sа\[/],
+  },
+  {
+    name: 'marks after a full stop join the marks before it ("год[3].[4]" → "год[3][4].")',
+    content: [T('Механизм заработал лишь на третий год', cite('реальная работа началась на третий год')), T('.'),
+      T('Интервал может составлять два-три года.', cite('Интервал может составлять два-три года.', 1))],
+    not: [/\]\.\[/],
+  },
+  {
+    name: 'a short answer word at the start stays ("Да.")',
+    content: [T('Да. '), T('Поддержка составляет 51%.', cite('идею поддерживают 51% горожан'))],
+    must: [/^Да\./, /51%/],
+  },
+  {
     name: 'a "not covered" answer with no figures keeps its text',
     content: [T("AAI's research does not cover radon in apartments. A related topic is indoor PM2.5 measured in homes during the heating season", cite('measurements of PM2.5 inside Almaty apartments during the heating season', 1)), T('.')],
     must: [/does not cover radon/, /\[1\]/],
