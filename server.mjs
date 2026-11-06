@@ -683,6 +683,9 @@ data: ${JSON.stringify(data)}
         const kk = /[әғқңөұүһі]/i.test(s), ru = /[а-яё]/i.test(s);
         if (CARS.test(s)) s += kk ? ' тіркелген автокөлік саны' : ru ? ' зарегистрировано автомобилей' : ' vehicles registered';
         if (LEZ.test(s)) s += kk ? ' LEZ аймақ техникалық режим' : ru ? ' LEZ зона технический режим' : ' LEZ pilot technical mode';
+        // a power plant going over to gas: AAI's answer gives the change in gross emissions in thousand tonnes a year
+        if (/\b(chp|tpp)|тэц|жэо/i.test(s) && /\bgas\b|газ/i.test(s))
+          s += kk ? ' жалпы шығарындылар мың тонна жылына' : ru ? ' валовых выбросов тыс. тонн в год' : ' gross emissions thousand tonnes per year';
         return s;
       };
       const queries = q.split('|').map(s => s.trim()).filter(s => s.length > 1).slice(0, 4).map(reportWords);
@@ -708,8 +711,8 @@ data: ${JSON.stringify(data)}
       // Rare words count more when choosing the paragraph ("Turksib" over "cigarettes", which every page of the report has)
       const idf = w => Math.log(1 + (index.N - (index.df.get(w) || 0) + 0.5) / ((index.df.get(w) || 0) + 0.5));
       // The best-matching paragraph and the ones right after it (the figures usually follow the sentence that
-      // names the topic: "…95% ready." → "emissions fall from 37.1 to 2.7 thousand t"), up to ~1,600 characters
-      const pick = blocks => {
+      // names the topic: "…95% ready." → "emissions fall from 37.1 to 2.7 thousand t"), up to ~2,500 characters
+      const pick = (blocks, withBest = false) => {
         const list = (blocks || []).map(b => b.replace(/\s+/g, ' ').trim());
         // a paragraph that holds measured figures (µg/m³, %, "times") is the more likely answer
         const score = list.map(b => [...new Set(tokenize(b).filter(w => words.has(w)))].reduce((s, w) => s + idf(w), 0)
@@ -718,12 +721,23 @@ data: ${JSON.stringify(data)}
         // best paragraph first, then the ones after it, then the one before it, kept in their original order
         const order = [i, i + 1, i + 2, i - 1, i + 3, i - 2].filter(k => k >= 0 && k < list.length);
         const keep = new Set(); let len = 0;
-        for (const k of order) { if (len && len + list[k].length > 1800) continue; keep.add(k); len += list[k].length; if (len > 1600) break; }
-        return [...keep].sort((a, b) => a - b).map(k => list[k]).join(' ').slice(0, 1900);
+        for (const k of order) { if (len && len + list[k].length > 2800) continue; keep.add(k); len += list[k].length; if (len > 2500) break; }
+        const text = [...keep].sort((a, b) => a - b).map(k => list[k]).join(' ').slice(0, 2900);
+        return withBest ? { text, best: i } : text;
       };
-      const results = found.slice(0, k).map((r, i) => ({ n: i + 1, title: r.title, page: r.page ?? null, url: r.url || null,
-        answer_to_question: r.section ? `${r.section.n}: ${r.section.q}` : undefined, published_online: r.url ? undefined : false, lang: r.lang, date: r.date || null,
-        text: pick(r.blocks) }));
+      // An article (no pages) is searched as a whole for its best paragraph: the figure asked about is
+      // often in another part of it ("Turksib … 776 cigarettes" in the key findings; CHP-2's 37.1 → 2.7 in the answer
+      // to another question). A media answer then says which question that paragraph answers.
+      const whole = r => {
+        if (r.page || r.kind !== 'article') return { text: pick(r.blocks), section: r.section };
+        const parts = index.items.filter(it => it.chunk.doc === r.doc).map(it => it.chunk);
+        const owner = parts.flatMap(c => c.blocks.map(() => c));
+        const { text, best } = pick(parts.flatMap(c => c.blocks), true);
+        return { text, section: owner[best]?.section ?? r.section };
+      };
+      const results = found.slice(0, k).map((r, i) => { const w = whole(r); return { n: i + 1, title: r.title, page: r.page ?? null, url: r.url || null,
+        answer_to_question: w.section ? `${w.section.n}: ${w.section.q}` : undefined, published_online: r.url ? undefined : false, lang: r.lang, date: r.date || null,
+        text: w.text }; });
       // A passage that points to another publication Taza has (an AAI project page → its special project with The
       // Steppe, which holds the figures) brings that publication's best-matching passage too, so an assistant whose
       // search words missed it still gets the detailed answer (at most two added)
