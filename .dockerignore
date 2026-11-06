@@ -13,6 +13,7 @@ data/tg-users.json
 data/tg-alerts.json
 data/tg-places.json
 data/tg-groups.json
+data/library.json
 data/aai-cache.json
 data/uploads
 docs

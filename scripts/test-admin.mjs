@@ -57,7 +57,7 @@ const upload = (body, meta = {}, headers = {}) => req('/api/admin/upload', { met
 // Start the test server
 const server = spawn(process.execPath, ['--env-file-if-exists=../.env', 'server.mjs'], {
   cwd: join(here, '..'),
-  env: { ...process.env, PORT: String(PORT), HOST: '127.0.0.1', ADMIN_TOKEN: TOKEN, UPLOAD_DIR: join(tmp, 'uploads'),
+  env: { ...process.env, PORT: String(PORT), HOST: '127.0.0.1', ADMIN_TOKEN: TOKEN, UPLOAD_DIR: join(tmp, 'uploads'), LIBRARY_FILE: join(tmp, 'library.json'),
     LOG_FILE: join(tmp, 'log.jsonl'), TELEGRAM_BOT_TOKEN: '', PREWARM: 'off' },
   stdio: ['ignore', 'pipe', 'pipe'],
 });
@@ -121,6 +121,23 @@ try {
   check('PDF link gone after removal', (await req(`/research/${id}.pdf`)).status === 404);
   check('gone from the sources', !(await req('/api/sources')).data.some(s => s.title === up.data.title));
   check('removing an unknown id → 404', (await req('/api/admin/delete', { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-admin-token': TOKEN }, body: JSON.stringify({ id: '../../.env' }) })).status === 404);
+
+  // ---- The research library: hide or show any source, turn the daily air.org.kz check on or off ----
+  const H = { 'Content-Type': 'application/json', 'x-admin-token': TOKEN };
+  const lib = await req('/api/admin/library', { headers: H });
+  check('library lists every source with its origin', lib.status === 200 && lib.data.sources.length >= 100 && lib.data.sources.every(s => s.key && s.origin), `${lib.data.sources?.length} sources`);
+  check('library is locked without the token', (await req('/api/admin/library')).status === 401);
+  const target = lib.data.sources.find(s => s.origin === 'built-in' && s.url && lib.data.sources.filter(x => x.url === s.url).length === 1);
+  const inSources = async () => (await req('/api/sources')).data.some(s => s.url === target.url);
+  const hide = await req('/api/admin/library/hide', { method: 'POST', headers: H, body: JSON.stringify({ key: target.key, hidden: true }) });
+  check('hiding a source takes it out of the answers', hide.status === 200 && !(await inSources()), target.title.slice(0, 50));
+  const show = await req('/api/admin/library/hide', { method: 'POST', headers: H, body: JSON.stringify({ key: target.key, hidden: false }) });
+  check('showing it again brings it back', show.status === 200 && await inSources());
+  check('hiding an unknown source is refused', (await req('/api/admin/library/hide', { method: 'POST', headers: H, body: JSON.stringify({ key: 'url:https://example.com', hidden: true }) })).status === 400);
+  const off = await req('/api/admin/library/auto', { method: 'POST', headers: H, body: JSON.stringify({ enabled: false }) });
+  const on = await req('/api/admin/library/auto', { method: 'POST', headers: H, body: JSON.stringify({ enabled: true }) });
+  check('the daily air.org.kz check turns off and on', off.data.auto?.enabled === false && on.data.auto?.enabled === true);
+  check('the switch only takes true or false', (await req('/api/admin/library/auto', { method: 'POST', headers: H, body: JSON.stringify({ enabled: 'yes' }) })).status === 400);
 
   // ---- Brute force: after 5 wrong tokens in a minute, the next ones are refused ----
   let last;

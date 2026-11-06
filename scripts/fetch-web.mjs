@@ -10,23 +10,7 @@ const corpus = join(here, '..', '..', 'aai-research');
 const index = JSON.parse(readFileSync(join(corpus, 'index.json'), 'utf8'));
 const out = join(corpus, 'web');
 
-const decode = s => s.replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(+n)).replace(/&#x([0-9a-f]+);/gi, (_, n) => String.fromCodePoint(parseInt(n, 16)))
-  .replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&laquo;/g, '«').replace(/&raquo;/g, '»');
-
-function pageText(html) {
-  // The article lives in <main>; drop navigation, forms, scripts, modals and footers
-  let m = html.match(/<main[\s\S]*?<\/main>/i)?.[0] || html.match(/<body[\s\S]*<\/body>/i)?.[0] || html;
-  m = m.replace(/<(script|style|noscript|svg|form|nav|footer|header|button|iframe)[\s\S]*?<\/\1>/gi, '')
-    .replace(/<div[^>]*class="(?:[^"]*\s)?(share-modal|search-results|search-form|mobile-search-results|cookies-notice|page-nav|research-image-modal)[^"]*"[\s\S]*?<\/div>/gi, '')
-    .replace(/<img[^>]*>/gi, '');
-  return decode(m
-    .replace(/<br\s*\/?>/gi, '\n')
-    .replace(/<\/(p|div|h[1-6]|li|tr|blockquote|section|table)>/gi, '\n\n')
-    .replace(/<li[^>]*>/gi, '• ')
-    .replace(/<td[^>]*>/gi, ' | ')
-    .replace(/<[^>]+>/g, ''))
-    .replace(/[ \t ​]+/g, ' ').replace(/ *\n */g, '\n').replace(/\n{3,}/g, '\n\n').trim();
-}
+import { decode, pageText } from '../lib/webtext.mjs';
 
 const safe = s => decode(s).replace(/[\\/:*?"<>|\u0000-\u001f]/g, '').replace(/\s+/g, ' ').trim().slice(0, 110);
 const sleep = ms => new Promise(r => setTimeout(r, ms));

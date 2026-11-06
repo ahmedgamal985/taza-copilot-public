@@ -97,6 +97,11 @@
       await sleep(6000); if (!stillOn(tok)) return;
       await point($('#tourAdmin .ta-gaps'));
       await sleep(6500); if (!stillOn(tok)) return;
+      // the daily check of air.org.kz, then hiding or showing any source
+      await point($('#tourAdmin .ta-auto'));
+      await sleep(4500); if (!stillOn(tok)) return;
+      await point($('#tourAdmin .ta-hide'));
+      await sleep(4000); if (!stillOn(tok)) return;
       await point($('#tourAdmin .ta-lock'));
     },
     async ai() { await page('ai'); const p = await waitFor('#providerList > *'); if (p) await point(p); await sleep(3000); await point($('#keyInput')); },
@@ -155,6 +160,8 @@
          <div class="ta-gaps"><b>${esc(t('tadm_gaps'))}</b>
            <ul><li>${esc(t('tadm_t1'))} <span>· 4</span></li><li>${esc(t('tadm_t2'))} <span>· 3</span></li></ul>
            <small>${esc(t('tadm_example'))} · ${esc(t('tadm_monday'))}</small></div>
+         <div class="ta-auto">🔄 <b>${esc(t('lib_h'))}</b><br><small>☑ ${esc(t('lib_auto'))}</small></div>
+         <div class="ta-hide">👁 <b>${esc(t('src_h'))}</b> <span class="ta-pill">${esc(t('src_hide'))}</span> <span class="ta-pill">${esc(t('src_show'))}</span></div>
          <p class="ta-lock">🔒 ${esc(t('tadm_lock'))}</p>`;
     box.hidden = false;
     return box;

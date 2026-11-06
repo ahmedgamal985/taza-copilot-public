@@ -13,7 +13,7 @@ const SETTINGS = ['ANTHROPIC_MODEL', 'OPENAI_MODEL', 'DEEPINFRA_MODEL', 'OPENROU
   'DAILY_BUDGET_USD', 'DAILY_QUESTIONS_PER_IP', 'WIDGET_ORIGINS', 'TELEGRAM_ADMIN_CHATS', 'MANUAL_MINUTES'];
 
 // Files the container may keep in R2 (same list as lib/persist.mjs)
-const KEY = /^data\/(log\.jsonl|shared\.json|tg-users\.json|tg-alerts\.json|tg-places\.json|tg-groups\.json|aai-cache\.json|uploads\/[\w.-]{1,80})$/;
+const KEY = /^data\/(log\.jsonl|shared\.json|tg-users\.json|tg-alerts\.json|tg-places\.json|tg-groups\.json|aai-cache\.json|library\.json|uploads\/[\w.-]{1,80})$/;
 const MAX_BYTES = 40 * 1024 * 1024;
 
 async function store(req, env) {

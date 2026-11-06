@@ -81,7 +81,9 @@ for (const type of ['research', 'external_research', 'actual_legislation', 'pres
   if (!existsSync(dir)) continue;
   for (const name of readdirSync(dir).filter(f => f.endsWith('.md')).sort()) {
     const raw = readFileSync(join(dir, name), 'utf8');
-    const head = Object.fromEntries([...raw.matchAll(/^(Source|Date|Language|Type): (.*)$/gm)].map(m => [m[1], m[2].trim()]));
+    // the header lines only: the first of each (an article can quote its own "Source: …" further down)
+    const head = {};
+    for (const m of raw.matchAll(/^(Source|Date|Language|Type): (.*)$/gm)) head[m[1]] ??= m[2].trim();
     const title = raw.match(/^# (.*)$/m)?.[1]?.trim() || name;
     // Body starts after the header block; drop the repeated title line and the date line
     const body = raw.split(/\nType: .*\n/)[1]?.replace(title, '').replace(/^\s*\d{1,2} \S+ \d{4}\s*$/m, '').trim() || '';

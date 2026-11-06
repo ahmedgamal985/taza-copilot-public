@@ -13,6 +13,7 @@ import { startTelegram } from './lib/telegram.mjs';
 import { partnerBrief, inAlmaty } from './lib/partner.mjs';
 import { hasStt, transcribe } from './lib/stt.mjs';
 import { createUploads, isUploadId, LANGS, MAX_PDF_BYTES } from './lib/uploads.mjs';
+import { createLibrary, docKey } from './lib/library.mjs';
 import { timingSafeEqual, createHash, randomBytes } from 'node:crypto';
 
 const here = dirname(fileURLToPath(import.meta.url));
@@ -21,7 +22,12 @@ const PORT = Number(process.env.PORT || 8787);
 const CHUNKS = join(here, 'data', 'chunks.json');
 // Research uploaded by the AAI team is layered on top of the base index (see lib/uploads.mjs)
 const uploads = createUploads(process.env.UPLOAD_DIR || join(here, 'data', 'uploads'));
-let index = loadIndex(CHUNKS, uploads.corpus());
+// Pages added from air.org.kz and sources the AAI team hid, both managed on the admin page (see lib/library.mjs)
+mkdirSync(join(here, 'data'), { recursive: true });
+const library = createLibrary(process.env.LIBRARY_FILE || join(here, 'data', 'library.json'));
+const BASE_DOCS = JSON.parse(readFileSync(CHUNKS, 'utf8')).docs;
+const extraCorpus = () => { const u = uploads.corpus(), l = library.corpus(); return { docs: [...u.docs, ...l.docs], chunks: [...u.chunks, ...l.chunks] }; };
+let index = loadIndex(CHUNKS, extraCorpus(), library.hidden());
 const LOG = process.env.LOG_FILE || join(here, 'data', 'log.jsonl');
 mkdirSync(join(here, 'data'), { recursive: true });
 
@@ -424,9 +430,29 @@ const isAdmin = req => Boolean(process.env.ADMIN_TOKEN) && typeof req.headers['x
   && timingSafeEqual(sha(req.headers['x-admin-token']), sha(process.env.ADMIN_TOKEN));
 // Rebuild the search index with the uploaded research, and forget cached answers so new research is used
 function reindex() {
-  index = loadIndex(CHUNKS, uploads.corpus());
+  index = loadIndex(CHUNKS, extraCorpus(), library.hidden());
   answers.clear();
 }
+// Every source the team can manage: built-in, uploaded, added from air.org.kz (hidden ones included)
+function allSources() {
+  const hidden = library.hidden();
+  const row = (d, origin) => ({ key: docKey(d), title: d.title, lang: d.lang, date: d.date, kind: d.kind, url: d.url || null, origin, hidden: hidden.has(docKey(d)) });
+  return [...library.added().map(d => row(d, 'auto')), ...uploads.corpus().docs.map(d => row(d, 'upload')), ...BASE_DOCS.map(d => row(d, 'built-in'))];
+}
+// The daily check of air.org.kz (turned on or off on the admin page): a few minutes after start, then hourly
+// it asks whether a day has passed since the last check
+async function libraryCheck() {
+  const known = [...BASE_DOCS, ...uploads.corpus().docs].map(docKey);
+  // A page whose opening text is already in an indexed passage is a copy (same report under another address)
+  const norm = t => t.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, '');
+  const texts = index.items.map(i => norm(i.chunk.blocks.join(' ')));
+  const isDuplicate = blocks => { const probe = norm(blocks.join(' ')).slice(20, 220); return probe.length >= 120 && texts.some(t => t.includes(probe)); };
+  const r = await library.check(known, isDuplicate);
+  if (r.added.length) { reindex(); console.log(`Library: ${r.added.length} new page(s) from air.org.kz`); }
+  return r;
+}
+setTimeout(() => { if (library.due()) libraryCheck().catch(err => console.warn('Library check failed:', err.message)); }, 3 * 60_000).unref();
+setInterval(() => { if (library.due()) libraryCheck().catch(err => console.warn('Library check failed:', err.message)); }, 3_600_000).unref();
 async function readBody(req, limit) {
   if (Number(req.headers['content-length'] || 0) > limit) throw Object.assign(new Error('The file is too large (max 30 MB).'), { status: 413 });
   const parts = [];
@@ -739,6 +765,27 @@ data: ${JSON.stringify(data)}
           notified = await bot.announceResearch({ ...entry, summary }).catch(err => { console.warn('Announcing research failed:', err.message); return 0; });
         }
         return send(req, res, 200, { ...entry, summary, notified });
+      }
+      // The research library: automatic updates from air.org.kz, and hiding or showing any source
+      if (url.pathname === '/api/admin/library' && req.method === 'GET') {
+        return send(req, res, 200, { auto: library.state(), sources: allSources() });
+      }
+      if (url.pathname === '/api/admin/library/check' && req.method === 'POST') {
+        try { return send(req, res, 200, await libraryCheck()); }
+        catch (err) { return send(req, res, 502, { error: 'Could not reach air.org.kz right now.' }); }
+      }
+      if (url.pathname === '/api/admin/library/auto' && req.method === 'POST') {
+        const { enabled } = await readJson(req);
+        if (typeof enabled !== 'boolean') return send(req, res, 400, { error: 'Send enabled: true or false.' });
+        library.setAuto(enabled);
+        return send(req, res, 200, { auto: library.state() });
+      }
+      if (url.pathname === '/api/admin/library/hide' && req.method === 'POST') {
+        const { key, hidden } = await readJson(req);
+        if (typeof key !== 'string' || typeof hidden !== 'boolean' || !allSources().some(s => s.key === key)) return send(req, res, 400, { error: 'Unknown source.' });
+        library.setHidden(key, hidden);
+        reindex();
+        return send(req, res, 200, { key, hidden, sources: index.docs.length });
       }
       if (url.pathname === '/api/admin/delete' && req.method === 'POST') {
         const { id } = await readJson(req);

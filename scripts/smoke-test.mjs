@@ -163,6 +163,8 @@ for (const f of ['/app.js', '/i18n.js', '/voice.js', '/style.css', '/vendor/leaf
   const home = await raw('/');
   check('every other page still refuses to be framed', home.headers['x-frame-options'] === 'DENY' && /frame-ancestors 'none'/.test(home.headers['content-security-policy']));
   check('admin API off or locked without a token', [401, 403].includes((await raw('/api/admin/uploads')).status));
+  check('research library (air.org.kz updates, hide/show) locked without a token', [401, 403].includes((await raw('/api/admin/library')).status));
+  check('admin page has the library controls', /id="libCheck"/.test((await raw('/admin.html')).body) && /id="srcList"/.test((await raw('/admin.html')).body));
   check('admin upload from another site blocked', (await raw('/api/admin/upload', { method: 'POST', headers: { 'Content-Type': 'application/pdf', Origin: 'https://evil.example' }, body: '%PDF-1.4' })).status === 403);
   for (const p of ['/research/../server.mjs', '/research/up-zzzzzzzz.pdf', '/research/x.pdf', '/data/shared.json', '/data/uploads/uploads.json', '/data/eval-results.json', '/data/tg-alerts.json',
     '/data/tg-places.json', '/data/tg-groups.json']) {

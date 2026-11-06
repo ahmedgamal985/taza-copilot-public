@@ -54,6 +54,12 @@ platform on real screenshots of the live site; part 2 is the Taza for inDrive co
   answered by the low-cost model and pre-answered at start-up, so a tap shows the answer at once.
 - **AAI adds its own research.** `/admin.html` (ADMIN_TOKEN): upload a PDF and it is searchable and
   citable a few seconds later, with links to the uploaded file's pages. No rebuild, no restart.
+- **The research stays up to date by itself, and the AAI team controls it.** Once a day the server checks
+  air.org.kz (its WordPress API: research, external research, legislation) for pages Taza does not have yet,
+  reads them and adds them to the search; a page that repeats a report already indexed is skipped. On the admin
+  page the team turns the daily check on or off, runs it at once ("Check now"), sees when it last ran and what it
+  added, and can hide any source from answers (an outdated report, say) and show it again. No developer needed
+  (`lib/library.mjs`, state in `data/library.json`, saved to R2).
 - **The metric, live.** "Taza has already saved N hours of reading reports": sourced answers × a
   conservative 20 minutes of manual searching each (`MANUAL_MINUTES`), shown on the home page and dashboard.
 - **Check a claim.** Paste a statement from the news or a post: ✅ supported / ❌ contradicted /

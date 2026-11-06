@@ -64,6 +64,24 @@
 
       <h2 data-i18n="adm_list">Research added here</h2>
       <ul id="docs" class="plain admin-docs"></ul>
+
+      <h2 data-i18n="lib_h">Updates from air.org.kz</h2>
+      <div class="card-form" id="lib">
+        <p class="muted small" data-i18n="lib_lead">Taza checks air.org.kz once a day for new research, external research and legislation pages, and adds them by itself. A page that repeats a report Taza already has is skipped.</p>
+        <label class="check"><input id="libAuto" type="checkbox"> <span data-i18n="lib_auto">Check air.org.kz every day</span></label>
+        <p id="libStatus" class="small"></p>
+        <button id="libCheck" class="primary" type="button" data-i18n="lib_check">Check now</button>
+        <p id="libMsg" role="status"></p>
+        <ul id="libAdded" class="plain admin-docs"></ul>
+      </div>
+
+      <h2 data-i18n="src_h">All sources</h2>
+      <p class="muted small" data-i18n="lib_src_lead">Hide a source to keep it out of every answer, for example an outdated report. Show it again at any time; nothing is deleted.</p>
+      <div class="card-form">
+        <input id="srcFilter" type="search" maxlength="100" data-i18n-ph="src_filter" placeholder="Search sources…">
+        <p id="srcCount" class="muted small"></p>
+        <ul id="srcList" class="plain admin-docs"></ul>
+      </div>
       <button id="signout" class="link-btn" type="button" data-i18n="adm_signout">Sign out</button>
     </div>
   </main>

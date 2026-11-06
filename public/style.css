@@ -792,6 +792,8 @@ main { max-width: 820px; padding-top: 34px; }
 .wa-start:hover { transform: translateY(-1px); }
 
 /* Guided tour: the admin page preview (no real key, nothing sent) */
+.tour-admin .ta-auto, .tour-admin .ta-hide { margin-top: 10px; font-size: 13px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 10px; }
+.tour-admin .ta-pill { display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 20px; border: 1px solid var(--line); margin-left: 4px; }
 .tour-admin { position: fixed; z-index: 1003; left: 50%; top: 76px; transform: translateX(-50%); width: min(460px, calc(100% - 24px)); max-height: calc(100vh - 250px); overflow: auto;
   background: var(--card); color: var(--text); border: 1px solid var(--line); border-radius: 20px; padding: 18px 20px; box-shadow: 0 0 0 100vmax rgba(14, 16, 14, .55), 0 24px 60px rgba(0,0,0,.35); }
 .tour-admin h3 { margin: 6px 0 12px; font-size: 22px; }

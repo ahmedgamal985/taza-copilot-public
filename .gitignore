@@ -7,6 +7,7 @@ data/shared.json
 data/tg-alerts.json
 data/tg-places.json
 data/tg-groups.json
+data/library.json
 data/uploads/
 .wrangler/
 
