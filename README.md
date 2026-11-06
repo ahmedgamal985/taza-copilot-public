@@ -146,7 +146,10 @@ platform on real screenshots of the live site; part 2 is the Taza for inDrive co
 - Tests: `node scripts/smoke-test.mjs` (134 checks, features + attacks), `node scripts/test-telegram-roles.mjs` (driver/rider tips),
   `node scripts/test-admin.mjs` (research upload, 31 checks),
   `node --env-file=../.env scripts/test-telegram.mjs` (bot + alerts),
-  `node --env-file=../.env scripts/eval.mjs` (accuracy, 44 questions).
+  `node --env-file=../.env scripts/eval.mjs` (accuracy, 44 questions),
+  `node scripts/test-answer-text.mjs` (offline, free: how answer text and citation marks are put together),
+  `node --env-file=../.env scripts/mentor-test.mjs en,ru,kk` (the mentors' 75 test questions in each language; flags answers
+  with no source, in the wrong language or saying "not covered" for reading).
 
 ## Run it
 
@@ -193,8 +196,8 @@ Uploading research needs `pdftotext` (Linux: `apt install poppler-utils`; Window
 
 1. **Plan.** The AI writes short search queries in English, Russian and Kazakh and decides whether
    live sensor data is needed.
-2. **Search.** BM25 over 1,500+ report pages and article sections (no vector database needed), merged across languages, with a bonus for passages where the query words appear side by side. Each passage is also matched on the edges of its neighbours and brings the next passage along (a figure often follows the sentence that names the topic), "ТЭЦ-2" counts as one word, and AAI's newest material (last 45 days) gets two extra slots, so its latest position is not buried under older reports. AAI's written answers to the media have no public file: their passages say which question they answer instead of a page.
-   The fast model's answer goes to the stronger model once when it has no source, says the research does not cover the question, or copies Russian or Kazakh wording into an English answer. Team test of 9 media questions: `node scripts/team-test.mjs`.
+2. **Search.** BM25 over 1,500+ report pages and article sections (no vector database needed), merged across languages (one vote per language, so a passage that exists only in Russian, such as a media answer, still reaches an English question), with a bonus for passages where the query words appear side by side. Each passage is also matched on the edges of its neighbours and brings the next passage along (a figure often follows the sentence that names the topic), "ТЭЦ-2" counts as one word, and AAI's newest material (last 45 days) gets two extra slots, so its latest position is not buried under older reports. AAI's written answers to the media have no public file: their passages say which question they answer instead of a page.
+   The fast model's answer goes to the stronger model once when it has no source, says the research does not cover the question, or copies Russian or Kazakh wording into an English answer. The stronger model's answer is tried once more when it has no source or carries words in another language. Team test of 9 media questions: `node scripts/team-test.mjs`.
 3. **Answer.** With Claude, each page is sent as a `search_result` block with citations enabled,
    so the quotes come back extracted from the source. With other providers, passages are numbered
    and the model cites numbers; the platform shows the original passage text.

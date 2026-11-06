@@ -1,0 +1,76 @@
+Taza Copilot test questions (English):
+1. What were the main recommendations from AAI's LEZ workshop?
+2. How many cars exceeded exhaust limits in AAI's measurements?
+3. How many cars on Almaty's roads were made before 2005?
+4. Is the rate of heart disease rising in Almaty?
+5. How do Almaty residents rate the air quality?
+6. What does AAI's research say about radon in apartments?
+7. If cars are the main source, why didn't the smog disappear during the lockdown?
+8. When is it hardest for people with allergies in Almaty?
+9. Do Almaty residents support the low emission zone?
+10. What pollutes Almaty's air more: cars, CHP plants or the private housing sector?
+11. How many school days did children in Almaty breathe air above the standard?
+12. Why is the air in Almaty so polluted in winter?
+13. What is the PM2.5 level in Turksib district right now?
+14. What share of Almaty's PM2.5 comes from coal?
+15. How far apart are Kazhydromet's PM2.5 data and AAI's sensor readings?
+16. Is it true that coal causes 75% of Almaty's air pollution?
+17. Kazhydromet says the air got cleaner in 2025. Is that true?
+18. pm2.5 who norm
+19. Is it true that schoolchildren in Almaty breathe air 9 times dirtier than the WHO guideline?
+20. How many days in 2024 did NO2 levels meet the WHO guideline?
+21. Which day in 2025 was the most polluted, and how bad was it?
+22. How many clean-air days does Almaty have per year?
+23. How many cars are there in Almaty?
+24. Is Almaty in the IQAir ranking of capitals?
+25. How many times dirtier than the WHO guideline is Almaty's air?
+26. How many schools did AAI's study of air near schools and kindergartens cover?
+27. Why did the WHO set the annual PM2.5 guideline at 25 µg/m³?
+28. What PM2.5 target for 2031 does AAI propose?
+29. How many Almaty residents are seriously thinking about moving because of the air?
+30. How polluted was Almaty's air last year?
+31. Are all private houses in Almaty connected to gas?
+32. Can pollution be reduced without stopping the economy? What does China's experience show?
+33. How many times dirtier is Almaty's air in winter than in summer?
+34. What's wrong with vehicle inspections, according to AAI's check?
+35. how many cigs a day is almaty air
+36. How much does it cost to connect a private house to gas in Almaty?
+37. What did the low emission zone achieve in Sofia?
+38. Where in Almaty are the most polluted schools and kindergartens?
+39. How many days in 2025 did Almaty's air exceed Kazakhstan's daily PM2.5 limit?
+40. Where is social housing located in Almaty, and what kind of air do people breathe there?
+41. How polluted is Almaty's air with nitrogen dioxide (NO2)?
+42. How many people in Kazakhstan die because of air pollution?
+43. What share of total mileage comes from eco-class 0–4 cars, and how much NOx do they emit?
+44. What did AAI find out about water pollution in Kapchagay?
+45. Which district of Almaty was the most polluted in 2025?
+46. Why is the Soviet OND-86 dispersion calculation method outdated?
+47. What did AAI's "smog in the blood" experiment show?
+48. How much NOx and particulate matter do trucks emit?
+49. Where do fine PM2.5 particles in Almaty come from? What are the main sources?
+50. By how many times will emissions fall if CHP-2 switches to gas?
+51. Is it true that Almaty ranks second in the world for air pollution?
+52. How many cigarettes a year does an Almaty resident "smoke" because of smog, and how was that calculated?
+53. Will bathhouses and barbecue restaurants in Almaty be banned from burning coal?
+54. How much does polluted air lower children's IQ in Almaty?
+55. Is it true that Almaty did not have a single clean-air day in 2024?
+56. Is nitrogen dioxide in Almaty high all year round?
+57. How did the landfill fire affect Almaty's air?
+58. Is it true that nitrogen dioxide in Almaty is four times above the standard?
+59. Does extreme heat make air pollution in Almaty worse?
+60. Is it true that Almaty has almost 800,000 cars and that old cars cause most of the pollution?
+61. Is it true that the main cause of Almaty's smog is not factories but road dust?
+62. Is it true that CHP-2 is among the 10% most polluting facilities in the world?
+63. At what times of day is it most dangerous to walk and run in Almaty?
+64. Why does Kazakhstan have no annual PM2.5 standard, and how much looser are Kazakhstan's standards than the WHO's?
+65. When will Almaty start fining drivers for entering the low emission zone?
+66. Is it true that wealthier Almaty residents are more likely to think about moving because of the smog?
+67. Is it true that a child in Almaty "smokes" 423 cigarettes over a school year?
+68. What effect have low emission zones had in other countries?
+69. What is a vehicle environmental inspection, and from what date is it required?
+70. Have scientists proven that smog gets into the blood of Almaty residents?
+71. How many Almaty residents would like to leave the city for the winter because of the smog?
+72. How many sensors does AAI have, and is it true that it's the largest network in Asia?
+73. How many days in 2025 was Almaty covered by smog?
+74. Is it true that one in four Almaty residents wants to move out of the city?
+75. Why does Almaty still burn coal if the city is gasified?
